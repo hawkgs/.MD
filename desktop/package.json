@@ -1,0 +1,19 @@
+{
+  "name": "dot-md-desktop",
+  "version": "0.1.0",
+  "description": "Cross-platform Markdown editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hAWKdv/.MD.git"
+  },
+  "author": "hAWK",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hAWKdv/.MD/issues"
+  },
+  "homepage": "https://github.com/hAWKdv/.MD#readme"
+}
