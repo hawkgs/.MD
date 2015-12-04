@@ -91,7 +91,8 @@ button.menu-btn:hover {
     padding: 19px 15px;
 }
 
-.menu-list > ul {
+.menu-list > ul, .menu-list > .cont {
+    position: absolute;
     max-height: 0;
     background: #CCC;
     color: #444;
@@ -99,9 +100,13 @@ button.menu-btn:hover {
     width: inherit;
     overflow: hidden;
     transition: max-height 0.5s ease;
+    border: 1px solid #3B3B3B;
+    border-top: none;
+    visibility: hidden;
 }
 
-.menu-list:hover > ul {
+.menu-list:hover > ul, .menu-list:hover > .cont {
+    visibility: visible;
     max-height: 300px;
 }
 
@@ -114,4 +119,27 @@ button.menu-btn:hover {
 .menu-list > ul > li:hover {
     background: #777;
     color: #FFF;
+}
+
+.menu-list > .cont > .item-cont {
+    padding: 15px;
+}
+
+#btn-table .item-cont {
+    width: 85px;
+    height: 85px;
+}
+
+#btn-table .cell {
+    position: relative;
+    float: left;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #CCC;
+    background: #999;
+    cursor: pointer;
+}
+
+#btn-table .cell.hovered {
+    background: purple;
 }
