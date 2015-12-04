@@ -1,0 +1,117 @@
+html, body, p, h1, h2, h3, h4, h5, h6, header, footer, section, aside, nav, article, hr, ul, ol, dl {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: none;
+}
+
+input, textarea, button {
+    outline: none;
+}
+
+/* BODY > */
+
+.theme-bg {
+    background: #3B3B3B;
+}
+
+.theme-clr {
+
+}
+
+body {
+    background: #282828;
+    font-family: 'Open Sans';
+    font-size: 16px;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+#header-menu {
+    height: 60px;
+}
+
+input[type="text"].menu-txt, button.menu-btn, .menu-list {
+    background: inherit;
+    font-family: 'Open Sans';
+    height: 100%;
+    box-sizing: border-box;
+    padding: 0;
+    color: #FFF;
+    border: none;
+    transition: background 0.3s ease;
+    display: block;
+    float: left;
+}
+
+input[type="text"].menu-txt {
+    font-size: 16px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+input[type="text"].menu-txt:hover, .menu-list:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+input[type="text"].menu-txt:focus {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+button.menu-btn {
+    font-size: 20px;
+    min-width: 60px;
+    cursor: pointer;
+}
+
+button.menu-btn:hover {
+    background: purple;
+}
+
+#btn-bold.menu-btn {
+    font-weight: 700;
+}
+
+#btn-italic.menu-btn {
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+}
+
+#btn-strkthr.menu-btn {
+    text-decoration: line-through;
+}
+
+.menu-list {
+    cursor: pointer;
+}
+
+.menu-list > p {
+    padding: 19px 15px;
+}
+
+.menu-list > ul {
+    max-height: 0;
+    background: #CCC;
+    color: #444;
+    margin-top: -1px;
+    width: inherit;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.menu-list:hover > ul {
+    max-height: 300px;
+}
+
+.menu-list > ul > li {
+    padding: 10px 15px;
+    list-style-type: none;
+    transition: background 0.3s ease;
+}
+
+.menu-list > ul > li:hover {
+    background: #777;
+    color: #FFF;
+}
