@@ -9,7 +9,9 @@
         <script src="scripts/visual.js"></script>
     </head>
     <body>
-        <section id="main-field"></section>
+        <section id="main-field">
+            <div id="editor" contenteditable="true"></div>
+        </section>
         <header id="main-header" class="theme-bg">
             <div id="logo"></div>
             <div id="menu">
@@ -30,7 +32,7 @@
                     <div class="cont">
                         <div class="item-cont">
                             <input type="text" placeholder="URL" />
-                            <button>Create</button>
+                            <button class="theme-bg">Create</button>
                         </div>
                     </div>
                 </div>
@@ -43,10 +45,12 @@
                 </div>
             </div>
         </header>
+        <!-- Temp scripts -->
         <script>
             temp.createTablePickerControl(5);
             temp.bindClickForLists();
             temp.tooltips();
         </script>
+        <!-- Temp scripts -->
     </body>
 </html>

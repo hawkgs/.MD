@@ -58,7 +58,8 @@ var temp = (function ($) {
     }
 
     function tooltips() {
-        var appearTimer;
+        var appearTimer,
+            disapprTimer;
 
         $("[data-title]")
             .on("mouseover", function () {
@@ -68,12 +69,14 @@ var temp = (function ($) {
                     $this.addClass("tooltip");
                 }, 1700);
 
-                setTimeout(function () {
+                disapprTimer = setTimeout(function () {
                     $this.removeClass("tooltip");
                 }, 4700);
             })
             .on("mouseout", function () {
                 clearTimeout(appearTimer);
+                clearTimeout(disapprTimer);
+
                 $(this).removeClass("tooltip");
             });
     }
