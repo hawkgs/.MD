@@ -39,7 +39,24 @@ var temp = (function ($) {
         });
     }
 
+    function bindClickForLists() {
+        var $menuList = $(".menu-list");
+        
+        $(document).on("click", function(event) {
+            if (!$(event.target).closest($menuList).length) {
+                $menuList.find(".cont").removeClass("click");
+            }
+        });
+
+        $menuList.click(function () {
+            var $this = $(this);
+            $this.siblings().find(".cont").removeClass("click");
+            $this.find(".cont").toggleClass("click");
+        });
+    }
+
     return {
-        createTablePickerControl: createTablePickerControl
+        createTablePickerControl: createTablePickerControl,
+        bindClickForLists: bindClickForLists
     };
 }(jQuery));

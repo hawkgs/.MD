@@ -91,7 +91,7 @@ button.menu-btn:hover {
     padding: 19px 15px;
 }
 
-.menu-list > ul, .menu-list > .cont {
+.menu-list > .cont {
     position: absolute;
     max-height: 0;
     background: #CCC;
@@ -99,13 +99,13 @@ button.menu-btn:hover {
     margin-top: -1px;
     width: inherit;
     overflow: hidden;
-    transition: max-height 0.5s ease;
+    transition: 0.5s ease;
     border: 1px solid #3B3B3B;
     border-top: none;
     visibility: hidden;
 }
 
-.menu-list:hover > ul, .menu-list:hover > .cont {
+.menu-list > .cont.click {
     visibility: visible;
     max-height: 300px;
 }
