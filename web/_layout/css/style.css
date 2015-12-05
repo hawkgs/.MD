@@ -14,7 +14,8 @@ input, textarea, button {
 /* BODY > */
 
 .theme-bg {
-    background: #3B3B3B;
+    //background: #3B3B3B;
+    background: #00a55d;
 }
 
 .theme-clr {
@@ -29,8 +30,31 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-#header-menu {
+#main-header {
     height: 60px;
+}
+
+#logo, #menu {
+    float: left;
+}
+
+#logo {
+    width: 50px;
+    height: 50px;
+    background: #009900;
+}
+
+#menu {
+    height: 60px;
+}
+
+#main-field {
+    position: fixed;
+    background: #EEE;
+    width: 980px;
+    height: 100%;
+    top: 80px;
+    left: 20px;
 }
 
 input[type="text"].menu-txt, button.menu-btn, .menu-list {
@@ -67,7 +91,7 @@ button.menu-btn {
 }
 
 button.menu-btn:hover {
-    background: purple;
+    //background: purple;
 }
 
 #btn-bold.menu-btn {
@@ -142,4 +166,22 @@ button.menu-btn:hover {
 
 #btn-table .cell.hovered {
     background: purple;
+}
+
+input[type="text"] {
+    font-family: 'Open Sans';
+    font-size: 15px;
+    color: #333;
+    padding: 7px 9px;
+    border: none;
+}
+
+button {
+    background: purple;
+    font-family: 'Open Sans';
+    border: none;
+    padding: 7px 9px;
+    color: #FFF;
+    font-weight: 600;
+    cursor: pointer;
 }

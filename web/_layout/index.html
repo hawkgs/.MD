@@ -9,29 +9,41 @@
         <script src="scripts/visual.js"></script>
     </head>
     <body>
-        <header id="header-menu" class="theme-bg">
+        <section id="main-field"></section>
+        <header id="main-header" class="theme-bg">
             <div id="logo"></div>
-            <input type="text" id="file-name" class="menu-txt" value="Untitled" />
-            <button id="btn-bold" class="menu-btn">B</button>
-            <button id="btn-italic" class="menu-btn">I</button>
-            <button id="btn-code" class="menu-btn">{}</button>
-            <button id="btn-strkthr" class="menu-btn">S</button>
-            <div id="btn-heading" class="menu-list">
-                <p>Title of list</p>
-                <ul class="cont">
-                    <li>Item 1 Item 23 44</li>
-                    <li>Item 2</li>
-                    <li>Item 3</li>
-                </ul>
-            </div>
-            <div id="btn-table" class="menu-list">
-                <p>Table</p>
-                <div class="cont">
-                    <div class="item-cont"></div>
+            <div id="menu">
+                <input type="text" id="file-name" class="menu-txt" value="Untitled" />
+                <button id="btn-bold" class="menu-btn">B</button>
+                <button id="btn-italic" class="menu-btn">I</button>
+                <button id="btn-code" class="menu-btn">{}</button>
+
+                <div id="btn-heading" class="menu-list">
+                    <p>Title of list</p>
+                    <ul class="cont">
+                        <li>Item 1 Item 23 44</li>
+                        <li>Item 2</li>
+                        <li>Item 3</li>
+                    </ul>
+                </div>
+                <div id="btn-image" class="menu-list">
+                    <p>Img</p>
+                    <div class="cont">
+                        <div class="item-cont">
+                            <input type="text" placeholder="URL" />
+                            <button>Create</button>
+                        </div>
+                    </div>
+                </div>
+                <button id="btn-strkthr" class="menu-btn">S</button>
+                <div id="btn-table" class="menu-list">
+                    <p>Table</p>
+                    <div class="cont">
+                        <div class="item-cont"></div>
+                    </div>
                 </div>
             </div>
         </header>
-        <section id="main-field"></section>
         <script>
             temp.createTablePickerControl(5);
             temp.bindClickForLists();

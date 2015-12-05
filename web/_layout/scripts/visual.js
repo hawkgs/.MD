@@ -40,18 +40,20 @@ var temp = (function ($) {
     }
 
     function bindClickForLists() {
-        var $menuList = $(".menu-list");
-        
+        var $menuList = $(".menu-list"),
+            $menuListCont = $menuList.find(".cont");
+
         $(document).on("click", function(event) {
             if (!$(event.target).closest($menuList).length) {
-                $menuList.find(".cont").removeClass("click");
+                $menuListCont.removeClass("click");
             }
         });
 
-        $menuList.click(function () {
+        $menuList.children("p").click(function () {
             var $this = $(this);
-            $this.siblings().find(".cont").removeClass("click");
-            $this.find(".cont").toggleClass("click");
+
+            $this.parent().siblings().find(".cont").removeClass("click");
+            $this.next().toggleClass("click");
         });
     }
 
