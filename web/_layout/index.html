@@ -14,10 +14,9 @@
             <div id="logo"></div>
             <div id="menu">
                 <input type="text" id="file-name" class="menu-txt" value="Untitled" />
-                <button id="btn-bold" class="menu-btn">B</button>
+                <button id="btn-bold" class="menu-btn" data-title="Bold">B</button>
                 <button id="btn-italic" class="menu-btn">I</button>
-                <button id="btn-code" class="menu-btn">{}</button>
-
+                <button id="btn-code" class="menu-btn" data-title="Wrap In Code">{}</button>
                 <div id="btn-heading" class="menu-list">
                     <p>Title of list</p>
                     <ul class="cont">
@@ -47,6 +46,7 @@
         <script>
             temp.createTablePickerControl(5);
             temp.bindClickForLists();
+            temp.tooltips();
         </script>
     </body>
 </html>

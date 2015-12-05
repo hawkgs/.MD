@@ -57,8 +57,30 @@ var temp = (function ($) {
         });
     }
 
+    function tooltips() {
+        var appearTimer;
+
+        $("[data-title]")
+            .on("mouseover", function () {
+                var $this = $(this);
+
+                appearTimer = setTimeout(function () {
+                    $this.addClass("tooltip");
+                }, 1700);
+
+                setTimeout(function () {
+                    $this.removeClass("tooltip");
+                }, 4700);
+            })
+            .on("mouseout", function () {
+                clearTimeout(appearTimer);
+                $(this).removeClass("tooltip");
+            });
+    }
+
     return {
         createTablePickerControl: createTablePickerControl,
-        bindClickForLists: bindClickForLists
+        bindClickForLists: bindClickForLists,
+        tooltips: tooltips
     };
 }(jQuery));
