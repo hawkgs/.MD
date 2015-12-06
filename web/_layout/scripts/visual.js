@@ -40,16 +40,16 @@ var temp = (function ($) {
     }
 
     function bindClickForLists() {
-        var $menuList = $(".menu-list"),
-            $menuListCont = $menuList.find(".cont");
+        var $menuDropDown = $(".menu-drop-down"),
+            $menuDropDownCont = $menuDropDown.find(".cont");
 
         $(document).on("click", function(event) {
-            if (!$(event.target).closest($menuList).length) {
-                $menuListCont.removeClass("click");
+            if (!$(event.target).closest($menuDropDown).length) {
+                $menuDropDownCont.removeClass("click");
             }
         });
 
-        $menuList.children("p").click(function () {
+        $menuDropDown.children(".disp").click(function () {
             var $this = $(this);
 
             $this.parent().siblings().find(".cont").removeClass("click");
@@ -82,9 +82,15 @@ var temp = (function ($) {
     }
 
     function clickStyle() {
-        $(".menu-btn").add(".menu-list")
+        $(".menu-btn").add(".menu-drop-down")
             .on("mousedown", function () {
-                $(this).addClass("click");
+                var $this = $(this);
+
+                $this.addClass("click");
+
+                setTimeout(function () {
+                    $this.removeClass("click");
+                }, 500);
             })
             .on("mouseup", function () {
                 $(this).removeClass("click");

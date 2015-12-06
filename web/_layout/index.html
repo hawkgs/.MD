@@ -3,7 +3,9 @@
     <head>
         <meta charset="UTF-8" />
         <title>.MD</title>
-        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/header.css" />
+        <link rel="stylesheet" href="css/editor.css" />
         <link rel="stylesheet" href="css/fonts.css" />
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="scripts/visual.js"></script>
@@ -17,28 +19,28 @@
             <div id="menu">
                 <input type="text" id="file-name" class="menu-txt" value="Untitled" />
                 <button id="btn-bold" class="menu-btn" data-title="Bold">B</button>
-                <button id="btn-italic" class="menu-btn">I</button>
+                <button id="btn-italic" class="menu-btn" data-title="Italic">I</button>
+                <button id="btn-blockquote" class="menu-btn" data-title="Blockquote">"</button>
                 <button id="btn-code" class="menu-btn" data-title="Wrap In Code">{}</button>
-                <div id="btn-heading" class="menu-list">
-                    <p>Title of list</p>
+                <div id="btn-heading" class="menu-drop-down">
+                    <p class="disp">h1-h6</p>
                     <ul class="cont">
                         <li>Item 1 Item 23 44</li>
                         <li>Item 2</li>
                         <li>Item 3</li>
                     </ul>
                 </div>
-                <div id="btn-image" class="menu-list">
-                    <p>Img</p>
+                <div id="btn-image" class="menu-drop-down" data-title="Image">
+                    <div class="disp"></div>
                     <div class="cont">
                         <div class="item-cont">
-                            <input type="text" placeholder="URL" />
-                            <button class="theme-bg">Create</button>
+                            <input type="text" placeholder="URL" /> <button class="theme-bg">Create</button>
                         </div>
                     </div>
                 </div>
-                <button id="btn-strkthr" class="menu-btn">S</button>
-                <div id="btn-table" class="menu-list">
-                    <p>Table</p>
+                <button id="btn-strikethrough" class="menu-btn">S</button>
+                <div id="btn-table" class="menu-drop-down" data-title="Table">
+                    <div class="disp"></div>
                     <div class="cont">
                         <div class="item-cont"></div>
                     </div>

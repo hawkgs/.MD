@@ -1,0 +1,48 @@
+/* RESETS */
+html, body, p, h1, h2, h3, h4, h5, h6, header, footer, section, aside, nav, article, hr, ul, ol, dl {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: none;
+}
+
+input, textarea, button {
+    outline: none;
+}
+
+/* LAYOUT */
+
+body {
+    background: #282828;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Theme colors */
+
+.theme-bg {
+    /*background: #3B3B3B;*/ /*grey*/
+    background: #00a55d;
+}
+
+.theme-clr {
+    background: #00a55d;
+}
+
+/* Main layout components */
+
+#main-header {
+    height: 60px;
+}
+
+#main-field {
+    position: fixed;
+    width: 980px;
+    top: 80px;
+    left: 20px;
+    bottom: 0;
+}
