@@ -81,9 +81,20 @@ var temp = (function ($) {
             });
     }
 
+    function clickStyle() {
+        $(".menu-btn").add(".menu-list")
+            .on("mousedown", function () {
+                $(this).addClass("click");
+            })
+            .on("mouseup", function () {
+                $(this).removeClass("click");
+            });
+    }
+
     return {
         createTablePickerControl: createTablePickerControl,
         bindClickForLists: bindClickForLists,
-        tooltips: tooltips
+        tooltips: tooltips,
+        clickStyle: clickStyle
     };
 }(jQuery));

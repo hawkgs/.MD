@@ -39,10 +39,10 @@ body {
 }
 
 #logo {
-    width: 50px;
-    height: 50px;
-    background: #009900;
-    margin: 5px 20px 0 5px;
+    width: 39px;
+    height: 44px;
+    margin: 8px 20px 0 10px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIzOXB4IiBoZWlnaHQ9IjQ0cHgiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDQ0MSA1MDQiIHN0eWxlPSJjbGlwLXJ1bGU6ZXZlbm9kZDtmaWxsLXJ1bGU6ZXZlbm9kZDtpbWFnZS1yZW5kZXJpbmc6b3B0aW1pemVRdWFsaXR5O3NoYXBlLXJlbmRlcmluZzpnZW9tZXRyaWNQcmVjaXNpb247dGV4dC1yZW5kZXJpbmc6Z2VvbWV0cmljUHJlY2lzaW9uIj48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KICAgIC5maWwwIHtmaWxsOndoaXRlfQ0KICAgPC9zdHlsZT48L2RlZnM+PGc+PG1ldGFkYXRhLz48cGF0aCBjbGFzcz0iZmlsMCIgZD0iTTIzMCAyYzY3IDM5IDEzNSA3OCAyMDIgMTE3IDYgNCA5IDEwIDkgMTZsMCAwIDAgMjM0YzAgNy00IDEzLTEwIDE2LTY3IDM5LTEzNSA3OC0yMDIgMTE2LTUgNC0xMiAzLTE4IDAtNjctMzktMTM1LTc4LTIwMi0xMTctNi0zLTktOS05LTE1bDAgMCAwLTIzNGMwLTcgNC0xNCAxMC0xNiA2Ny0zOSAxMzUtNzggMjAyLTExNyA1LTMgMTItMyAxOCAwem0tMTc1IDI5MmMyIDAgNCAxIDUgMiAyIDAgNCAyIDUgM2wwIDBjMiAyIDMgMyAzIDUgMSAyIDEgNCAxIDcgMCAyIDAgNC0xIDYgMCAxLTEgMy0zIDVsMCAwYy0xIDEtMyAyLTUgMyAwIDAgMCAwIDAgMC0yIDEtMyAxLTUgMS0yIDAtNCAwLTYtMWwwIDBjLTItMS00LTItNS0zbDAgMCAwIDBjLTItMi0zLTQtMy01LTEtMi0xLTQtMS02IDAtMyAwLTUgMS03IDAtMSAxLTMgMy01bDAgMGMxLTEgMy0zIDUtMyAyLTEgNC0yIDYtMnptMzUgMjVsMC0xMzdjMC0zIDItNSA1LTVsMTYgMGMxIDAgMyAxIDQgM2w1MSA3OCA1Mi03OWMxLTEgMy0yIDQtMmwwIDAgMTYgMGMyIDAgNCAyIDQgNWwwIDEzN2MwIDMtMiA1LTQgNWwtMTcgMGMtMyAwLTUtMi01LTVsMC05Mi00NiA2OWMtMSAyLTQgMy02IDEtMSAwLTEtMS0yLTFsLTQ2LTY5IDAgOTJjMCAzLTIgNS00IDVsLTE3IDBjLTMgMC01LTItNS01em0yMzUtMTE3bC0zOCAwIDAgOTcgMzggMGM4IDAgMTUtMSAyMS0zIDYtMiAxMS02IDE2LTEwbDAgMGM0LTQgNy05IDktMTUgMy02IDQtMTMgNC0yMCAwLTgtMS0xNC00LTIwLTItNi01LTExLTEwLTE1LTQtNS05LTgtMTUtMTAtNy0zLTE0LTQtMjEtNHptMC0yNWMxMSAwIDIxIDIgMzEgNSA5IDQgMTcgOSAyNCAxNiA3IDcgMTMgMTUgMTYgMjMgNCA5IDUgMTkgNSAzMCAwIDIyLTcgNDAtMjEgNTNsMCAwYy03IDctMTUgMTItMjQgMTUtOSAzLTIwIDUtMzEgNWwtNTkgMGMtMyAwLTUtMi01LTVsMC0xMzdjMC0zIDItNSA1LTVsNTkgMHoiLz48L2c+PC9zdmc+);
 }
 
 #menu {
@@ -77,7 +77,7 @@ input[type="text"].menu-txt, button.menu-btn, .menu-list {
     padding: 0;
     color: #FFF;
     border: none;
-    transition: background 0.3s ease;
+    transition: 0.3s ease;
     display: block;
     float: left;
 }
@@ -88,12 +88,12 @@ input[type="text"].menu-txt {
     padding-right: 15px;
 }
 
-input[type="text"].menu-txt:hover, .menu-list:hover {
-    background: rgba(255, 255, 255, 0.05);
+input[type="text"].menu-txt:hover, button.menu-btn:hover, .menu-list:hover {
+    background: rgba(0, 0, 0, 0.13);
 }
 
-input[type="text"].menu-txt:focus {
-    background: rgba(255, 255, 255, 0.1);
+input[type="text"].menu-txt:focus, button.menu-btn.click, .menu-list.click {
+    background: rgba(0, 0, 0, 0.21);
 }
 
 button.menu-btn {
@@ -101,10 +101,6 @@ button.menu-btn {
     font-size: 20px;
     min-width: 60px;
     cursor: pointer;
-}
-
-button.menu-btn:hover {
-    background: purple;
 }
 
 button.menu-btn::after {
