@@ -17,17 +17,21 @@
         <header id="main-header" class="theme-bg">
             <div id="logo"></div>
             <div id="menu">
+                <!-- Regular -->
                 <input type="text" id="file-name" class="menu-txt" value="Untitled" />
                 <button id="btn-bold" class="menu-btn" data-title="Bold">B</button>
                 <button id="btn-italic" class="menu-btn" data-title="Italic">I</button>
                 <button id="btn-blockquote" class="menu-btn" data-title="Blockquote">"</button>
-                <button id="btn-code" class="menu-btn" data-title="Wrap In Code">{}</button>
-                <div id="btn-heading" class="menu-drop-down">
+                <button id="btn-code" class="menu-btn" data-title="Code">{}</button>
+                <div id="btn-headings" class="menu-drop-down" data-title="Headings">
                     <p class="disp">h1-h6</p>
                     <ul class="cont">
-                        <li>Item 1 Item 23 44</li>
-                        <li>Item 2</li>
-                        <li>Item 3</li>
+                        <li>Heading 1</li>
+                        <li>Heading 2</li>
+                        <li>Heading 3</li>
+                        <li>Heading 4</li>
+                        <li>Heading 5</li>
+                        <li>Heading 6</li>
                     </ul>
                 </div>
                 <div id="btn-image" class="menu-drop-down" data-title="Image">
@@ -38,22 +42,20 @@
                         </div>
                     </div>
                 </div>
-                <button id="btn-strikethrough" class="menu-btn">S</button>
+                <!-- Regular -->
+                <!-- GFM -->
                 <div id="btn-table" class="menu-drop-down" data-title="Table">
                     <div class="disp"></div>
                     <div class="cont">
                         <div class="item-cont"></div>
                     </div>
                 </div>
+                <button id="btn-strikethrough" class="menu-btn">S</button>
+                <!-- GFM -->
             </div>
         </header>
         <!-- Temp scripts -->
-        <script>
-            temp.createTablePickerControl(5);
-            temp.bindClickForLists();
-            temp.tooltips();
-            temp.clickStyle();
-        </script>
+        <script src="scripts/visual.js"></script>
         <!-- Temp scripts -->
     </body>
 </html>

@@ -1,3 +1,4 @@
+/* A temporary script environment for layout-related JavaScript */
 var temp = (function ($) {
     "use strict";
 
@@ -104,3 +105,10 @@ var temp = (function ($) {
         clickStyle: clickStyle
     };
 }(jQuery));
+
+
+/* Run scripts */
+temp.createTablePickerControl(5);
+temp.bindClickForLists();
+temp.tooltips();
+temp.clickStyle();
