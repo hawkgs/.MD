@@ -24,7 +24,7 @@
                 <button id="btn-blockquote" class="menu-btn" data-title="Blockquote">"</button>
                 <button id="btn-code" class="menu-btn" data-title="Code">{}</button>
                 <div id="btn-headings" class="menu-drop-down" data-title="Headings">
-                    <p class="disp">h1-h6</p>
+                    <p class="disp"><sup>h1</sup><sub>h6</sub></p>
                     <ul class="cont">
                         <li>Heading 1</li>
                         <li>Heading 2</li>
@@ -38,7 +38,18 @@
                     <div class="disp"></div>
                     <div class="cont">
                         <div class="item-cont">
-                            <input type="text" placeholder="URL" /> <button class="theme-bg">Create</button>
+                            <input type="text" placeholder="URL" />
+                            <button class="theme-bg">Create</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="btn-hyperlink" class="menu-drop-down" data-title="Hyperlink">
+                    <div class="disp"></div>
+                    <div class="cont">
+                        <div class="item-cont">
+                            <input type="text" placeholder="Text" />
+                            <input type="text" placeholder="URL" />
+                            <button class="theme-bg">Create</button>
                         </div>
                     </div>
                 </div>
@@ -50,7 +61,7 @@
                         <div class="item-cont"></div>
                     </div>
                 </div>
-                <button id="btn-strikethrough" class="menu-btn">S</button>
+                <button id="btn-strikethrough" class="menu-btn" data-title="Strikethrough">S</button>
                 <!-- GFM -->
             </div>
         </header>
