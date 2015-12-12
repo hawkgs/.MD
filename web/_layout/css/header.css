@@ -41,6 +41,16 @@ input[type="text"].menu-txt:focus, button.menu-btn.click, .menu-drop-down.click 
     background: rgba(0, 0, 0, 0.21);
 }
 
+/* .. disabled */
+button.menu-btn:disabled, .menu-drop-down.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+button.menu-btn:disabled:hover, .menu-drop-down.disabled:hover {
+    background: none;
+}
+
 /* Firefox tweak: remove dotted outline */
 input[type="text"].menu-txt::-moz-focus-inner,
 button.menu-btn::-moz-focus-inner,
