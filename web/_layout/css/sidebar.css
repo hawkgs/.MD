@@ -8,16 +8,57 @@
     margin-top: 60px;
     transition: width 0.3s ease;
     color: #FFF;
+    overflow: hidden;
 }
 
 #sidebar.expanded {
     width: 300px;
 }
 
-#sidebar > div {
-    padding: 15px;
+#sidebar > .cont {
+    width: 300px;
 }
 
-#sidebar > div > p {
+.sb-item > p {
+    padding: 15px;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.sb-item > p:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+span.switch {
+    float: right;
+    display: inline-block;
+    position: relative;
+    width: 45px;
+    height: 24px;
+    border-radius: 20px;
+    background-color: #444;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+span.switch:hover::after {
+    background: #FFF;
+}
+
+span.switch::after {
+    content: "";
+    position: absolute;
+    width: 20px; height: 20px;
+    top: 2px; left: 2px;
+    border-radius: 20px;
+    background: #F5F5F5;
+    transition: left 0.3s ease;
+}
+
+span.switch.clicked {
+    background-color: dodgerblue;
+}
+
+span.switch.clicked::after {
+    left: 23px;
 }
