@@ -5,6 +5,7 @@
         <title>.MD</title>
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="css/header.css" />
+        <link rel="stylesheet" href="css/sidebar.css" />
         <link rel="stylesheet" href="css/editor.css" />
         <link rel="stylesheet" href="css/fonts.css" />
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -14,11 +15,12 @@
         <section id="main-field">
             <div id="editor" contenteditable="true"></div>
         </section>
+        <div id="editor-cloak"></div>
         <header id="main-header" class="theme-bg">
             <div id="logo"></div>
             <div id="menu">
                 <!-- Regular -->
-                <input type="text" id="file-name" class="menu-txt" value="Untitled" />
+                <input type="text" id="file-name" class="menu-txt" value="Untitled" placeholder="Put filename" />
                 <button id="btn-bold" class="menu-btn" data-title="Bold">B</button>
                 <button id="btn-italic" class="menu-btn" data-title="Italic">I</button>
                 <button id="btn-code" class="menu-btn" data-title="Code"></button>
@@ -67,7 +69,26 @@
                 <button id="btn-strikethrough" class="menu-btn" data-title="Strikethrough">S</button>
                 <!-- GFM -->
             </div>
+            <div id="settings-btn"></div>
+            <div id="username-disp">user123</div>
         </header>
+        <aside id="sidebar">
+            <div>
+                <p>Login</p>
+            </div>
+            <hr/>
+            <div>
+                <p>Export As</p>
+            </div>
+            <hr/>
+            <div>
+                <p>Toggle GFM</p>
+            </div>
+            <hr/>
+            <div>
+                <p>Pick Theme</p>
+            </div>
+        </aside>
         <!-- Temp scripts -->
         <script src="scripts/visual.js"></script>
         <!-- Temp scripts -->

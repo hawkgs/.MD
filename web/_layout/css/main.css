@@ -12,6 +12,11 @@ input, textarea, button {
     outline: none;
 }
 
+hr {
+    border: none;
+    border-top: 1px solid #111;
+}
+
 /* LAYOUT */
 
 body {
@@ -25,8 +30,9 @@ body {
 /* Theme colors */
 
 .theme-bg {
-    /*background: #3B3B3B;*/ /*grey*/
-    background: #00a55d;
+    //background: #3B3B3B; /*grey*/
+    //background: #00a55d;
+    background: #744da9;
 }
 
 .theme-clr {
@@ -45,4 +51,20 @@ body {
     top: 80px;
     left: 20px;
     bottom: 0;
+}
+
+/* editor cloak */
+#editor-cloak {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin-top: 60px;
+    display: none;
+}
+
+#editor-cloak.activated {
+    display: block;
 }

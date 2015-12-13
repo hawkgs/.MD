@@ -98,11 +98,34 @@ var temp = (function ($) {
             });
     }
 
+    function toggleSidebar() {
+        var $sidebar = $("#sidebar"),
+            $cloak = $("#editor-cloak"),
+            $settingsBtn = $("#settings-btn");
+
+        $settingsBtn.click(function () {
+            $sidebar.toggleClass("expanded");
+            $cloak.toggleClass("activated");
+            $settingsBtn.toggleClass("clicked");
+        });
+
+        $(document).on("click", function(event) {
+            if (!$(event.target).closest("#settings-btn").length &&
+                !$(event.target).closest($sidebar).length) {
+
+                $sidebar.removeClass("expanded");
+                $cloak.removeClass("activated");
+                $settingsBtn.removeClass("clicked");
+            }
+        });
+    }
+
     return {
         createTablePickerControl: createTablePickerControl,
         bindClickForLists: bindClickForLists,
         tooltips: tooltips,
-        clickStyle: clickStyle
+        clickStyle: clickStyle,
+        toggleSidebar: toggleSidebar
     };
 }(jQuery));
 
@@ -112,3 +135,4 @@ temp.createTablePickerControl(5);
 temp.bindClickForLists();
 temp.tooltips();
 temp.clickStyle();
+temp.toggleSidebar();

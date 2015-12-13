@@ -1,0 +1,23 @@
+#sidebar {
+    position: fixed;
+    background: #2C2C2C;
+    width: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 60px;
+    transition: width 0.3s ease;
+    color: #FFF;
+}
+
+#sidebar.expanded {
+    width: 300px;
+}
+
+#sidebar > div {
+    padding: 15px;
+}
+
+#sidebar > div > p {
+    font-weight: 600;
+}
