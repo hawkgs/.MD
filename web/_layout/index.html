@@ -42,7 +42,7 @@
                     <div class="cont">
                         <div class="item-cont">
                             <input type="text" placeholder="URL" />
-                            <button class="theme-bg">Create</button>
+                            <button class="default theme-bg">Create</button>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         <div class="item-cont">
                             <input type="text" placeholder="Text" />
                             <input type="text" placeholder="URL" />
-                            <button class="theme-bg">Create</button>
+                            <button class="default theme-bg">Create</button>
                         </div>
                     </div>
                 </div>
@@ -74,23 +74,36 @@
         </header>
         <aside id="sidebar">
             <div class="cont">
-                <div class="sb-item">
+                <div id="login-sb-item" class="sb-item list">
                     <p>Login</p>
+                    <div>
+                        <form id="login-form">
+                            <p><input type="text" placeholder="Username" /></p>
+                            <p><input type="password" placeholder="Password" /></p>
+                            <p><button class="default theme-bg">Login</button><a id="create-acc" href="http://abv.bg">Create account</a></p>
+                        </form>
+                    </div>
                 </div>
                 <hr/>
-                <div class="sb-item">
+                <div class="sb-item list">
                     <p>Export As</p>
+                    <div>
+                        <ul class="sb-list">
+                            <li><a href="">MD</a></li>
+                            <li><a href="">PDF</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <hr/>
                 <div class="sb-item">
                     <p>
                         <span>Toggle GFM</span>
-                        <span class="switch"></span>
+                        <span class="switch theme-bg-ev"></span>
                     </p>
                 </div>
                 <hr/>
                 <div class="sb-item">
-                    <p>Pick Theme</p>
+                    <p>Pick Theme Color</p>
                 </div>
             </div>
         </aside>

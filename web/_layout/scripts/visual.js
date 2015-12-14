@@ -12,7 +12,7 @@ var temp = (function ($) {
             i;
 
         for (i = 1; i <= pSize; i += 1) {
-            cell = $("<div>").addClass("cell").data("col", col).data("row", row);
+            cell = $("<div>").addClass("cell").addClass("theme-bg-ev").data("col", col).data("row", row);
             cells.push(cell);
             $cont.append(cell);
 
@@ -120,12 +120,26 @@ var temp = (function ($) {
         });
     }
 
+    function toggleSidearItem() {
+        $(".sb-item.list").children("p").click(function () {
+            $(this).next().toggleClass("expanded");
+        });
+    }
+
+    function switchControl() {
+        $(".switch").click(function () {
+            $(this).toggleClass("clicked");
+        })
+    }
+
     return {
         createTablePickerControl: createTablePickerControl,
         bindClickForLists: bindClickForLists,
         tooltips: tooltips,
         clickStyle: clickStyle,
-        toggleSidebar: toggleSidebar
+        toggleSidebar: toggleSidebar,
+        toggleSidebarItem: toggleSidearItem,
+        switchControl: switchControl
     };
 }(jQuery));
 
@@ -136,3 +150,5 @@ temp.bindClickForLists();
 temp.tooltips();
 temp.clickStyle();
 temp.toggleSidebar();
+temp.toggleSidebarItem();
+temp.switchControl();
