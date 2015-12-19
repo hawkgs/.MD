@@ -5,7 +5,7 @@
 }
 
 #menu {
-    height: 60px;
+    height: inherit;
     float: left;
 }
 
@@ -48,7 +48,7 @@
 /* Text field, button, drop down */
 input[type="text"].menu-txt, button.menu-btn, .menu-drop-down {
     background: inherit;
-    height: 100%;
+    height: 60px; /* implicit */
     color: #FFF;
     font-family: "Open Sans", sans-serif;
     box-sizing: border-box;

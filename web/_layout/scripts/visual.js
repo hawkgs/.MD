@@ -132,6 +132,26 @@ var temp = (function ($) {
         })
     }
 
+    function themeSelector() {
+        var colors = {
+            grey: "#3B3B3B",
+            red: "#dd4545",
+            purple: "#744da9",
+            blue: "#007acc",
+            green: "#3ab85a",
+            orange: "#e2962a"
+        };
+
+        $("#theme-selector").on("click", ".color-pick", function () {
+            var $this = $(this);
+
+            $(".color-pick.selected").removeClass("selected");
+
+            $this.addClass("selected");
+            $(".theme-bg").css("background", colors[$this.data("color")]);
+        });
+    }
+
     return {
         createTablePickerControl: createTablePickerControl,
         bindClickForLists: bindClickForLists,
@@ -139,7 +159,8 @@ var temp = (function ($) {
         clickStyle: clickStyle,
         toggleSidebar: toggleSidebar,
         toggleSidebarItem: toggleSidearItem,
-        switchControl: switchControl
+        switchControl: switchControl,
+        themesSelector: themeSelector
     };
 }(jQuery));
 
@@ -152,3 +173,4 @@ temp.clickStyle();
 temp.toggleSidebar();
 temp.toggleSidebarItem();
 temp.switchControl();
+temp.themesSelector();
