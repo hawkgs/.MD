@@ -133,7 +133,13 @@ var temp = (function ($) {
     }
 
     function themeSelector() {
-        var colors = {
+        var $head = $("head"),
+            mainThemeClass = ".theme-bg",
+            mainThemeEventClasses = ".theme-bg-ev.clicked, #btn-table .theme-bg-ev.hovered",
+            themeStyleElem,
+            colors;
+
+        colors = {
             grey: "#3B3B3B",
             red: "#dd4545",
             purple: "#744da9",
@@ -142,13 +148,27 @@ var temp = (function ($) {
             orange: "#e2962a"
         };
 
+        $head.append("<style type=\"text/css\"></style>");
+        themeStyleElem = $head.children(":last");
+
         $("#theme-selector").on("click", ".color-pick", function () {
-            var $this = $(this);
+            var $this = $(this),
+                colorName = $this.data("color"),
+                colorId = colors[colorName];
 
             $(".color-pick.selected").removeClass("selected");
 
             $this.addClass("selected");
-            $(".theme-bg").css("background", colors[$this.data("color")]);
+
+            if (colorName !== "grey") {
+                themeStyleElem.html(mainThemeClass + "," + mainThemeEventClasses + "{background:" + colorId + ";}");
+            } else {
+                themeStyleElem
+                    .html(
+                        mainThemeClass + "{background:" + colorId + ";}" +
+                        mainThemeEventClasses + "{background:" + colors.blue + ";}"
+                    );
+            }
         });
     }
 
