@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="css/editor.css" />
         <link rel="stylesheet" href="css/fonts.css" />
         <link rel="stylesheet" href="css/small-dev.css" />
+        <link rel="stylesheet" href="css/components.css" />
         <script src="bower_components/jquery/dist/jquery.min.js"></script>
         <script src="scripts/visual.js"></script>
     </head>
@@ -79,9 +80,10 @@
                     <p>Login</p>
                     <div>
                         <form id="login-form">
+                            <p class="error-msg">Wrong password mate</p>
                             <p><input type="text" placeholder="Username" /></p>
                             <p><input type="password" placeholder="Password" /></p>
-                            <p><button class="default theme-bg">Login</button><a id="create-acc" href="http://abv.bg">Create account</a></p>
+                            <p><button class="default theme-bg">Login</button><a id="create-acc" href=":;">Create account</a></p>
                         </form>
                     </div>
                 </div>
@@ -116,8 +118,21 @@
                         </div>
                     </div>
                 </div>
+                <hr/>
+                <div class="sb-item">
+                    <p>About</p>
+                </div>
             </div>
         </aside>
+        <div class="window" data-id="register">
+            <div class="titlebar theme-bg">
+                <span>A title</span>
+                <span class="close">&#10006;</span>
+            </div>
+            <div class="content">
+                Sort of a window
+            </div>
+        </div>
         <!-- Temp scripts -->
         <script src="scripts/visual.js"></script>
         <!-- Temp scripts -->

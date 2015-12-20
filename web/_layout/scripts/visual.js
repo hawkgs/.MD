@@ -172,6 +172,33 @@ var temp = (function ($) {
         });
     }
 
+    function openWindow(windowId) {
+        var $cloak = $("#editor-cloak"),
+            $window = $(".window[data-id=\"" + windowId + "\"]"),
+            $pageWindow = $(window);
+
+        $window.css({
+            top: ($pageWindow.outerHeight() - $window.outerHeight()) / 2,
+            left: ($pageWindow.outerWidth() - $window.outerWidth()) / 2
+        });
+
+        $window.addClass("show");
+        $cloak.addClass("activated");
+    }
+
+    function closeWindow() {
+        $(".window").on("click", ".close", function () {
+            $(this).closest(".window").removeClass("show");
+            $("#editor-cloak").removeClass("activated");
+        });
+    }
+
+    function bindToWindow(element, windowId) {
+        $(element).on("click", function () {
+            temp.openWindow(windowId);
+        })
+    }
+
     return {
         createTablePickerControl: createTablePickerControl,
         bindClickForLists: bindClickForLists,
@@ -180,7 +207,10 @@ var temp = (function ($) {
         toggleSidebar: toggleSidebar,
         toggleSidebarItem: toggleSidearItem,
         switchControl: switchControl,
-        themesSelector: themeSelector
+        themesSelector: themeSelector,
+        openWindow: openWindow,
+        closeWindow: closeWindow,
+        bindToWindow: bindToWindow
     };
 }(jQuery));
 
@@ -194,3 +224,6 @@ temp.toggleSidebar();
 temp.toggleSidebarItem();
 temp.switchControl();
 temp.themesSelector();
+temp.closeWindow();
+
+temp.bindToWindow("#create-acc", "register");

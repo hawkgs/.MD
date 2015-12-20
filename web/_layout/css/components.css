@@ -1,0 +1,36 @@
+.window {
+    position: fixed;
+    width: auto; height: auto;
+    min-width: 200px;
+    color: #FFF;
+    display: none;
+    opacity: 0;
+    box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2);
+    transition: opacity 0.4s ease;
+}
+
+.window > .titlebar {
+    padding: 10px 15px;
+    font-weight: 600;
+}
+
+.window > .titlebar > span.close {
+    font-weight: normal;
+    float: right;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.window > .titlebar > span.close:hover {
+    opacity: 1;
+}
+
+.window > .content {
+    background: #282828;
+    padding: 15px 20px;
+}
+
+.window.show {
+    display: block;
+    opacity: 1.0;
+}
