@@ -159,3 +159,33 @@ body {
     background: rgba(0, 0, 0, 0.5);
     height: auto;
 }
+
+/* loader */
+
+@keyframes drag-element {
+    from { left: 0; }
+    to { left: 100%; }
+}
+
+#loader {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%; height: 0;
+    top: 0;
+    transition: height 0.3s ease;
+}
+
+#loader > .slider {
+    content: "";
+    position: absolute;
+    width: 20%; height: inherit;
+    top: 0; left: 0;
+}
+
+#loader.activated {
+    height: 4px;
+}
+
+#loader.activated > .slider {
+    animation: drag-element 2s infinite normal;
+}
