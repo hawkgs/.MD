@@ -28,13 +28,47 @@ a:hover {
     border-bottom: 2px dotted #0b97c4;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="email"], input[type="password"] {
     font-family: "Open Sans", sans-serif;
     font-size: 15px;
     color: #333;
-    padding: 7px 9px;
-    border: none;
+    padding: 5px 7px;
+    border: 2px solid #FFF;
     box-sizing: border-box;
+}
+
+input[type="text"]:invalid,
+input[type="email"]:invalid,
+input[type="password"]:invalid {
+    box-shadow: none;
+    border: 2px solid #cd2a2a;
+}
+
+span.input-info {
+    position: absolute;
+    background: #0b97c4;
+    transition: opacity 0.3s ease;
+    font-size: 12px;
+    padding: 3px 5px;
+    margin-left: 12px;
+    white-space: nowrap;
+    opacity: 0;
+}
+
+span.input-info::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 8px 8px 0;
+    border-color: transparent #0b97c4 transparent transparent;
+}
+
+input:focus + span.input-info {
+    opacity: 1;
 }
 
 button.default {
@@ -58,6 +92,12 @@ p.error-msg {
     padding: 5px 10px;
     margin-bottom: 10px;
     transition: 0.3s ease;
+}
+
+p.description {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 10px;
 }
 
 .fl-left-overflow {

@@ -126,11 +126,35 @@
         </aside>
         <div class="window" data-id="register">
             <div class="titlebar theme-bg">
-                <span>A title</span>
+                <span>Registration</span>
                 <span class="close">&#10006;</span>
             </div>
             <div class="content">
-                Sort of a window
+                <form id="register">
+                    <p class="description">
+                        The registration allows you to save and<br/>
+                        keep your files on our server, so that<br/>
+                        you can access them from everywhere.
+                    </p>
+                    <p>
+                        <input type="text" size="25" placeholder="Username" />
+                        <span class="input-info">
+                            Must be between 6 - 25 symbols;<br/>
+                            Containing only A-Z, a-z, 0-9, _, .
+                        </span>
+                    </p>
+                    <p><input type="email" size="25" placeholder="Email" /></p>
+                    <hr/>
+                    <p>
+                        <input type="password" size="25" placeholder="Password" />
+                        <span class="input-info">
+                            Must be between 8 - 25 symbols
+                        </span>
+                    </p>
+                    <p><input type="password" size="25" placeholder="Repeat Password" /></p>
+                    <hr/>
+                    <p><button class="default theme-bg">Register</button></p>
+                </form>
             </div>
         </div>
         <!-- Temp scripts -->

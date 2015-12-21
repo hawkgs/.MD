@@ -34,3 +34,15 @@
     display: block;
     opacity: 1.0;
 }
+
+.window input, .window button, .window hr {
+    margin-bottom: 10px;
+}
+
+.window button {
+    font-size: 16px;
+}
+
+.window > .content > :last-child {
+    margin-bottom: 0;
+}
