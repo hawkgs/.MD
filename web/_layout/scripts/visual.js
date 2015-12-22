@@ -199,6 +199,14 @@ var temp = (function ($) {
         })
     }
 
+    function openPreview() {
+        var $preview = $("#preview");
+
+        $preview.children(".slider").on("click", function () {
+            $preview.toggleClass("opened");
+        });
+    }
+
     return {
         createTablePickerControl: createTablePickerControl,
         bindClickForLists: bindClickForLists,
@@ -210,7 +218,8 @@ var temp = (function ($) {
         themesSelector: themeSelector,
         openWindow: openWindow,
         closeWindow: closeWindow,
-        bindToWindow: bindToWindow
+        bindToWindow: bindToWindow,
+        openPreview: openPreview
     };
 }(jQuery));
 
@@ -225,5 +234,6 @@ temp.toggleSidebarItem();
 temp.switchControl();
 temp.themesSelector();
 temp.closeWindow();
+temp.openPreview();
 
 temp.bindToWindow("#create-acc", "register");

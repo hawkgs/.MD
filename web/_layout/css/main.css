@@ -163,7 +163,7 @@ body {
 /* loader */
 
 @keyframes drag-element {
-    from { left: 0; }
+    from { left: -20%; }
     to { left: 100%; }
 }
 
@@ -179,7 +179,7 @@ body {
     content: "";
     position: absolute;
     width: 20%; height: inherit;
-    top: 0; left: 0;
+    top: 0; left: -20%;
 }
 
 #loader.activated {
