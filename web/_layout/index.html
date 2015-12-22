@@ -20,7 +20,8 @@
         </section>
         <section id="preview">
             <div class="slider"></div>
-            <pre class="md-preview">
+            <button id="copy-to-clipboard">Copy To Clipboard</button>
+            <textarea id="md-preview" readonly placeholder="">
 ![_class](misc/logo.png)
 ========================
 
@@ -50,7 +51,7 @@ this.y = y;
 .func("toString", function () {
 return this.x + ", " + this.y;
 })
-            </pre>
+            </textarea>
         </section>
         <div id="editor-cloak"></div>
         <header id="main-header" class="theme-bg">

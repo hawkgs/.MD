@@ -1,4 +1,4 @@
-#preview > .md-preview, #preview > .slider {
+#md-preview, #preview > .slider {
     background: rgba(0, 0, 0, 0.9);
 }
 
@@ -9,8 +9,8 @@
     transition: height 0.3s ease;
 }
 
-#preview > .md-preview {
-    font-family: Consolas;
+#md-preview {
+    font-family: Consolas, monospace;
     white-space: pre-wrap;
     font-size: 14px;
     color: #FFF;
@@ -18,6 +18,10 @@
     height: 100%;
     overflow-y: scroll;
     box-sizing: border-box;
+    border: none;
+    display: block;
+    width: 100%;
+    resize: none;
     margin-top: 0;
 }
 
@@ -49,4 +53,31 @@
 
 #preview.opened > .slider::after {
     transform: rotate(180deg);
+}
+
+#copy-to-clipboard {
+    position: absolute;
+    background: none;
+    top: 0; right: 0;
+    margin: 10px 32px 0 0;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    padding: 3px 5px;
+    color: #FFF;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    transition: border-color 0.3s ease;
+    cursor: pointer;
+}
+
+#copy-to-clipboard:hover {
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+#copy-to-clipboard.success {
+    border-color: #59ff59;
+}
+
+#copy-to-clipboard.error {
+    border-color: #ff5959;
 }

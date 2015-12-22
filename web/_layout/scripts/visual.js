@@ -207,6 +207,33 @@ var temp = (function ($) {
         });
     }
 
+    function copyToClipboard() {
+        $("#copy-to-clipboard").on("click", function () {
+            var $this = $(this),
+                succ;
+
+            var myInput = document.getElementById('md-preview');
+            myInput.focus();
+            myInput.setSelectionRange(0, 9999);
+
+            try {
+                succ = document.execCommand("copy");
+
+                if (succ) {
+                    $this.addClass("success");
+                } else {
+                    $this.addClass("error");
+                }
+            } catch (err) {
+                $this.addClass("error");
+            }
+
+            setTimeout(function () {
+                $this.removeClass("success").removeClass("error");
+            }, 350);
+        });
+    }
+
     return {
         createTablePickerControl: createTablePickerControl,
         bindClickForLists: bindClickForLists,
@@ -219,7 +246,8 @@ var temp = (function ($) {
         openWindow: openWindow,
         closeWindow: closeWindow,
         bindToWindow: bindToWindow,
-        openPreview: openPreview
+        openPreview: openPreview,
+        copyToClipboard: copyToClipboard
     };
 }(jQuery));
 
@@ -235,5 +263,6 @@ temp.switchControl();
 temp.themesSelector();
 temp.closeWindow();
 temp.openPreview();
+temp.copyToClipboard();
 
 temp.bindToWindow("#create-acc", "register");
