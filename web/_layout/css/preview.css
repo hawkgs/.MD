@@ -1,7 +1,4 @@
-#md-preview, #preview > .slider {
-    background: rgba(0, 0, 0, 0.9);
-}
-
+/* Preview Container */
 #preview {
     position: fixed;
     width: 980px; height: 0;
@@ -9,6 +6,11 @@
     transition: height 0.3s ease;
 }
 
+#md-preview, #preview > .slider {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* MD Container */
 #md-preview {
     font-family: Consolas, monospace;
     white-space: pre-wrap;
@@ -25,6 +27,7 @@
     margin-top: 0;
 }
 
+/* Slide Button */
 #preview > .slider {
     width: 20px; height: 20px;
     margin-top: -20px;
@@ -47,6 +50,7 @@
     opacity: 1;
 }
 
+/* Preview - opened */
 #preview.opened {
     height: 70%;
 }
@@ -55,6 +59,7 @@
     transform: rotate(180deg);
 }
 
+/* 'Copy To Clipboard' Button */
 #copy-to-clipboard {
     position: absolute;
     background: none;

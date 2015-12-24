@@ -1,3 +1,5 @@
+/* Compatibility mode for smaller screens */
+
 @media screen and (max-width: 1250px) {
     #username-disp {
         display: none;

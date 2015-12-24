@@ -1,3 +1,4 @@
+/* Editor Container */
 #editor {
     background: #EEE;
     width: 100%; height: 100%;
@@ -8,6 +9,8 @@
     padding: 45px;
     overflow-y: scroll;
 }
+
+/* COMPONENTS */
 
 #editor h1 {
     padding-bottom: 0.3em;
@@ -73,9 +76,9 @@
 }
 
 #editor pre, #editor code {
+    background-color: #DDD;
     font-family: Consolas, monospace;
     font-size: 85%;
-    background-color: #DDD;
     border-radius: 3px;
 }
 
