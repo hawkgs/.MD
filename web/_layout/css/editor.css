@@ -90,3 +90,7 @@
 #editor code {
     padding: 0.2em 0.4em;
 }
+
+#editor ul, #editor ol {
+    padding: 0.5em 0 0.5em 2em;
+}
