@@ -1,7 +1,7 @@
 "use strict";
 
 var mongoose = require('mongoose'),
-    encryption = require('../../utilities/encryption');
+    encryption = require('../../../../utilities/encryption');
 
 var User;
 

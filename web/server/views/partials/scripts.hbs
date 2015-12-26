@@ -1,2 +1,25 @@
-<script type="text/javascript" src="app/loaders.js"></script>
-<script type="text/javascript" src="app/init.js"></script>
+<!-- Angular Core -->
+<script src="/node_modules/angular2/bundles/angular2-polyfills.js"></script>
+<script src="/node_modules/systemjs/dist/system.src.js"></script>
+<script src="/node_modules/rxjs/bundles/Rx.js"></script>
+<script src="/node_modules/angular2/bundles/angular2.dev.js"></script>
+
+<script>
+    System.config({
+        packages: {
+            app: {
+                format: "register",
+                defaultExtension: "js"
+            }
+        }
+    });
+</script>
+
+<!-- Angular Libs -->
+<script src="/node_modules/angular2/bundles/router.js"></script>
+<script src="/node_modules/angular2/bundles/http.min.js"></script>
+
+<!-- SystemJS Config -->
+<script>
+    System.import("app/bootstrap").then(null, console.error.bind(console));
+</script>
