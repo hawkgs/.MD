@@ -1,0 +1,195 @@
+/* RESETS */
+html, body, p, h1, h2, h3, h4, h5, h6, header, footer, section, aside, nav, article, hr, ul, ol, dl {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: none;
+}
+
+input, textarea, button, div[contenteditable="true"] {
+    outline: none;
+}
+
+/* GENERIC */
+
+hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+a {
+    color: #0b97c4;
+    text-decoration: none;
+}
+
+a:hover {
+    border-bottom: 2px dotted #0b97c4;
+}
+
+/* Inputs */
+input[type="text"], input[type="email"], input[type="password"] {
+    font-family: "Open Sans", sans-serif;
+    font-size: 15px;
+    color: #333;
+    padding: 5px 7px;
+    border: 2px solid #FFF;
+    box-sizing: border-box;
+}
+
+input[type="text"]:invalid,
+input[type="email"]:invalid,
+input[type="password"]:invalid {
+    box-shadow: none;
+    border: 2px solid #cd2a2a;
+}
+
+/* Input info */
+span.input-info {
+    position: absolute;
+    background: #0b97c4;
+    transition: opacity 0.3s ease;
+    font-size: 12px;
+    padding: 3px 5px;
+    margin-left: 12px;
+    white-space: nowrap;
+    opacity: 0;
+}
+
+span.input-info::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 8px 8px 0;
+    border-color: transparent #0b97c4 transparent transparent;
+}
+
+input:focus + span.input-info {
+    opacity: 1;
+}
+
+/* Button */
+button.default {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    color: #FFF;
+    padding: 8px 9px 7px 9px;
+    border: none;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+
+button.default:hover {
+    box-shadow: inset 0 0 50px 50px rgba(255, 255, 255, 0.2);
+}
+
+/* Error Message */
+p.error-msg {
+    background: #cd2a2a;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    transition: 0.3s ease;
+}
+
+/* Description */
+p.description {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.fl-left-overflow {
+    overflow: hidden;
+}
+
+/* LAYOUT */
+
+body {
+    background: #282828;
+    -webkit-font-smoothing: antialiased;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+/* Theme colors */
+
+.theme-bg,
+.theme-bg-ev.clicked {
+    background: #744da9;
+    transition: 0.5s ease;
+}
+
+#btn-table .theme-bg-ev.hovered {
+    background: #744da9;
+}
+
+.theme-clr {
+    color: #00a55d;
+}
+
+/* Main layout components */
+
+#main-header {
+    height: 60px;
+}
+
+#main-field {
+    position: fixed;
+    width: 980px;
+    top: 80px;
+    left: 20px;
+    bottom: 0;
+}
+
+/* Editor Cloak */
+#editor-cloak {
+    position: fixed;
+    width: 100%; height: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin-top: 60px;
+    transition: background 0.3s ease;
+}
+
+#editor-cloak.activated {
+    background: rgba(0, 0, 0, 0.5);
+    height: auto;
+}
+
+/* Loader */
+@keyframes drag-element {
+    from { left: -20%; }
+    to { left: 100%; }
+}
+
+#loader {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%; height: 0;
+    top: 0;
+    transition: height 0.3s ease;
+}
+
+#loader > .slider {
+    content: "";
+    position: absolute;
+    width: 20%; height: inherit;
+    top: 0; left: -20%;
+}
+
+#loader.activated {
+    height: 4px;
+}
+
+#loader.activated > .slider {
+    animation: drag-element 2s infinite normal;
+}
