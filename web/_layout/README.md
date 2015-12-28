@@ -1,1 +1,0 @@
-Temp folder for developing of the layout of the app.
