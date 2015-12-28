@@ -1,4 +1,4 @@
-import {Directive} from "angular2/core";
+import {Directive, ElementRef} from "angular2/core";
 
 // Services
 import {ToggleSidebar} from "../../sidebar/services/ToggleSidebar";
@@ -14,8 +14,9 @@ import {CloakService} from "../../../services/CloakService"; // Required as depe
 export class SidebarButtonDirective {
     private _sidebarService: ToggleSidebar;
 
-    constructor(sidebarService: ToggleSidebar) {
+    constructor(sidebarService: ToggleSidebar, elem: ElementRef) {
         this._sidebarService = sidebarService;
+        this._sidebarService.buttonRef = elem;
     }
 
     public onClick() {
