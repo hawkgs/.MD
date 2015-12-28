@@ -3,6 +3,8 @@ import {ElementRef, Inject, Renderer} from "angular2/core";
 // Services
 import {CloakService} from "../../../services/CloakService";
 
+declare var jqlite: any;
+
 export class ToggleSidebar {
     public static EXPND_CLASS = "expanded";
     public static BTN_CLICK_CLASS = "clicked";
@@ -25,18 +27,46 @@ export class ToggleSidebar {
     set buttonRef(value: ElementRef) {
         this._buttonRef = value;
         this._isBtnClicked = false;
+
+        // Document event init when the button reference is loaded.
+        this.documentHideOnClickOut();
     }
 
     public toggle() {
-        this._isExpanded = !this._isExpanded;
-        this._renderer.setElementClass(ToggleSidebar.sidebarEl, ToggleSidebar.EXPND_CLASS, this._isExpanded);
+        this.setSidebarState(!this._isExpanded);
 
         this._cloakService.toggle();
         this.toggleButton();
     }
 
     private toggleButton() {
-        this._isBtnClicked = !this._isBtnClicked;
-        this._renderer.setElementClass(this._buttonRef, ToggleSidebar.BTN_CLICK_CLASS, this._isBtnClicked);
+        this.setButtonState(!this._isBtnClicked);
+    }
+
+    private setSidebarState(isExpanded: boolean) {
+        this._isExpanded = isExpanded;
+        this._renderer.setElementClass(ToggleSidebar.sidebarEl, ToggleSidebar.EXPND_CLASS, isExpanded);
+    }
+
+    private setButtonState(isClicked: boolean) {
+        this._isBtnClicked = isClicked;
+        this._renderer.setElementClass(this._buttonRef, ToggleSidebar.BTN_CLICK_CLASS, isClicked);
+    }
+
+    private documentHideOnClickOut() {
+        var self = this,
+            sidebarId = "#" + ToggleSidebar.sidebarEl.nativeElement.id,
+            buttonId = "#" + this._buttonRef.nativeElement.id;
+
+        jqlite(document).on("click", function(event) {
+            if (self._isExpanded &&
+                !jqlite(event.target).closest(sidebarId).length &&
+                !jqlite(event.target).closest(buttonId).length) {
+
+                self.setButtonState(false);
+                self.setSidebarState(false);
+                self._cloakService.deactivate();
+            }
+        });
     }
 }
