@@ -6,13 +6,13 @@ var path = require("path"),
 module.exports = {
     development: {
         rootPath: rootPath,
-        db: "mongodb://localhost/e2e",
-        port: process.env.PORT || 3030
+        db: "mongodb://localhost/dot-md",
+        port: process.env.PORT || 3000
     },
     // WARNING: The production version is incomplete
     production: {
         rootPath: rootPath,
         db: "",
-        port: process.env.PORT || 3030
+        port: process.env.PORT || 3000
     }
 };

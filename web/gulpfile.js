@@ -22,13 +22,13 @@ var gulp = require("gulp"),
 function compileDevTs(pathToRebuild, basePath) {
     var tsResult = gulp.src(pathToRebuild)
         .pipe(plumber()) // Keep pipes running
-        .pipe(inlineNg2Template({ base: "/public/ng_app" })) // Inject templates (html, css)
         .pipe(tslint()) // Linter
         .pipe(tslint.report(tslintStylish, {
             emitError: false,
             sort: true,
             bell: true
         }))
+        .pipe(inlineNg2Template({ base: "/public/ng_app" })) // Inject templates (html, css)
         .pipe(sourcemaps.init()) // Create source maps
         .pipe(ts(tsProject));
 

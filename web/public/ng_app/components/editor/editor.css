@@ -1,0 +1,96 @@
+/* Editor Container */
+#editor {
+    background: #EEE;
+    width: 100%; height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    box-sizing: border-box;
+    padding: 45px;
+    overflow-y: scroll;
+}
+
+/* COMPONENTS */
+
+#editor h1 {
+    padding-bottom: 0.3em;
+    font-size: 2.25em;
+    line-height: 1.2;
+}
+
+#editor h2 {
+    padding-bottom: 0.3em;
+    font-size: 1.75em;
+    line-height: 1.225;
+}
+
+#editor h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+
+#editor h4 {
+    font-size: 1.25em;
+}
+
+#editor h5 {
+    font-size: 1em;
+}
+
+#editor h6 {
+    font-size: 1em;
+    color: #777;
+}
+
+#editor hr {
+    background: #CCC;
+    margin: 0.65em 0;
+}
+
+#editor blockquote {
+    padding: 0 15px;
+    color: #777;
+    border-left: 4px solid #BBB;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#editor a {
+    color: #4078C0;
+}
+
+#editor a:hover {
+    text-decoration: underline;
+    border: none;
+}
+
+#editor table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 0.5em 0 1em 0;
+}
+
+#editor table th, #editor table td {
+    border: 1px solid #BBB;
+    padding: 6px 13px;
+}
+
+#editor pre, #editor code {
+    background-color: #DDD;
+    font-family: Consolas, monospace;
+    font-size: 85%;
+    border-radius: 3px;
+}
+
+#editor pre {
+    padding: 16px;
+    line-height: 1.45;
+}
+
+#editor code {
+    padding: 0.2em 0.4em;
+}
+
+#editor ul, #editor ol {
+    padding: 0.5em 0 0.5em 2em;
+}

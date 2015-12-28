@@ -1,0 +1,154 @@
+/* Sidebar */
+#sidebar {
+    position: fixed;
+    background: #2C2C2C;
+    width: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 60px;
+    transition: width 0.3s ease;
+    color: #FFF;
+    overflow: hidden;
+}
+
+/* Sidebar - expanded/opened */
+#sidebar.expanded {
+    width: 300px;
+}
+
+/* Content Container */
+#sidebar > .cont {
+    width: 300px;
+}
+
+/* SIDEBAR ITEM */
+
+/* Text */
+.sb-item > p {
+    padding: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.sb-item > p:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Content (if in list mode) */
+.sb-item.list > div {
+    position: relative;
+    max-height: 0;
+    transition: max-height 0.3s ease;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.sb-item.list > div.expanded {
+    max-height: 300px;
+}
+
+/* Components */
+
+/* switch */
+span.switch {
+    position: relative;
+    width: 45px; height: 24px;
+    border-radius: 20px;
+    background-color: #444;
+    transition: background-color 0.3s ease;
+    float: right;
+    display: inline-block;
+    cursor: pointer;
+}
+
+span.switch:hover::after {
+    background: #FFF;
+}
+
+span.switch::after {
+    content: "";
+    position: absolute;
+    width: 20px; height: 20px;
+    top: 2px; left: 2px;
+    border-radius: 20px;
+    background: #F5F5F5;
+    transition: left 0.3s ease;
+}
+
+span.switch.clicked::after {
+    left: 23px;
+}
+
+/* list menu */
+ul.sb-list {
+    list-style-type: none;
+}
+
+ul.sb-list > li {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+ul.sb-list a {
+    width: 100%; height: 100%;
+    color: inherit;
+    padding: 15px 30px;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+ul.sb-list a:hover {
+    border: none;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Sidebar specific stuff */
+
+/* login */
+#login-form {
+    padding: 15px;
+}
+
+#login-sb-item input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#create-acc {
+    font-size: 13px;
+    font-weight: 600;
+    float: right;
+}
+
+/* theme */
+#theme-selector {
+    padding: 15px;
+    text-align: center;
+    height: 40px;
+    cursor: pointer;
+}
+
+.color-pick {
+    width: 30px; height: 30px;
+    margin-right: 10px;
+    border: 3px solid transparent;
+    float: left;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.color-pick:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.color-pick.selected {
+    border-color: rgba(255, 255, 255, 0.85);
+}
+
+.color-pick[data-color="grey"] { background: #3B3B3B; }
+.color-pick[data-color="red"] { background: #dd4545; }
+.color-pick[data-color="purple"] { background: #744da9; }
+.color-pick[data-color="blue"] { background: #007acc; }
+.color-pick[data-color="green"] { background: #3ab85a; }
+.color-pick[data-color="orange"] { background: #e2962a; }
