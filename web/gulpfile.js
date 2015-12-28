@@ -1,7 +1,7 @@
 "use strict";
 
 var gulp = require("gulp"),
-    //uglify = require("gulp-uglify"),
+    uglify = require("gulp-uglify"),
     ts = require("gulp-typescript"),
     watch = require("gulp-watch"),
     clean = require("gulp-clean"),
@@ -54,6 +54,14 @@ gulp.task("clean", function () {
 
 gulp.task("build.dev", ["clean"], function() {
     compileDevTs("./public/ng_app/**/*.ts", "./public/app");
+});
+
+// WARNING: !!! Turn off all watchers before running !!!
+// todo: install gulp-sequence for running build.dev, build.prod, clean, rename.prod
+gulp.task("build.prod", function () {
+    return gulp.src("./public/app/**/*.js")
+        .pipe(uglify())
+        .pipe(gulp.dest("./public/_tmp"));
 });
 
 gulp.task("watch.ts", ["build.dev"], function () {

@@ -1,24 +1,6 @@
-/* Sidebar */
-#sidebar {
-    position: fixed;
-    background: #2C2C2C;
-    width: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    margin-top: 60px;
-    transition: width 0.3s ease;
-    color: #FFF;
-    overflow: hidden;
-}
-
-/* Sidebar - expanded/opened */
-#sidebar.expanded {
-    width: 300px;
-}
-
 /* Content Container */
-#sidebar > .cont {
+/* previously '#sidebar > .cont' - Ng2 will do with the scope now */
+.cont {
     width: 300px;
 }
 

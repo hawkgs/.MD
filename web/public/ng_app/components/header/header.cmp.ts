@@ -3,6 +3,7 @@ import {Component} from "angular2/core";
 // Directives
 import {ButtonClickDirective} from "../../directives/buttonClick.drv";
 import {BoldButtonDirective} from "./directives/boldButton.drv";
+import {SidebarButtonDirective} from "./directives/sidebarButton.drv";
 
 // common
 import {TooltipDirective} from "./directives/common/tooltip.drv";
@@ -14,6 +15,7 @@ import {TooltipDirective} from "./directives/common/tooltip.drv";
     directives: [
         ButtonClickDirective,
         BoldButtonDirective,
+        SidebarButtonDirective,
         TooltipDirective
     ]
 })

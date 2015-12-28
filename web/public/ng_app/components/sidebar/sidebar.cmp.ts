@@ -1,12 +1,17 @@
-import {Component} from "angular2/core";
+import {Component, ElementRef} from "angular2/core";
 
-// Directives
-
+// Services
+import {ToggleSidebar} from "./services/ToggleSidebar";
 
 @Component({
-    selector: "sidebar-cmp",
+    selector: "[sidebar-cmp]",
     templateUrl: "./components/sidebar/sidebar.html",
-    styleUrls: ["./components/sidebar/sidebar.css"],
-    directives: []
+    styleUrls: ["./components/sidebar/sidebar.css"]
+    //providers: [ToggleSidebar]
 })
-export class SidebarComponent {}
+export class SidebarComponent {
+    constructor(elem: ElementRef) {
+        // Attaches reference to the sidebar for outer use (static field)
+        ToggleSidebar.sidebarEl = elem;
+    }
+}
