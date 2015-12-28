@@ -1,7 +1,7 @@
-import {Component} from "angular2/core";
+import {Component, ElementRef} from "angular2/core";
 
-// Directives
-
+// Services
+import {EditorRef} from "./services/EditorRef";
 
 @Component({
     selector: "[editor-cmp]",
@@ -9,4 +9,10 @@ import {Component} from "angular2/core";
     styleUrls: ["./components/editor/editor.css"],
     directives: []
 })
-export class EditorComponent {}
+export class EditorComponent {
+    constructor(elem: ElementRef) {
+        // We are setting the reference to #editor that way
+        // todo: pay attention to this
+        EditorRef.ref = elem.nativeElement.childNodes[1];
+    }
+}

@@ -1,21 +1,20 @@
-import {Directive} from "angular2/core";
+import {Directive, Renderer} from "angular2/core";
 import {EditorRef} from "../../editor/services/EditorRef";
 
 @Directive({
     selector: "[bold-btn-drv]",
-    providers: [EditorRef],
     host: {
         "(click)": "onClick()"
     }
 })
 export class BoldButtonDirective {
-    private editorRef: any;
+    private rend: Renderer;
 
-    constructor(editor: EditorRef) {
-        this.editorRef = editor;
+    constructor(rend: Renderer) {
+        this.rend = rend;
     }
 
     public onClick() {
-        this.editorRef.get().style.background = "green";
+        EditorRef.ref.style.background = "green";
     }
 }
