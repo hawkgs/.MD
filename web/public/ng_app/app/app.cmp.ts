@@ -8,7 +8,7 @@ import {SidebarComponent} from "../components/sidebar/sidebar.cmp";
 import {PreviewComponent} from "../components/preview/preview.cmp";
 
 // Directives
-//import {CloakDirective} from "../directives/cloak.drv";
+import {CloakDirective} from "../directives/cloak.drv";
 //import {LoaderDirective} from "../directives/cloak.drv";
 
 // Main Component (App)
@@ -21,7 +21,8 @@ import {PreviewComponent} from "../components/preview/preview.cmp";
         HeaderComponent,
         EditorComponent,
         SidebarComponent,
-        PreviewComponent
+        PreviewComponent,
+        CloakDirective
     ]
 })
 @RouteConfig([

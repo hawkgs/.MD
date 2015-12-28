@@ -11,36 +11,36 @@ export class TooltipDirective {
     public static APPEAR: number = 1700;
     public static DISAPPEAR: number = TooltipDirective.APPEAR + 1000 * 3; // Show for 3 seconds
 
-    private elem: any;
-    private renderer: any;
-    private timer: any;
+    private _elem: any;
+    private _renderer: any;
+    private _timer: any;
 
     constructor(elem: ElementRef, renderer: Renderer) {
-        this.elem = elem;
-        this.renderer = renderer;
-        this.timer = { appear: null, disappear: null };
+        this._elem = elem;
+        this._renderer = renderer;
+        this._timer = { appear: null, disappear: null };
     }
 
     public onMouseover() {
         var self = this;
 
-        this.timer.appear = setTimeout(function () {
+        this._timer.appear = setTimeout(function () {
             self.showTooltipClass(true);
         }, TooltipDirective.APPEAR);
 
-        this.timer.disappear = setTimeout(function () {
+        this._timer.disappear = setTimeout(function () {
             self.showTooltipClass(false);
         }, TooltipDirective.DISAPPEAR);
     }
 
     public onMouseout() {
-        clearTimeout(this.timer.appear);
-        clearTimeout(this.timer.disappear);
+        clearTimeout(this._timer.appear);
+        clearTimeout(this._timer.disappear);
 
         this.showTooltipClass(false);
     }
 
     private showTooltipClass(shouldShow: boolean) {
-        this.renderer.setElementClass(this.elem, "tooltip", shouldShow);
+        this._renderer.setElementClass(this._elem, "tooltip", shouldShow);
     }
 }

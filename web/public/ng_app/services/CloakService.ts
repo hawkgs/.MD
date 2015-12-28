@@ -4,17 +4,28 @@ export class CloakService {
     public static ACTIVE_CLASS = "activated";
     public static cloakEl: ElementRef;
 
+    private _isActivated: boolean;
     private _renderer: Renderer;
 
     constructor(@Inject(Renderer) renderer: Renderer) {
         this._renderer = renderer;
+        this._isActivated = false;
     }
 
-    public static activate() {
-        //CloakService.nativeEl.className += " " + CloakService.ACTIVE_CLASS;
+    public activate() {
+        this.toggleCloakClass(true);
     }
 
-    public static deactivate() {
-        //CloakService.nativeEl.className = CloakService.nativeEl.className.replace(CloakService.ACTIVE_CLASS, "");
+    public deactivate() {
+        this.toggleCloakClass(false);
+    }
+
+    public toggle() {
+        this.toggleCloakClass(!this._isActivated);
+    }
+
+    private toggleCloakClass(isActivated: boolean) {
+        this._isActivated = isActivated;
+        this._renderer.setElementClass(CloakService.cloakEl, CloakService.ACTIVE_CLASS, isActivated);
     }
 }
