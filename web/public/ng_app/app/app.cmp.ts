@@ -9,7 +9,7 @@ import {PreviewComponent} from "../components/preview/preview.cmp";
 
 // Directives
 import {CloakDirective} from "../directives/cloak.drv";
-//import {LoaderDirective} from "../directives/cloak.drv";
+//import {LoaderDirective} from "../directives/loader.drv";
 
 // Main Component (App)
 @Component({

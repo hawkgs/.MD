@@ -134,7 +134,7 @@ button.menu-btn {
     opacity: 0.5;
 }
 
-.menu-drop-down > .cont.click {
+.menu-drop-down > .cont.opened {
     max-height: 300px;
     visibility: visible;
     opacity: 1.0;
