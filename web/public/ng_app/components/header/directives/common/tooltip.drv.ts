@@ -22,7 +22,7 @@ export class TooltipDirective {
     }
 
     public onMouseover() {
-        var self = this;
+        var self: this = this;
 
         this._timer.appear = setTimeout(function () {
             self.showTooltipClass(true);

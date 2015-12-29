@@ -8,7 +8,6 @@ import {MdPreviewRef} from "../services/MdPreviewRef";
 })
 export class MdPreviewDirective {
     constructor(elem: ElementRef) {
-        console.log("on prview");
-        MdPreviewRef.ref = elem;
+        MdPreviewRef.ref = elem.nativeElement;
     }
 }

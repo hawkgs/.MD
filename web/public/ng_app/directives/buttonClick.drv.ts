@@ -19,7 +19,7 @@ export class ButtonClickDirective {
     }
 
     public onMousedown(): void {
-        var self = this;
+        var self: this = this;
 
         this._renderer.setElementClass(this._elem, "click", true);
 
