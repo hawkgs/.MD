@@ -12,7 +12,7 @@ import {TooltipDirective} from "./directives/common/tooltip.drv";
 import {DropDownDirective} from "./directives/common/dropDown.drv";
 
 // Services
-import {DropDownMenuCloser} from "./services/DropDownMenuCloser"; // Needs to be loaded only
+import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Needs to be loaded only
 
 @Component({
     selector: "[header-cmp]",

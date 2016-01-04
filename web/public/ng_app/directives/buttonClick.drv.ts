@@ -9,6 +9,7 @@ import {Directive, ElementRef, Renderer} from "angular2/core";
 })
 export class ButtonClickDirective {
     public static REMOVE_AFTER: number = 500; // 0.5s
+    public static CLICK_CLASS: string = "click";
 
     private _elem: ElementRef;
     private _renderer: Renderer;
@@ -21,7 +22,7 @@ export class ButtonClickDirective {
     public onMousedown(): void {
         var self: this = this;
 
-        this._renderer.setElementClass(this._elem, "click", true);
+        this._renderer.setElementClass(this._elem, ButtonClickDirective.CLICK_CLASS, true);
 
         setTimeout(function () {
             self.onMouseup();
@@ -29,6 +30,6 @@ export class ButtonClickDirective {
     }
 
     public onMouseup(): void {
-        this._renderer.setElementClass(this._elem, "click", false);
+        this._renderer.setElementClass(this._elem, ButtonClickDirective.CLICK_CLASS, false);
     }
 }

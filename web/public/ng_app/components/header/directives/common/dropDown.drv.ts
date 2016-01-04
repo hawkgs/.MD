@@ -2,14 +2,13 @@ import {Directive, ElementRef} from "angular2/core";
 
 // Services
 import {OpenedDropDown} from "../../services/common/OpenedDropDown";
+import {DropDownConsts} from "../../services/common/DropDownConsts";
 import {SetClassNative} from "../../../../services/SetClassNative";
 
 @Directive({
     selector: "[drop-down-drv]"
 })
 export class DropDownDirective {
-    public static OPENED_CLASS: string = "opened";
-
     private _nativeEl: any;
 
     constructor(elem: ElementRef) {
@@ -24,11 +23,15 @@ export class DropDownDirective {
             var next = this.parentNode.childNodes[3]; // .cont sibling
 
             if (OpenedDropDown.openedMenu && OpenedDropDown.openedMenu !== next) {
-                SetClassNative.remove(OpenedDropDown.openedMenu, DropDownDirective.OPENED_CLASS);
+                SetClassNative.remove(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
+                SetClassNative.remove(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);
             }
 
             OpenedDropDown.openedMenu = next;
-            SetClassNative.toggle(OpenedDropDown.openedMenu, DropDownDirective.OPENED_CLASS);
+            OpenedDropDown.button = this.parentNode;
+
+            SetClassNative.toggle(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
+            SetClassNative.toggle(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);
         });
     }
 }
