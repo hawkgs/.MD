@@ -3,7 +3,7 @@ import {ElementRef, Inject, Renderer} from "angular2/core";
 // Services
 import {CloakService} from "../../../services/CloakService";
 
-declare var jqlite: any;
+declare var jqlite;
 
 export class ToggleSidebar {
     public static EXPND_CLASS: string = "expanded";

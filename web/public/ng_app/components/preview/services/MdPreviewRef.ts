@@ -1,3 +1,3 @@
 export class MdPreviewRef {
-    public static ref: any; // Native DOM element
+    public static ref; // Native DOM element
 }

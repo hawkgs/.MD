@@ -1,6 +1,6 @@
 import {DropDownConsts} from "./DropDownConsts";
 
-declare var jqlite: any;
+declare var jqlite;
 
 export class DropDownMenuCloser {
     public bindCloseMenuOnDocumentClick() {

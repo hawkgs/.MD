@@ -23,7 +23,7 @@ export class CopyButtonDirective {
     }
 
     public onClick() {
-        var isSuccessful: any,
+        var isSuccessful,
             self: this = this;
 
         MdPreviewRef.ref.focus();
