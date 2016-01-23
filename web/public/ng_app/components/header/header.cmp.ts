@@ -10,6 +10,7 @@ import {StrikethroughButtonDirective} from "./directives/strikethroughButton.drv
 import {SidebarButtonDirective} from "./directives/sidebarButton.drv";
 import {HeadingsButtonComponent} from "./directives/headingsButton.cmp";
 import {CodeButtonComponent} from "./directives/codeButton.cmp";
+import {HyperlinkButtonDirective} from "./directives/hyperlinkButton.cmp";
 
 // common
 import {TooltipDirective} from "./directives/common/tooltip.drv";
@@ -35,7 +36,8 @@ import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Need
         HeadingsButtonComponent,
         CodeButtonComponent,
         TooltipDirective,
-        DropDownDirective
+        DropDownDirective,
+        HyperlinkButtonDirective
     ]
 })
 export class HeaderComponent {
