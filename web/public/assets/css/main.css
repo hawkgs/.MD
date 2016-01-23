@@ -119,10 +119,38 @@ body {
     font-weight: 400;
 }
 
+/* ng2 loading */
+@keyframes ng2-loader-anim {
+    from {
+        transform: rotate(0deg);
+        border-radius: 0;
+    }
+
+    to {
+        transform: rotate(360deg);
+        border-radius: 25px;
+    }
+}
+
 #loading {
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 350px;
+}
+
+#loading > div {
+    position: relative;
+    width: 50px; height: 50px;
+    background: #007ACC;
+    margin: 0 auto;
+    animation: ng2-loader-anim 1.5s infinite normal;
+}
+
+#loading > p {
+    font-size: 12px;
+    text-align: center;
+    margin-top: 20px;
     color: #FFF;
-    font-size: 25px;
-    font-weight: 600;
 }
 
 /* Theme colors */
