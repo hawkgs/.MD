@@ -15,6 +15,6 @@ export class BoldButtonDirective {
     }
 
     public onClick() {
-        document.execCommand("insertHTML", false, `<strong>${window.getSelection()}</strong>`);
+        document.execCommand("bold", false, null);
     }
 }

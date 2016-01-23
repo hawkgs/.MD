@@ -4,7 +4,6 @@ import {Directive, ElementRef} from "angular2/core";
 import {OpenedDropDown} from "../../services/common/OpenedDropDown";
 import {DropDownConsts} from "../../services/common/DropDownConsts";
 import {SetClassNative} from "../../../../services/SetClassNative";
-//import {EditorRef} from "../../../editor/services/EditorRef";
 
 @Directive({
     selector: "[drop-down-drv]"
@@ -20,7 +19,12 @@ export class DropDownDirective {
     private bindClickEvent() {
         var displayBtn = this._nativeEl.childNodes[1]; // .disp button
 
-        displayBtn.addEventListener("click", function () {
+        // Needed in order to keep focus over 'contenteditable' container, since .focus() is not a relevant solution.
+        displayBtn.addEventListener("mousedown", function (ev) {
+            ev.preventDefault();
+        });
+
+        displayBtn.addEventListener("click", function (event) {
             var next = this.parentNode.childNodes[3]; // .cont sibling
 
             if (OpenedDropDown.openedMenu && OpenedDropDown.openedMenu !== next) {
@@ -33,8 +37,6 @@ export class DropDownDirective {
 
             SetClassNative.toggle(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
             SetClassNative.toggle(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);
-
-            //EditorRef.ref.focus();
         });
     }
 }
