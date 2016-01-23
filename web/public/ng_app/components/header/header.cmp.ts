@@ -6,6 +6,7 @@ import {BoldButtonDirective} from "./directives/boldButton.drv";
 import {ItalicButtonDirective} from "./directives/italicButton.drv";
 import {BlockquoteButtonDirective} from "./directives/blockquoteButton.drv";
 import {HorizontalRuleDirective} from "./directives/horizontalRuleButton.drv";
+import {StrikethroughButtonDirective} from "./directives/strikethroughButton.drv";
 import {SidebarButtonDirective} from "./directives/sidebarButton.drv";
 import {HeadingsButtonComponent} from "./directives/headingsButton.cmp";
 import {CodeButtonComponent} from "./directives/codeButton.cmp";
@@ -29,6 +30,7 @@ import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Need
         ItalicButtonDirective,
         BlockquoteButtonDirective,
         HorizontalRuleDirective,
+        StrikethroughButtonDirective,
         SidebarButtonDirective,
         HeadingsButtonComponent,
         CodeButtonComponent,
