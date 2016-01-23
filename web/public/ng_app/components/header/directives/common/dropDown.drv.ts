@@ -4,6 +4,7 @@ import {Directive, ElementRef} from "angular2/core";
 import {OpenedDropDown} from "../../services/common/OpenedDropDown";
 import {DropDownConsts} from "../../services/common/DropDownConsts";
 import {SetClassNative} from "../../../../services/SetClassNative";
+//import {EditorRef} from "../../../editor/services/EditorRef";
 
 @Directive({
     selector: "[drop-down-drv]"
@@ -32,6 +33,8 @@ export class DropDownDirective {
 
             SetClassNative.toggle(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
             SetClassNative.toggle(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);
+
+            //EditorRef.ref.focus();
         });
     }
 }

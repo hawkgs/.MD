@@ -1,4 +1,4 @@
-import {Component} from "angular2/core";
+import {Component, ViewEncapsulation} from "angular2/core";
 
 // Directives
 import {ButtonClickDirective} from "../../directives/buttonClick.drv";
@@ -18,6 +18,7 @@ import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Need
     selector: "[header-cmp]",
     templateUrl: "./components/header/header.html",
     styleUrls: ["./components/header/header.css"],
+    encapsulation: ViewEncapsulation.None,
     providers: [DropDownMenuCloser],
     directives: [
         ButtonClickDirective,

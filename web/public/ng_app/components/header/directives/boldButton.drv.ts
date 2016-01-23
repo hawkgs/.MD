@@ -1,5 +1,5 @@
 import {Directive, Renderer} from "angular2/core";
-import {EditorRef} from "../../editor/services/EditorRef";
+//import {EditorRef} from "../../editor/services/EditorRef";
 
 @Directive({
     selector: "[bold-btn-drv]",
@@ -15,6 +15,6 @@ export class BoldButtonDirective {
     }
 
     public onClick() {
-        EditorRef.ref.style.background = "green";
+        document.execCommand("insertHTML", false, `<strong>${window.getSelection()}</strong>`);
     }
 }
