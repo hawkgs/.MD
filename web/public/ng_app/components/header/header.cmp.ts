@@ -6,6 +6,7 @@ import {BoldButtonDirective} from "./directives/boldButton.drv";
 import {ItalicButtonDirective} from "./directives/italicButton.drv";
 import {SidebarButtonDirective} from "./directives/sidebarButton.drv";
 import {HeadingsButtonComponent} from "./directives/headingsButton.cmp";
+import {CodeButtonComponent} from "./directives/codeButton.cmp";
 
 // common
 import {TooltipDirective} from "./directives/common/tooltip.drv";
@@ -26,6 +27,7 @@ import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Need
         ItalicButtonDirective,
         SidebarButtonDirective,
         HeadingsButtonComponent,
+        CodeButtonComponent,
         TooltipDirective,
         DropDownDirective
     ]

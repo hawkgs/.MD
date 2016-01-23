@@ -212,10 +212,12 @@ button.menu-btn {
 }
 
 /* code */
-#btn-code::after {
+#btn-code > p.disp::after {
     content: "{}";
     position: relative;
-    top: -2px;
+    font-size: 26px;
+    padding: 0 5px;
+    top: -8px;
 }
 
 /* horizontal ruler */

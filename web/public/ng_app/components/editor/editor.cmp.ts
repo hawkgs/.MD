@@ -1,4 +1,4 @@
-import {Component, ElementRef} from "angular2/core";
+import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
 
 // Services
 import {EditorRef} from "./services/EditorRef";
@@ -7,6 +7,7 @@ import {EditorRef} from "./services/EditorRef";
     selector: "[editor-cmp]",
     templateUrl: "./components/editor/editor.html",
     styleUrls: ["./components/editor/editor.css"],
+    encapsulation: ViewEncapsulation.None,
     directives: []
 })
 export class EditorComponent {
