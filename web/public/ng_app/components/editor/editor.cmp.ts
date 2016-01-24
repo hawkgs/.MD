@@ -1,7 +1,6 @@
-import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
+import {Component, ViewEncapsulation} from "angular2/core";
 
 // Services
-import {EditorRef} from "./services/EditorRef";
 import {EditorSelection} from "./services/EditorSelection";
 
 @Component({
@@ -12,12 +11,6 @@ import {EditorSelection} from "./services/EditorSelection";
     directives: []
 })
 export class EditorComponent {
-    constructor(elem: ElementRef) {
-        // We are setting the reference to #editor that way
-        // todo: pay attention to this
-        EditorRef.ref = elem.nativeElement.childNodes[1];
-    }
-
     public containSelection() {
         var winSelection = window.getSelection();
 
