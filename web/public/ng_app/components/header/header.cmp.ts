@@ -11,6 +11,7 @@ import {SidebarButtonDirective} from "./directives/sidebarButton.drv";
 import {HeadingsButtonComponent} from "./directives/headingsButton.cmp";
 import {CodeButtonComponent} from "./directives/codeButton.cmp";
 import {HyperlinkButtonDirective} from "./directives/hyperlinkButton.cmp";
+import {UnorderedListButtonDirective} from "./directives/unorderedListButton.drv";
 
 // common
 import {TooltipDirective} from "./directives/common/tooltip.drv";
@@ -37,7 +38,8 @@ import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Need
         CodeButtonComponent,
         TooltipDirective,
         DropDownDirective,
-        HyperlinkButtonDirective
+        HyperlinkButtonDirective,
+        UnorderedListButtonDirective
     ]
 })
 export class HeaderComponent {
