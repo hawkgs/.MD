@@ -14,6 +14,7 @@ import {HyperlinkButtonDirective} from "./directives/hyperlinkButton.cmp";
 import {UnorderedListButtonDirective} from "./directives/unorderedListButton.drv";
 import {OrderedListButtonDirective} from "./directives/orderedListButton.drv";
 import {ImageButtonComponent} from "./directives/imageButton.cmp";
+import {TableButtonComponent} from "./directives/tableButton.cmp";
 
 // common
 import {TooltipDirective} from "./directives/common/tooltip.drv";
@@ -43,11 +44,16 @@ import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Need
         HyperlinkButtonDirective,
         UnorderedListButtonDirective,
         OrderedListButtonDirective,
-        ImageButtonComponent
+        ImageButtonComponent,
+        TableButtonComponent
     ]
 })
 export class HeaderComponent {
+    public isGfmOn: boolean;
+
     constructor(dropDownCloser: DropDownMenuCloser) {
         dropDownCloser.bindCloseMenuOnDocumentClick();
+
+        this.isGfmOn = false;
     }
 }

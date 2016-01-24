@@ -15,7 +15,7 @@ import {EditorSelection} from "../../editor/services/EditorSelection";
         </div>`
 })
 export class HyperlinkButtonDirective {
-    public wrapInAnchor(url) {
+    public wrapInAnchor(url: string) {
         var a;
 
         if (EditorSelection.sel) {
@@ -26,7 +26,7 @@ export class HyperlinkButtonDirective {
         }
     }
 
-    private createAnchorTag(url) {
+    private createAnchorTag(url: string) {
         var a = document.createElement("a");
 
         a.href = url;

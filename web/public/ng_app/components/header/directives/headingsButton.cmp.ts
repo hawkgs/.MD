@@ -20,7 +20,7 @@ export class HeadingsButtonComponent {
         this.headings = new Array(HeadingsButtonComponent.HEAD_NUM);
     }
 
-    public insertHeading(num) {
+    public insertHeading(num: number) {
         var headingNum: number = ++num;
 
         document.execCommand("heading", false, `H${headingNum}`);

@@ -15,7 +15,7 @@ import {EditorSelection} from "../../editor/services/EditorSelection";
         </div>`
 })
 export class ImageButtonComponent {
-    public wrapInImage(url) {
+    public wrapInImage(url: string) {
         var img;
 
         if (EditorSelection.sel) {
@@ -26,7 +26,7 @@ export class ImageButtonComponent {
         }
     }
 
-    private createImageTag(url) {
+    private createImageTag(url: string) {
         var img = document.createElement("img");
 
         img.src = url;

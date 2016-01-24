@@ -36,6 +36,11 @@
     background-color: #2C2C2C;
 }
 
+/* Ng2 related */
+[hidden] {
+    display: none !important;
+}
+
 /* Username display */
 #username-disp {
     float: right;
