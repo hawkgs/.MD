@@ -6,14 +6,13 @@ import {EditorSelection} from "../../editor/services/EditorSelection";
 @Component({
     selector: "[hlink-btn-cmp]",
     template: `
-    <div class="disp"></div>
-    <div class="cont">
-        <div class="item-cont">
-            <input #url type="text" placeholder="Text" />
-            <button class="default theme-bg" (click)="wrapInAnchor(url.value)">Create</button>
-        </div>
-    </div>
-    `
+        <div class="disp"></div>
+        <div class="cont">
+            <div class="item-cont">
+                <input #url type="text" placeholder="Text" />
+                <button class="default theme-bg dd-close" (click)="wrapInAnchor(url.value)">Create</button>
+            </div>
+        </div>`
 })
 export class HyperlinkButtonDirective {
     public wrapInAnchor(url) {

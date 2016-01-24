@@ -9,15 +9,19 @@ import {SetClassNative} from "../../../../services/SetClassNative";
     selector: "[drop-down-drv]"
 })
 export class DropDownDirective {
+    // The CLOSE_EL_CLASS represents all elements in the menu which can close it.
+    public static CLOSE_EL_CLASS:string = "dd-close";
     private _nativeEl: any;
 
     constructor(elem: ElementRef) {
         this._nativeEl = elem.nativeElement;
         this.bindClickEvent();
+        this.bindCloseAndCleanEvent();
     }
 
     private bindClickEvent() {
-        var displayBtn = this._nativeEl.childNodes[1]; // .disp button
+        var displayBtn = this._nativeEl.childNodes[1], // .disp button
+            self = this;
 
         // Needed in order to keep focus over 'contenteditable' container, since .focus() is not a relevant solution.
         displayBtn.addEventListener("mousedown", function (ev) {
@@ -28,8 +32,7 @@ export class DropDownDirective {
             var next = this.parentNode.childNodes[3]; // .cont sibling
 
             if (OpenedDropDown.openedMenu && OpenedDropDown.openedMenu !== next) {
-                SetClassNative.remove(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
-                SetClassNative.remove(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);
+                self.closeCurrentlyOpenedMenu();
             }
 
             OpenedDropDown.openedMenu = next;
@@ -38,5 +41,28 @@ export class DropDownDirective {
             SetClassNative.toggle(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
             SetClassNative.toggle(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);
         });
+    }
+
+    private bindCloseAndCleanEvent() {
+        var cont = this._nativeEl.childNodes[3],
+            input = cont.querySelector("input[type=\"text\"]"), // Covers only one input per menu
+            self = this;
+
+        cont.addEventListener("click", function (event) {
+            var elem: any = event.target; // todo bad any
+
+            if (elem && elem.className.indexOf(DropDownDirective.CLOSE_EL_CLASS) !== -1) {
+                self.closeCurrentlyOpenedMenu();
+
+                if (input) {
+                    input.value = "";
+                }
+            }
+        });
+    }
+
+    private closeCurrentlyOpenedMenu() {
+        SetClassNative.remove(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
+        SetClassNative.remove(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);
     }
 }

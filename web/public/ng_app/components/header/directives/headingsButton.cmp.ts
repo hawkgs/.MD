@@ -3,12 +3,14 @@ import {Component} from "angular2/core";
 @Component({
     selector: "[headings-btn-cmp]",
     template: `
-    <p class="disp"><sup>h1</sup><sub>h6</sub></p>
-    <ul class="cont">
-        <template ngFor #num="index" [ngForOf]="headings">
-            <li (click)="insertHeading(num)" (mousedown)="keepFocusOnEditor($event)">Heading {{ num + 1 }}</li>
-        </template>
-    </ul>`,
+        <p class="disp"><sup>h1</sup><sub>h6</sub></p>
+        <ul class="cont">
+            <template ngFor #num="index" [ngForOf]="headings">
+                <li (click)="insertHeading(num)" (mousedown)="keepFocusOnEditor($event)" class="dd-close">
+                    Heading {{ num + 1 }}
+                </li>
+            </template>
+        </ul>`
 })
 export class HeadingsButtonComponent {
     public static HEAD_NUM: number = 6;
