@@ -1,6 +1,7 @@
 import {Component, ElementRef} from "angular2/core";
 
 // Services
+import {TableService} from "../services/TableService";
 import {SetClassNative} from "../../../services/SetClassNative";
 
 @Component({
@@ -25,7 +26,7 @@ export class TableButtonComponent {
         this._cellCont = this._elem.nativeElement.childNodes[3].childNodes[1];
 
         this.buildTableCellSelector();
-        this.bindClickEventForCells();
+        this.bindCellsClickEvent();
     }
 
     private buildTableCellSelector() {
@@ -72,13 +73,20 @@ export class TableButtonComponent {
         });
     }
 
-    private bindClickEventForCells() {
+    private bindCellsClickEvent() {
+        // For keeping focus on editor
+        this._cellCont.addEventListener("mousedown", function (event) {
+            event.preventDefault();
+        });
+
         this._cellCont.addEventListener("click", function (event: any) {
-            var elem = event.target;
+            var elem = event.target,
+                tableStr: string;
 
             if (elem && elem.className.indexOf("cell") !== -1) {
-                // todo ...
-                console.log(elem.dataset.row, elem.dataset.col);
+                tableStr = TableService.GenerateTable(elem.dataset.row, elem.dataset.col);
+
+                document.execCommand("insertHTML", false, tableStr);
             }
         });
     }
