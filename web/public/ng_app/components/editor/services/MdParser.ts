@@ -6,8 +6,18 @@ declare var toMarkdown;
 export class MdParser {
     public static converters = [{
         filter: "pre",
-        replacement: function(content) {
+        replacement: function (content) {
             return "```\n" + content.trim() + "\n```";
+        }
+    }, {
+        filter: "div",
+        replacement: function (content) {
+            return "\n" + content;
+        }
+    }, {
+        filter: "span",
+        replacement: function (content) {
+            return content;
         }
     }];
 
@@ -21,7 +31,7 @@ export class MdParser {
     }
 
     public static tableBrRemover(html: string): string {
-        var getTablesRegex = /(<table>(?:.|\n)*?<\/table>)/g,
+        var getTablesRegex = /(<table[^>]*>(?:.|\n)*?<\/table>)/g,
             brLess: string,
             matches;
 
