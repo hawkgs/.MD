@@ -1,3 +1,6 @@
-<div id="editor" contenteditable="true" (blur)="containSelection()">
-    Just a random shitty text mate you know. Hehe
+<div id="editor"
+     contenteditable="true"
+     (blur)="containSelection()"
+     (keypress)="onKeyPressSave()"
+     (paste)="onPasteSave()">
 </div>
