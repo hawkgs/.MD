@@ -5,7 +5,6 @@ import {CloakService} from "../services/CloakService";
 
 @Directive({
     selector: "[cloak-drv]"
-    //providers: [CloakService]
 })
 export class CloakDirective {
     constructor(elem: ElementRef) {

@@ -1,35 +1,5 @@
 <section [ngClass]="{opened: isOpened}" id="preview">
     <div (click)="openPreview(!isOpened)" class="slider"></div>
     <button copy-btn-drv id="copy-to-clipboard">Copy To Clipboard</button>
-    <textarea md-preview-drv id="md-preview" readonly placeholder="">
-![_class](misc/logo.png)
-========================
-
-A small and lightweight library for working with JavaScript classes.
-
-**V1.5.2**
-
-## Changelog
-The following have been changed/added since *v1.0*:
-
-- .get() and .set() are using Object.defineProperty now.
-- Implemented .const() for constant/read-only properties.
-- Implemented .staticFunc() for adding of static functions. [v1.5.1]
-- Added this.$super property to derived classes (A reference to the super class). [v1.5.2]
-
-Special properties:
-
-- this.$super - provides a reference to the super class.
-
-## Demo
-Let's create a simple class named Point
-javascript
-var Point = _class.create(function(x, y) {
-this.x = x;
-this.y = y;
-})
-.func(toString, function () {
-return this.x + ,  + this.y;
-})
-    </textarea>
+    <textarea md-preview-drv id="md-preview" readonly placeholder=""></textarea>
 </section>

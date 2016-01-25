@@ -1,4 +1,19 @@
 export class EditorSelection {
     public static sel; // window.getSelection().getRangeAt(0)
     public static text: string;
+
+    public static getTextFromSelection(winSelection): void {
+        var sel = winSelection,
+            container;
+
+        if (sel.rangeCount) {
+            container = document.createElement("div");
+
+            for (let i = 0, len = sel.rangeCount; i < len; ++i) {
+                container.appendChild(sel.getRangeAt(i).cloneContents());
+            }
+
+            EditorSelection.text = container.innerHTML;
+        }
+    }
 }

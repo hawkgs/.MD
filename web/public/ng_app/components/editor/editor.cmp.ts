@@ -1,7 +1,8 @@
-import {Component, ViewEncapsulation} from "angular2/core";
+import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
 
 // Services
 import {EditorSelection} from "./services/EditorSelection";
+import {EditorRef} from "./services/EditorRef";
 
 @Component({
     selector: "[editor-cmp]",
@@ -11,26 +12,14 @@ import {EditorSelection} from "./services/EditorSelection";
     directives: []
 })
 export class EditorComponent {
+    constructor(elem: ElementRef) {
+        EditorRef.ref = elem.nativeElement.childNodes[1];
+    }
+
     public containSelection() {
         var winSelection = window.getSelection();
 
         EditorSelection.sel = winSelection.getRangeAt(0);
-        this.getTextFromSelection(winSelection);
-    }
-
-    // todo: could move inside EditorSelection service
-    private getTextFromSelection(winSelection): void {
-        var sel = winSelection,
-            container;
-
-        if (sel.rangeCount) {
-            container = document.createElement("div");
-
-            for (let i = 0, len = sel.rangeCount; i < len; ++i) {
-                container.appendChild(sel.getRangeAt(i).cloneContents());
-            }
-
-            EditorSelection.text = container.innerHTML;
-        }
+        EditorSelection.getTextFromSelection(winSelection);
     }
 }
