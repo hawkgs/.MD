@@ -11,6 +11,9 @@ import {PreviewComponent} from "../components/preview/preview.cmp";
 import {CloakDirective} from "../directives/cloak.drv";
 //import {LoaderDirective} from "../directives/loader.drv";
 
+// Services
+import {GfmService} from "../services/GfmService"; // Load-only
+
 // Main Component (App)
 @Component({
     selector: "app",
@@ -23,10 +26,13 @@ import {CloakDirective} from "../directives/cloak.drv";
         SidebarComponent,
         PreviewComponent,
         CloakDirective
-    ]
+    ],
+    providers: [GfmService]
 })
 @RouteConfig([
 /*    { path: "/", component: HomeCmp, as: "Home" },
     { path: "/about", component: AboutCmp, as: "About" }*/
 ])
-export class AppComponent {}
+export class AppComponent {
+    constructor (gfm: GfmService) { /***/ }
+}

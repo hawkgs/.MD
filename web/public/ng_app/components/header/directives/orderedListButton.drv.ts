@@ -7,7 +7,7 @@ import {Directive} from "angular2/core";
     }
 })
 export class OrderedListButtonDirective {
-    public onClick() {
+    public onClick(): void {
         document.execCommand("insertOrderedList", false);
     }
 }

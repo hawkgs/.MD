@@ -20,7 +20,7 @@ export class PreviewComponent {
         this.isOpened = false;
     }
 
-    public openPreview(isOpened: boolean) {
+    public openPreview(isOpened: boolean): void {
         this.isOpened = isOpened;
     }
 }

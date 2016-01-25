@@ -29,7 +29,7 @@ export class TableButtonComponent {
         this.bindCellsClickEvent();
     }
 
-    private buildTableCellSelector() {
+    private buildTableCellSelector(): void {
         var cellContainer = document.createDocumentFragment(),
             pSize: number = TableButtonComponent.TABLE_SIZE * TableButtonComponent.TABLE_SIZE,
             col: number = 1,
@@ -59,7 +59,7 @@ export class TableButtonComponent {
         this.bindHoverEventsForCells();
     }
 
-    private bindHoverEventsForCells() {
+    private bindHoverEventsForCells(): void {
         var self = this;
 
         this._cells.forEach(function (cell: any) {
@@ -73,7 +73,7 @@ export class TableButtonComponent {
         });
     }
 
-    private bindCellsClickEvent() {
+    private bindCellsClickEvent(): void {
         // For keeping focus on editor
         this._cellCont.addEventListener("mousedown", function (event) {
             event.preventDefault();
@@ -91,7 +91,7 @@ export class TableButtonComponent {
         });
     }
 
-    private cellHighlighter(elem) {
+    private cellHighlighter(elem): void {
         var row = elem.dataset.row,
             col = elem.dataset.col,
             i, j;

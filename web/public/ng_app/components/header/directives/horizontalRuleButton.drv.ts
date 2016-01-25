@@ -7,7 +7,7 @@ import {Directive} from "angular2/core";
     }
 })
 export class HorizontalRuleDirective {
-    public onClick() {
+    public onClick(): void {
         document.execCommand("insertHorizontalRule", false);
     }
 }

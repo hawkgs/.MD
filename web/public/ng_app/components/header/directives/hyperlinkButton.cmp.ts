@@ -15,7 +15,7 @@ import {EditorSelection} from "../../editor/services/EditorSelection";
         </div>`
 })
 export class HyperlinkButtonDirective {
-    public wrapInAnchor(url: string) {
+    public wrapInAnchor(url: string): void {
         var a;
 
         if (EditorSelection.sel) {

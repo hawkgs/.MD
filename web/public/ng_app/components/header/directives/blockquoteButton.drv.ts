@@ -7,7 +7,7 @@ import {Directive} from "angular2/core";
     }
 })
 export class BlockquoteButtonDirective {
-    public onClick() {
+    public onClick(): void {
         document.execCommand("formatBlock", false, "<BLOCKQUOTE>");
     }
 }

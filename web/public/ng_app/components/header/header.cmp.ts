@@ -22,6 +22,7 @@ import {DropDownDirective} from "./directives/common/dropDown.drv";
 
 // Services
 import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Needs to be loaded only
+import {GfmService} from "../../services/GfmService";
 
 @Component({
     selector: "[header-cmp]",
@@ -49,11 +50,11 @@ import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Need
     ]
 })
 export class HeaderComponent {
-    public isGfmOn: boolean;
-
     constructor(dropDownCloser: DropDownMenuCloser) {
         dropDownCloser.bindCloseMenuOnDocumentClick();
+    }
 
-        this.isGfmOn = false;
+    public get gfm(): boolean {
+        return GfmService.isGfmOn;
     }
 }

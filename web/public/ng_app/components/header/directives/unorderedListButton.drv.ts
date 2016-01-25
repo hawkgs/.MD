@@ -7,7 +7,7 @@ import {Directive} from "angular2/core";
     }
 })
 export class UnorderedListButtonDirective {
-    public onClick() {
+    public onClick(): void {
         document.execCommand("insertUnorderedList", false);
     }
 }

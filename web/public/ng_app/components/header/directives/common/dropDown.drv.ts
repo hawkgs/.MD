@@ -10,7 +10,7 @@ import {SetClassNative} from "../../../../services/SetClassNative";
 })
 export class DropDownDirective {
     // The CLOSE_EL_CLASS represents all elements in the menu which can close it.
-    public static CLOSE_EL_CLASS:string = "dd-close";
+    public static CLOSE_EL_CLASS: string = "dd-close";
     private _nativeEl: any;
 
     constructor(elem: ElementRef) {
@@ -19,9 +19,9 @@ export class DropDownDirective {
         this.bindCloseAndCleanEvent();
     }
 
-    private bindClickEvent() {
+    private bindClickEvent(): void {
         var displayBtn = this._nativeEl.childNodes[1], // .disp button
-            self = this;
+            self: this = this;
 
         // Needed in order to keep focus over 'contenteditable' container, since .focus() is not a relevant solution.
         displayBtn.addEventListener("mousedown", function (ev) {
@@ -43,10 +43,10 @@ export class DropDownDirective {
         });
     }
 
-    private bindCloseAndCleanEvent() {
+    private bindCloseAndCleanEvent(): void {
         var cont = this._nativeEl.childNodes[3],
             input = cont.querySelector("input[type=\"text\"]"), // Covers only one input per menu
-            self = this;
+            self: this = this;
 
         cont.addEventListener("click", function (event) {
             var elem: any = event.target; // todo bad any
@@ -61,7 +61,7 @@ export class DropDownDirective {
         });
     }
 
-    private closeCurrentlyOpenedMenu() {
+    private closeCurrentlyOpenedMenu(): void {
         SetClassNative.remove(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
         SetClassNative.remove(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);
     }

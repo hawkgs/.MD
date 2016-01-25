@@ -12,19 +12,19 @@ export class CloakService {
         this._isActivated = false;
     }
 
-    public activate() {
+    public activate(): void {
         this.setCloakState(true);
     }
 
-    public deactivate() {
+    public deactivate(): void {
         this.setCloakState(false);
     }
 
-    public toggle() {
+    public toggle(): void {
         this.setCloakState(!this._isActivated);
     }
 
-    private setCloakState(isActivated: boolean) {
+    private setCloakState(isActivated: boolean): void {
         this._isActivated = isActivated;
         this._renderer.setElementClass(CloakService.cloakEl, CloakService.ACTIVE_CLASS, isActivated);
     }

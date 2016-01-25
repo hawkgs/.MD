@@ -15,7 +15,7 @@ import {EditorSelection} from "../../editor/services/EditorSelection";
         </div>`
 })
 export class ImageButtonComponent {
-    public wrapInImage(url: string) {
+    public wrapInImage(url: string): void {
         var img;
 
         if (EditorSelection.sel) {

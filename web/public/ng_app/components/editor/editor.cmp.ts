@@ -19,7 +19,7 @@ export class EditorComponent {
     }
 
     // todo: could move inside EditorSelection service
-    private getTextFromSelection(winSelection) {
+    private getTextFromSelection(winSelection): void {
         var sel = winSelection,
             container;
 

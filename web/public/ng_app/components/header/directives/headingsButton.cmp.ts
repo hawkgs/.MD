@@ -20,13 +20,13 @@ export class HeadingsButtonComponent {
         this.headings = new Array(HeadingsButtonComponent.HEAD_NUM);
     }
 
-    public insertHeading(num: number) {
+    public insertHeading(num: number): void {
         var headingNum: number = ++num;
 
         document.execCommand("heading", false, `H${headingNum}`);
     }
 
-    public keepFocusOnEditor(event) {
+    public keepFocusOnEditor(event): void {
         event.preventDefault();
     }
 }

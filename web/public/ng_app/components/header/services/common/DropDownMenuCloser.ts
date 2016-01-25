@@ -3,7 +3,7 @@ import {DropDownConsts} from "./DropDownConsts";
 declare var jqlite;
 
 export class DropDownMenuCloser {
-    public bindCloseMenuOnDocumentClick() {
+    public bindCloseMenuOnDocumentClick(): void {
         jqlite(document).on("click", function(event) {
             var $menuDropDown = jqlite(".menu-drop-down"),
                 $menuDropDownCont = $menuDropDown.find(".cont");

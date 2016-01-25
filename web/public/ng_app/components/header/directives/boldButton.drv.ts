@@ -7,7 +7,7 @@ import {Directive} from "angular2/core";
     }
 })
 export class BoldButtonDirective {
-    public onClick() {
+    public onClick(): void {
         document.execCommand("bold", false);
     }
 }

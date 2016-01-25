@@ -32,31 +32,31 @@ export class ToggleSidebar {
         this.documentHideOnClickOut();
     }
 
-    public toggle() {
+    public toggle(): void {
         this.setSidebarState(!this._isExpanded);
 
         this._cloakService.toggle();
         this.toggleButton();
     }
 
-    private toggleButton() {
+    private toggleButton(): void {
         this.setButtonState(!this._isBtnClicked);
     }
 
-    private setSidebarState(isExpanded: boolean) {
+    private setSidebarState(isExpanded: boolean): void {
         this._isExpanded = isExpanded;
         this._renderer.setElementClass(ToggleSidebar.sidebarEl, ToggleSidebar.EXPND_CLASS, isExpanded);
     }
 
-    private setButtonState(isClicked: boolean) {
+    private setButtonState(isClicked: boolean): void {
         this._isBtnClicked = isClicked;
         this._renderer.setElementClass(this._buttonRef, ToggleSidebar.BTN_CLICK_CLASS, isClicked);
     }
 
-    private documentHideOnClickOut() {
-        var self = this,
-            sidebarId = "#" + ToggleSidebar.sidebarEl.nativeElement.id,
-            buttonId = "#" + this._buttonRef.nativeElement.id;
+    private documentHideOnClickOut(): void {
+        var self: this = this,
+            sidebarId: string = "#" + ToggleSidebar.sidebarEl.nativeElement.id,
+            buttonId: string = "#" + this._buttonRef.nativeElement.id;
 
         jqlite(document).on("click", function(event) {
             if (self._isExpanded &&

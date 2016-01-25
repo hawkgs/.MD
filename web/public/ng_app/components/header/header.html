@@ -25,9 +25,9 @@
     <!-- Regular -->
 
     <!-- GFM -->
-    <div table-btn-cmp drop-down-drv [hidden]="isGfmOn" id="btn-table" class="menu-drop-down" data-title="Table"></div>
+    <div table-btn-cmp drop-down-drv [hidden]="!gfm" id="btn-table" class="menu-drop-down" data-title="Table"></div>
 
-    <button strike-btn-drv btn-click [hidden]="isGfmOn" id="btn-strikethrough" class="menu-btn" data-title="Strikethrough">S</button>
+    <button strike-btn-drv btn-click [hidden]="!gfm" id="btn-strikethrough" class="menu-btn" data-title="Strikethrough">S</button>
     <!-- GFM -->
 </div>
 <div sidebar-btn-drv id="sidebar-btn"></div>

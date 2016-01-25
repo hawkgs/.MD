@@ -21,7 +21,7 @@ export class TooltipDirective {
         this._timer = { appear: null, disappear: null };
     }
 
-    public onMouseover() {
+    public onMouseover(): void {
         var self: this = this;
 
         this._timer.appear = setTimeout(function () {
@@ -33,14 +33,14 @@ export class TooltipDirective {
         }, TooltipDirective.DISAPPEAR);
     }
 
-    public onMouseout() {
+    public onMouseout(): void {
         clearTimeout(this._timer.appear);
         clearTimeout(this._timer.disappear);
 
         this.showTooltipClass(false);
     }
 
-    private showTooltipClass(shouldShow: boolean) {
+    private showTooltipClass(shouldShow: boolean): void {
         this._renderer.setElementClass(this._elem, "tooltip", shouldShow);
     }
 }

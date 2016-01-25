@@ -10,15 +10,15 @@ import {Component} from "angular2/core";
         </ul>`
 })
 export class CodeButtonComponent {
-    public inlineCode() {
+    public inlineCode(): void {
         document.execCommand("insertHTML", false, `<code>${window.getSelection()}</code>`);
     }
 
-    public blockCode() {
+    public blockCode(): void {
         document.execCommand("formatBlock", false, "<PRE>");
     }
 
-    public keepFocusOnEditor(event) {
+    public keepFocusOnEditor(event): void {
         event.preventDefault();
     }
 }

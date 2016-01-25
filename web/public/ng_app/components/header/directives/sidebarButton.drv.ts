@@ -19,7 +19,7 @@ export class SidebarButtonDirective {
         this._sidebarService.buttonRef = elem;
     }
 
-    public onClick() {
+    public onClick(): void {
         this._sidebarService.toggle();
     }
 }

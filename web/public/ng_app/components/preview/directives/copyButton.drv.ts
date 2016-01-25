@@ -22,7 +22,7 @@ export class CopyButtonDirective {
         this._renderer = renderer;
     }
 
-    public onClick() {
+    public onClick(): void {
         var isSuccessful,
             self: this = this;
 
@@ -47,7 +47,7 @@ export class CopyButtonDirective {
         }, CopyButtonDirective.SHOW_TIME);
     }
 
-    private setButtonClass(className: string, isAdd: boolean) {
+    private setButtonClass(className: string, isAdd: boolean): void {
         this._renderer.setElementClass(this._elem, className, isAdd);
     }
 }
