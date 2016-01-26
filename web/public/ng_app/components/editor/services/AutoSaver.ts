@@ -1,7 +1,7 @@
 import {EditorRef} from "./EditorRef";
 
 export class AutoSaver {
-    public static KEY_COUNT_SAVE: number = 8;
+    public static KEY_COUNT_SAVE: number = 30;
     public static LS_DOC_KEY: string = "md_doc_html";
     public static AUTO_SAVE_SEC: number = 30000; // 30sec
     public static UI_REACT_PREC_TIME = 100; // 0.1s
@@ -34,13 +34,6 @@ export class AutoSaver {
         }
     }
 
-    public performSave(): void {
-        var html: string = EditorRef.ref.innerHTML;
-
-        console.log("saving");
-        localStorage.setItem(AutoSaver.LS_DOC_KEY, JSON.stringify({ html: html }));
-    }
-
     // We are giving time for reaction of the UI
     public uiFriendlySave(): void {
         var self: this = this;
@@ -50,11 +43,17 @@ export class AutoSaver {
         }, AutoSaver.UI_REACT_PREC_TIME);
     }
 
+    private performSave(): void {
+        var html: string = EditorRef.ref.innerHTML;
+
+        localStorage.setItem(AutoSaver.LS_DOC_KEY, JSON.stringify({ html: html }));
+    }
+
     private startAutoSaver(): void {
         this._autoSaverInterval = setInterval(this.performSave, AutoSaver.AUTO_SAVE_SEC);
     }
 
-    private bindPageLeaveSave() {
+    private bindPageLeaveSave(): void {
         var self: this = this;
 
         window.onbeforeunload = function() {

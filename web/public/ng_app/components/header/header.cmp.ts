@@ -15,6 +15,7 @@ import {UnorderedListButtonDirective} from "./directives/unorderedListButton.drv
 import {OrderedListButtonDirective} from "./directives/orderedListButton.drv";
 import {ImageButtonComponent} from "./directives/imageButton.cmp";
 import {TableButtonComponent} from "./directives/tableButton.cmp";
+import {FileNameInputDirective} from "./directives/fileNameInput.drv";
 
 // common
 import {TooltipDirective} from "./directives/common/tooltip.drv";
@@ -46,7 +47,8 @@ import {GfmService} from "../../services/GfmService";
         UnorderedListButtonDirective,
         OrderedListButtonDirective,
         ImageButtonComponent,
-        TableButtonComponent
+        TableButtonComponent,
+        FileNameInputDirective
     ]
 })
 export class HeaderComponent {
