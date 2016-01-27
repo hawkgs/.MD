@@ -1,10 +1,10 @@
-import {GfmService} from "../../../services/GfmService";
+import {GfmService} from "./GfmService";
 
 declare var toMarkdown;
 
 // An abstraction of to-markdown library
 export class MdParser {
-    public static converters = [{
+    private static converters = [{
         filter: "pre",
         replacement: function (content) {
             return "```\n" + content.trim() + "\n```";
@@ -32,11 +32,11 @@ export class MdParser {
     }
 
     // Removes all the trailing <br>-s in inline elements
-    public static removeTrailingBr(html: string) {
+    private static removeTrailingBr(html: string) {
         return html.replace(/(<br>)+<\/(b|i|strong|em|strike|code)>/g, "</$2>");
     }
 
-    public static tableBrRemover(html: string): string {
+    private static tableBrRemover(html: string): string {
         var getTablesRegex = /(<table[^>]*>(?:.|\n)*?<\/table>)/g,
             brLess: string,
             matches;

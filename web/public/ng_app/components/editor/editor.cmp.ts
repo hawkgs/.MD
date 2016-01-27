@@ -1,5 +1,8 @@
 import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
 
+// Directives
+import {PreviewComponent} from "../preview/preview.cmp";
+
 // Services
 import {EditorSelection} from "./services/EditorSelection";
 import {EditorRef} from "./services/EditorRef";
@@ -28,6 +31,12 @@ export class EditorComponent {
         EditorSelection.getTextFromSelection(winSelection);
     }
 
+    public hidePreview(): void {
+        if (PreviewComponent.isOpened) {
+            PreviewComponent.togglePreview();
+        }
+    }
+
     public onKeyPressSave(): void {
         this._autoSaver.saveWatcher();
     }
@@ -36,7 +45,7 @@ export class EditorComponent {
         this._autoSaver.uiFriendlySave();
     }
 
-    private loadCurrentDocument() {
+    private loadCurrentDocument(): void {
         var storageData = localStorage.getItem(AutoSaver.LS_DOC_KEY);
 
         if (storageData) {

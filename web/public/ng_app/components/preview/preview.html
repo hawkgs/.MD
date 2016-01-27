@@ -1,5 +1,5 @@
 <section [ngClass]="{opened: isOpened}" id="preview">
-    <div (click)="openPreview(!isOpened)" class="slider"></div>
+    <div (click)="togglePreview()" class="slider"></div>
     <button copy-btn-drv id="copy-to-clipboard">Copy To Clipboard</button>
     <textarea md-preview-drv id="md-preview" readonly placeholder=""></textarea>
 </section>

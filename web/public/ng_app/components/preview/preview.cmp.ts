@@ -1,4 +1,4 @@
-import {Component, ElementRef} from "angular2/core";
+import {Component} from "angular2/core";
 
 // Directives
 import {MdPreviewDirective} from "./directives/mdPreview.drv";
@@ -7,7 +7,7 @@ import {CopyButtonDirective} from "./directives/copyButton.drv";
 // Services
 import {EditorRef} from "../editor/services/EditorRef";
 import {MdPreviewRef} from "./services/MdPreviewRef";
-import {MdParser} from "../editor/services/MdParser";
+import {MdParser} from "../../services/MdParser";
 
 @Component({
     selector: "preview-cmp",
@@ -20,27 +20,32 @@ import {MdParser} from "../editor/services/MdParser";
 })
 export class PreviewComponent {
     public static MD_PREV_ID: string = "#md-preview"; // # is mandatory here
-    public isOpened: boolean;
+    public static isOpened: boolean = false;
 
-    constructor(elem: ElementRef) {
-        this.isOpened = false;
+    public get isOpened(): boolean {
+        return PreviewComponent.isOpened;
     }
 
-    public openPreview(isOpened: boolean): void {
-        EditorRef.ref.setAttribute("contenteditable", !isOpened); // disables editing when opened
+    public static togglePreview(): void {
+        EditorRef.ref.setAttribute("contenteditable", PreviewComponent.isOpened); // disables editing when opened
 
         // reloads MD only on opening
-        if (isOpened) {
-            this.loadMdInPreviewCont();
+        if (!PreviewComponent.isOpened) {
+            PreviewComponent.loadMdInPreviewCont();
         }
 
-        this.isOpened = isOpened;
+        // Toggle
+        PreviewComponent.isOpened = !PreviewComponent.isOpened;
     }
 
-    private loadMdInPreviewCont(): void {
+    private static loadMdInPreviewCont(): void {
         var md: string;
 
         md = MdParser.parseHtmlToMd(EditorRef.ref.innerHTML);
         MdPreviewRef.ref.value = md;
+    }
+
+    public togglePreview(): void {
+        PreviewComponent.togglePreview();
     }
 }

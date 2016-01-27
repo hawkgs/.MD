@@ -1,6 +1,7 @@
 <div id="editor"
      contenteditable="true"
      (blur)="containSelection()"
+     (click)="hidePreview()"
      (keypress)="onKeyPressSave()"
      (paste)="onPasteSave()">
 </div>
