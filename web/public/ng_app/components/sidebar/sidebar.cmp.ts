@@ -1,13 +1,16 @@
 import {Component, ElementRef} from "angular2/core";
 
+// Components
+import {SwitchControlComponent} from "../../directives/switchControl.cmp";
+
 // Services
 import {ToggleSidebar} from "./services/ToggleSidebar";
 
 @Component({
     selector: "[sidebar-cmp]",
     templateUrl: "./components/sidebar/sidebar.html",
-    styleUrls: ["./components/sidebar/sidebar.css"]
-    //providers: [ToggleSidebar]
+    styleUrls: ["./components/sidebar/sidebar.css"],
+    directives: [SwitchControlComponent]
 })
 export class SidebarComponent {
     constructor(elem: ElementRef) {

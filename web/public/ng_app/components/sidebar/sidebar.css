@@ -33,36 +33,6 @@
 
 /* Components */
 
-/* switch */
-span.switch {
-    position: relative;
-    width: 45px; height: 24px;
-    border-radius: 20px;
-    background-color: #444;
-    transition: background-color 0.3s ease;
-    float: right;
-    display: inline-block;
-    cursor: pointer;
-}
-
-span.switch:hover::after {
-    background: #FFF;
-}
-
-span.switch::after {
-    content: "";
-    position: absolute;
-    width: 20px; height: 20px;
-    top: 2px; left: 2px;
-    border-radius: 20px;
-    background: #F5F5F5;
-    transition: left 0.3s ease;
-}
-
-span.switch.clicked::after {
-    left: 23px;
-}
-
 /* list menu */
 ul.sb-list {
     list-style-type: none;
