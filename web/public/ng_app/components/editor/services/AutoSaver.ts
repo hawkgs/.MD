@@ -1,10 +1,10 @@
 import {EditorRef} from "./EditorRef";
 
 export class AutoSaver {
-    public static KEY_COUNT_SAVE: number = 30;
     public static LS_DOC_KEY: string = "md_doc_html";
-    public static AUTO_SAVE_SEC: number = 30000; // 30sec
-    public static UI_REACT_PREC_TIME = 100; // 0.1s
+    private static KEY_COUNT_SAVE: number = 30;
+    private static AUTO_SAVE_SEC: number = 30000; // 30sec
+    private static UI_REACT_PREC_TIME = 100; // 0.1s
 
     private static _instance: AutoSaver;
     private _keyPressCount: number;

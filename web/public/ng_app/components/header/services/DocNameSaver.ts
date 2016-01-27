@@ -1,7 +1,7 @@
 export class DocNameSaver {
-    public static LS_DOC_NAME_KEY = "md_doc_name";
-    public static DEF_DOC_NAME = "Untitled";
-    public static KEY_COUNT_SAVE = 3;
+    private static LS_DOC_NAME_KEY = "md_doc_name";
+    private static DEF_DOC_NAME = "Untitled";
+    private static KEY_COUNT_SAVE = 3;
 
     private _keyPressCount: number;
     private _inputRef; // Native DOM Element

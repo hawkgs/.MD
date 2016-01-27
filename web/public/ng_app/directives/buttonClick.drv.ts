@@ -11,8 +11,8 @@ import {AutoSaver} from "../components/editor/services/AutoSaver";
     }
 })
 export class ButtonClickDirective {
-    public static REMOVE_AFTER: number = 500; // 0.5s
-    public static CLICK_CLASS: string = "click";
+    private static REMOVE_AFTER: number = 500; // 0.5s
+    private static CLICK_CLASS: string = "click";
 
     private _elem: ElementRef;
     private _renderer: Renderer;

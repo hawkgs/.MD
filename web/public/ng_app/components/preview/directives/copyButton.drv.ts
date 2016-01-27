@@ -10,9 +10,9 @@ import {MdPreviewRef} from "../services/MdPreviewRef";
     }
 })
 export class CopyButtonDirective {
-    public static SUCC_CLASS: string = "success";
-    public static ERR_CLASS: string = "error";
-    public static SHOW_TIME: number = 350; // ms
+    private static SUCC_CLASS: string = "success";
+    private static ERR_CLASS: string = "error";
+    private static SHOW_TIME: number = 350; // ms
 
     private _elem: ElementRef;
     private _renderer: Renderer;

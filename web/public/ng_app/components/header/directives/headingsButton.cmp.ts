@@ -13,7 +13,7 @@ import {Component} from "angular2/core";
         </ul>`
 })
 export class HeadingsButtonComponent {
-    public static HEAD_NUM: number = 6;
+    private static HEAD_NUM: number = 6;
     public headings;
 
     constructor() {

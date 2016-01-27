@@ -6,9 +6,9 @@ import {CloakService} from "../../../services/CloakService";
 declare var jqlite;
 
 export class ToggleSidebar {
-    public static EXPND_CLASS: string = "expanded";
-    public static BTN_CLICK_CLASS: string = "clicked";
     public static sidebarEl: ElementRef;
+    private static EXPND_CLASS: string = "expanded";
+    private static BTN_CLICK_CLASS: string = "clicked";
 
     private _isExpanded: boolean;
     private _renderer: Renderer;

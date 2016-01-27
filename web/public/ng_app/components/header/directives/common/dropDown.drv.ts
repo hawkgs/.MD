@@ -10,7 +10,7 @@ import {SetClassNative} from "../../../../services/SetClassNative";
 })
 export class DropDownDirective {
     // The CLOSE_EL_CLASS represents all elements in the menu which can close it.
-    public static CLOSE_EL_CLASS: string = "dd-close";
+    private static CLOSE_EL_CLASS: string = "dd-close";
     private _nativeEl: any;
 
     constructor(elem: ElementRef) {

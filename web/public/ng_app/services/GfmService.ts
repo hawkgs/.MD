@@ -1,6 +1,6 @@
 export class GfmService {
     public static isGfmOn: boolean;
-    public static LS_KEY: string = "md_gfm";
+    private static LS_KEY: string = "md_gfm";
 
     constructor() {
         var gfmEntry: string = localStorage.getItem(GfmService.LS_KEY);

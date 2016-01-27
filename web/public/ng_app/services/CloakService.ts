@@ -1,8 +1,8 @@
 import {ElementRef, Inject, Renderer} from "angular2/core";
 
 export class CloakService {
-    public static ACTIVE_CLASS: string = "activated";
     public static cloakEl: ElementRef;
+    private static ACTIVE_CLASS: string = "activated";
 
     private _isActivated: boolean;
     private _renderer: Renderer;

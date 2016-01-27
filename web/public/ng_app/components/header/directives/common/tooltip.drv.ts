@@ -8,8 +8,8 @@ import {Directive, ElementRef, Renderer} from "angular2/core";
     }
 })
 export class TooltipDirective {
-    public static APPEAR: number = 1700;
-    public static DISAPPEAR: number = TooltipDirective.APPEAR + 1000 * 3; // Show for 3 seconds
+    private static APPEAR: number = 1700;
+    private static DISAPPEAR: number = TooltipDirective.APPEAR + 1000 * 3; // Show for 3 seconds
 
     private _elem: any;
     private _renderer: any;

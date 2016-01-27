@@ -13,9 +13,9 @@ import {SetClassNative} from "../../../services/SetClassNative";
         </div>`
 })
 export class TableButtonComponent {
-    public static TABLE_SIZE: number = 5;
-    public static HOV_CELL_CLASS: string = "hovered";
-    public static CELL_CLASSES: string = "cell theme-bg-ev dd-close";
+    private static TABLE_SIZE: number = 5;
+    private static HOV_CELL_CLASS: string = "hovered";
+    private static CELL_CLASSES: string = "cell theme-bg-ev dd-close";
 
     private _elem: ElementRef;
     private _cellCont;
