@@ -169,6 +169,11 @@ body {
     color: #00a55d;
 }
 
+/* Ng2 related */
+[hidden] {
+    display: none !important;
+}
+
 /* Main layout components */
 
 #main-header {

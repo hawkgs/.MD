@@ -9,7 +9,7 @@ import {PreviewComponent} from "../components/preview/preview.cmp";
 
 // Directives
 import {CloakDirective} from "../directives/cloak.drv";
-//import {LoaderDirective} from "../directives/loader.drv";
+import {LoaderComponent} from "../directives/loader.cmp";
 
 // Services
 import {GfmService} from "../services/GfmService"; // Load-only
@@ -25,7 +25,8 @@ import {GfmService} from "../services/GfmService"; // Load-only
         EditorComponent,
         SidebarComponent,
         PreviewComponent,
-        CloakDirective
+        CloakDirective,
+        LoaderComponent
     ],
     providers: [GfmService]
 })
