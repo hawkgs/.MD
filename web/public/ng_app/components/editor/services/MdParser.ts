@@ -23,11 +23,17 @@ export class MdParser {
 
     public static parseHtmlToMd(html: string): string {
         html = MdParser.tableBrRemover(html);
+        html = MdParser.removeTrailingBr(html);
 
         return toMarkdown(html, {
             gfm: GfmService.isGfmOn,
             converters: MdParser.converters
         });
+    }
+
+    // Removes all the trailing <br>-s in inline elements
+    public static removeTrailingBr(html: string) {
+        return html.replace(/(<br>)+<\/(b|i|strong|em|strike|code)>/g, "</$2>");
     }
 
     public static tableBrRemover(html: string): string {
