@@ -24,7 +24,7 @@ export class CopyButtonDirective {
 
     public onClick(): void {
         var isSuccessful,
-            self: this = this;
+            self: CopyButtonDirective = this;
 
         MdPreviewRef.ref.focus();
         MdPreviewRef.ref.setSelectionRange(0, 9999);

@@ -54,7 +54,7 @@ export class ToggleSidebar {
     }
 
     private documentHideOnClickOut(): void {
-        var self: this = this,
+        var self: ToggleSidebar = this,
             sidebarId: string = "#" + ToggleSidebar.sidebarEl.nativeElement.id,
             buttonId: string = "#" + this._buttonRef.nativeElement.id;
 

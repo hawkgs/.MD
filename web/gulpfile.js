@@ -10,6 +10,7 @@ var gulp = require("gulp"),
     inlineNg2Template = require("gulp-inline-ng2-template"),
     tslint = require("gulp-tslint"),
     tslintStylish = require("gulp-tslint-stylish"),
+    typedoc = require("gulp-typedoc"),
 
     // non-gulp
     //path = require("path"),
@@ -62,6 +63,28 @@ gulp.task("build.prod", function () {
     return gulp.src("./public/app/**/*.js")
         .pipe(uglify())
         .pipe(gulp.dest("./public/_tmp"));
+});
+
+gulp.task("typedoc", function() {
+    return gulp
+        .src(["./public/ng_app/**/*.ts"])
+        .pipe(typedoc({
+            out: "docs/angular",
+            name: ".MD",
+            "moduleResolution": "node",
+            "emitDecoratorMetadata": true,
+            "experimentalDecorators": true,
+            "noImplicitAny": false,
+            "mode": "modules",
+            "theme": "default",
+            "ignoreCompilerErrors": "true",
+            "target": "ES5",
+            "preserveConstEnums": "true",
+            "stripInternal": "true",
+            "suppressExcessPropertyErrors": "true",
+            "suppressImplicitAnyIndexErrors": "true",
+            "module": "system"
+        }));
 });
 
 gulp.task("watch.ts", ["build.dev"], function () {

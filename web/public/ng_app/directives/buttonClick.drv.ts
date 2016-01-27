@@ -18,14 +18,22 @@ export class ButtonClickDirective {
     private _renderer: Renderer;
     private _autoSaver: AutoSaver;
 
+    /**
+     * Sets element reference, renderer and the AutoSaver service.
+     * @param elem
+     * @param renderer
+     */
     constructor(elem: ElementRef, renderer: Renderer) {
         this._elem = elem;
         this._renderer = renderer;
         this._autoSaver = AutoSaver.instance;
     }
 
+    /**
+     * Highlights the clicked button.
+     */
     public onMousedown(): void {
-        var self: this = this;
+        var self: ButtonClickDirective = this;
 
         this._renderer.setElementClass(this._elem, ButtonClickDirective.CLICK_CLASS, true);
         this._autoSaver.uiFriendlySave(); // save
@@ -35,6 +43,9 @@ export class ButtonClickDirective {
         }, ButtonClickDirective.REMOVE_AFTER);
     }
 
+    /**
+     * Un-highlights the clicked button.
+     */
     public onMouseup(): void {
         this._renderer.setElementClass(this._elem, ButtonClickDirective.CLICK_CLASS, false);
     }

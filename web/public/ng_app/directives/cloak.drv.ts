@@ -7,6 +7,10 @@ import {CloakService} from "../services/CloakService";
     selector: "[cloak-drv]"
 })
 export class CloakDirective {
+    /**
+     * Puts the injected element reference in a container (CloakService).
+     * @param elem
+     */
     constructor(elem: ElementRef) {
         CloakService.cloakEl = elem;
     }

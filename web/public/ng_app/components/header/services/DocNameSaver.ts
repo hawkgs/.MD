@@ -41,10 +41,10 @@ export class DocNameSaver {
     }
 
     private saveNameOnLeave(): void {
-        var self: this = this;
+        var self: DocNameSaver = this;
 
-        window.onbeforeunload = function() {
+        window.addEventListener("beforeunload", function () {
             self.saveName();
-        };
+        });
     }
 }

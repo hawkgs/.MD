@@ -4,7 +4,7 @@ export class AutoSaver {
     public static LS_DOC_KEY: string = "md_doc_html";
     private static KEY_COUNT_SAVE: number = 30;
     private static AUTO_SAVE_SEC: number = 30000; // 30sec
-    private static UI_REACT_PREC_TIME = 100; // 0.1s
+    private static UI_REACT_PREC_TIME = 300; // 0.3s
 
     private static _instance: AutoSaver;
     private _keyPressCount: number;
@@ -36,7 +36,7 @@ export class AutoSaver {
 
     // We are giving time for reaction of the UI
     public uiFriendlySave(): void {
-        var self: this = this;
+        var self: AutoSaver = this;
 
         setTimeout(function () {
             self.performSave();
@@ -54,10 +54,10 @@ export class AutoSaver {
     }
 
     private bindPageLeaveSave(): void {
-        var self: this = this;
+        var self: AutoSaver = this;
 
-        window.onbeforeunload = function() {
+        window.addEventListener("beforeunload", function() {
             self.performSave();
-        };
+        });
     }
 }

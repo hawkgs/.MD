@@ -2,8 +2,14 @@ import {GfmService} from "./GfmService";
 
 declare var toMarkdown;
 
-// An abstraction of to-markdown library
+/**
+ * Provides mechanism for parsing HTML to MD (based on editor needs).
+ */
 export class MdParser {
+    /**
+     * Extension converters for the parser.
+     * @type {{filter: string, replacement: (function(any): string)}[]}
+     */
     private static converters = [{
         filter: "pre",
         replacement: function (content) {
@@ -21,6 +27,11 @@ export class MdParser {
         }
     }];
 
+    /**
+     * Parses the HTML to MD.
+     * @param html
+     * @returns {string}
+     */
     public static parseHtmlToMd(html: string): string {
         html = MdParser.tableBrRemover(html);
         html = MdParser.removeTrailingBr(html);
@@ -31,11 +42,20 @@ export class MdParser {
         });
     }
 
-    // Removes all the trailing <br>-s in inline elements
-    private static removeTrailingBr(html: string) {
+    /**
+     * Removes all trailing BR tags from the inline elements.
+     * @param html
+     * @returns {string}
+     */
+    private static removeTrailingBr(html: string): string {
         return html.replace(/(<br>)+<\/(b|i|strong|em|strike|code)>/g, "</$2>");
     }
 
+    /**
+     * Removes all BR tags from TABLE children tags (TH, TD).
+     * @param html
+     * @returns {string}
+     */
     private static tableBrRemover(html: string): string {
         var getTablesRegex = /(<table[^>]*>(?:.|\n)*?<\/table>)/g,
             brLess: string,

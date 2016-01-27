@@ -40,3 +40,6 @@ web/public/_tmp
 
 # Typescript definitions
 _tsd
+
+# Documentation
+docs

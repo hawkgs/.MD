@@ -39,10 +39,17 @@ export class SwitchControlComponent {
     public isClicked: boolean;
     private _elem: ElementRef;
 
+    /**
+     * Sets the injected element reference to a local field.
+     * @param elem
+     */
     constructor(elem: ElementRef) {
         this._elem = elem;
     }
 
+    /**
+     * Changes the state of the switch from on to off and vise versa.
+     */
     public onClick(): void {
         this.isClicked = !this.isClicked;
     }

@@ -21,7 +21,7 @@ export class DropDownDirective {
 
     private bindClickEvent(): void {
         var displayBtn = this._nativeEl.childNodes[1], // .disp button
-            self: this = this;
+            self: DropDownDirective = this;
 
         // Needed in order to keep focus over 'contenteditable' container, since .focus() is not a relevant solution.
         displayBtn.addEventListener("mousedown", function (ev) {
@@ -46,7 +46,7 @@ export class DropDownDirective {
     private bindCloseAndCleanEvent(): void {
         var cont = this._nativeEl.childNodes[3],
             input = cont.querySelector("input[type=\"text\"]"), // Covers only one input per menu
-            self: this = this;
+            self: DropDownDirective = this;
 
         cont.addEventListener("click", function (event) {
             var elem: any = event.target; // todo bad any
