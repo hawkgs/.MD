@@ -69,8 +69,8 @@ gulp.task("typedoc", function() {
     return gulp
         .src(["./public/ng_app/**/*.ts"])
         .pipe(typedoc({
-            out: "docs/angular",
-            name: ".MD",
+            "out": "docs/angular",
+            "name": ".MD Docs",
             "moduleResolution": "node",
             "emitDecoratorMetadata": true,
             "experimentalDecorators": true,
