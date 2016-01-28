@@ -17,7 +17,8 @@ var gulp = require("gulp"),
     //merge = require('merge2'),
 
     // vars
-    tsProject = ts.createProject("tsconfig.json");
+    tsProject = ts.createProject("tsconfig.json"),
+    docsConfig = require("./typedoc.json");
 
 // Helpers
 function compileDevTs(pathToRebuild, basePath) {
@@ -68,23 +69,7 @@ gulp.task("build.prod", function () {
 gulp.task("typedoc", function() {
     return gulp
         .src(["./public/ng_app/**/*.ts"])
-        .pipe(typedoc({
-            "out": "docs/angular",
-            "name": ".MD Docs",
-            "moduleResolution": "node",
-            "emitDecoratorMetadata": true,
-            "experimentalDecorators": true,
-            "noImplicitAny": false,
-            "mode": "modules",
-            "theme": "default",
-            "ignoreCompilerErrors": "true",
-            "target": "ES5",
-            "preserveConstEnums": "true",
-            "stripInternal": "true",
-            "suppressExcessPropertyErrors": "true",
-            "suppressImplicitAnyIndexErrors": "true",
-            "module": "system"
-        }));
+        .pipe(typedoc(docsConfig));
 });
 
 gulp.task("watch.ts", ["build.dev"], function () {

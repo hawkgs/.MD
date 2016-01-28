@@ -1,0 +1,17 @@
+{
+  "out": "docs/angular",
+  "name": ".MD Docs",
+  "moduleResolution": "node",
+  "emitDecoratorMetadata": true,
+  "experimentalDecorators": true,
+  "noImplicitAny": false,
+  "mode": "modules",
+  "theme": "default",
+  "ignoreCompilerErrors": "true",
+  "target": "ES5",
+  "preserveConstEnums": "true",
+  "stripInternal": "true",
+  "suppressExcessPropertyErrors": "true",
+  "suppressImplicitAnyIndexErrors": "true",
+  "module": "system"
+}

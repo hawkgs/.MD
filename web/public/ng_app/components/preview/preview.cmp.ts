@@ -22,10 +22,17 @@ export class PreviewComponent {
     public static MD_PREV_ID: string = "#md-preview"; // # is mandatory here
     public static isOpened: boolean = false;
 
+    /**
+     * A get accessor wrapper for the static isOpened.
+     * @returns {boolean}
+     */
     public get isOpened(): boolean {
         return PreviewComponent.isOpened;
     }
 
+    /**
+     * Toggles the state of the preview container (on/off).
+     */
     public static togglePreview(): void {
         EditorRef.ref.setAttribute("contenteditable", PreviewComponent.isOpened); // disables editing when opened
 
@@ -38,6 +45,9 @@ export class PreviewComponent {
         PreviewComponent.isOpened = !PreviewComponent.isOpened;
     }
 
+    /**
+     * Loads the generated MD in the preview container.
+     */
     private static loadMdInPreviewCont(): void {
         var md: string;
 
@@ -45,6 +55,9 @@ export class PreviewComponent {
         MdPreviewRef.ref.value = md;
     }
 
+    /**
+     * Wrapper for static togglePreview needed for the template.
+     */
     public togglePreview(): void {
         PreviewComponent.togglePreview();
     }

@@ -17,11 +17,19 @@ export class CopyButtonDirective {
     private _elem: ElementRef;
     private _renderer: Renderer;
 
+    /**
+     * Sets injected element reference and Renderer.
+     * @param elem
+     * @param renderer
+     */
     constructor(elem: ElementRef, renderer: Renderer) {
         this._elem = elem;
         this._renderer = renderer;
     }
 
+    /**
+     * Copies the content of the preview to the user's clipboard.
+     */
     public onClick(): void {
         var isSuccessful,
             self: CopyButtonDirective = this;
@@ -47,6 +55,11 @@ export class CopyButtonDirective {
         }, CopyButtonDirective.SHOW_TIME);
     }
 
+    /**
+     * Sets the class of the 'Copy To Clipboard' button according to the respective action outcome (succ/unsucc copy).
+     * @param className
+     * @param isAdd
+     */
     private setButtonClass(className: string, isAdd: boolean): void {
         this._renderer.setElementClass(this._elem, className, isAdd);
     }

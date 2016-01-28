@@ -1,6 +1,7 @@
 import {Directive, ElementRef, Renderer} from "angular2/core";
 
 // Services
+import {IAutoSaver} from "../components/editor/services/contracts/IAutoSaver";
 import {AutoSaver} from "../components/editor/services/AutoSaver";
 
 @Directive({
@@ -16,7 +17,7 @@ export class ButtonClickDirective {
 
     private _elem: ElementRef;
     private _renderer: Renderer;
-    private _autoSaver: AutoSaver;
+    private _autoSaver: IAutoSaver;
 
     /**
      * Sets element reference, renderer and the AutoSaver service.

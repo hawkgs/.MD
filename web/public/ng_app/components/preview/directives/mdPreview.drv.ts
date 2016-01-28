@@ -7,6 +7,10 @@ import {MdPreviewRef} from "../services/MdPreviewRef";
     selector: "[md-preview-drv]"
 })
 export class MdPreviewDirective {
+    /**
+     * Puts the injected element reference to a container (MdPreviewRef).
+     * @param elem
+     */
     constructor(elem: ElementRef) {
         MdPreviewRef.ref = elem.nativeElement;
     }

@@ -13,8 +13,11 @@ import {ToggleSidebar} from "./services/ToggleSidebar";
     directives: [SwitchControlComponent]
 })
 export class SidebarComponent {
+    /**
+     * Puts the injected sidebar element reference in a container.
+     * @param elem
+     */
     constructor(elem: ElementRef) {
-        // Attaches reference to the sidebar for outer use (static field)
         ToggleSidebar.sidebarEl = elem;
     }
 }

@@ -1,9 +1,10 @@
 import {EditorRef} from "./EditorRef";
+import {IAutoSaver} from "./contracts/IAutoSaver";
 
 /**
  * In charge for auto saving managing of the document contents (HTML).
  */
-export class AutoSaver {
+export class AutoSaver implements IAutoSaver {
     public static LS_DOC_KEY: string = "md_doc_html";
     private static KEY_COUNT_SAVE: number = 30;
     private static AUTO_SAVE_SEC: number = 30000; // 30sec
