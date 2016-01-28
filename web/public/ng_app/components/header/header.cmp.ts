@@ -22,7 +22,7 @@ import {TooltipDirective} from "./directives/common/tooltip.drv";
 import {DropDownDirective} from "./directives/common/dropDown.drv";
 
 // Services
-import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser"; // Needs to be loaded only
+import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser";
 import {GfmService} from "../../services/GfmService";
 
 @Component({
@@ -52,10 +52,18 @@ import {GfmService} from "../../services/GfmService";
     ]
 })
 export class HeaderComponent {
+    /**
+     * Initializes all processes and event related with header toolbar.
+     * @param dropDownCloser
+     */
     constructor(dropDownCloser: DropDownMenuCloser) {
         dropDownCloser.bindCloseMenuOnDocumentClick();
     }
 
+    /**
+     * Get wrapper for isGfmOn static field.
+     * @returns {boolean}
+     */
     public get gfm(): boolean {
         return GfmService.isGfmOn;
     }

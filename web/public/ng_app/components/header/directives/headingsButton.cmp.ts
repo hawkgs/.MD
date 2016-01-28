@@ -16,16 +16,27 @@ export class HeadingsButtonComponent {
     private static HEAD_NUM: number = 6;
     public headings;
 
+    /**
+     * Creates HEAD_NUM sized array for simulated iteration in the template.
+     */
     constructor() {
         this.headings = new Array(HeadingsButtonComponent.HEAD_NUM);
     }
 
+    /**
+     * Wraps/inserts heading tag to the text selection in the editor.
+     * @param num - Heading number 1-6
+     */
     public insertHeading(num: number): void {
         var headingNum: number = ++num;
 
         document.execCommand("heading", false, `H${headingNum}`);
     }
 
+    /**
+     * Keeps focus on the editor on element mousedown event.
+     * @param event - DOM event object
+     */
     public keepFocusOnEditor(event): void {
         event.preventDefault();
     }

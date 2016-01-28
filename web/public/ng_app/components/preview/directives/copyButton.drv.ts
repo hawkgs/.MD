@@ -58,7 +58,7 @@ export class CopyButtonDirective {
     /**
      * Sets the class of the 'Copy To Clipboard' button according to the respective action outcome (succ/unsucc copy).
      * @param className
-     * @param isAdd
+     * @param isAdd - Should the class be added or not (true/false)
      */
     private setButtonClass(className: string, isAdd: boolean): void {
         this._renderer.setElementClass(this._elem, className, isAdd);

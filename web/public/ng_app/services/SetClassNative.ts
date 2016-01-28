@@ -1,10 +1,10 @@
 /**
- * Provides an simplified API for adding/removing element classes.
+ * Provides a simplified API for adding/removing element classes.
  */
 export class SetClassNative {
     /**
      * Adds a class to an element.
-     * @param elem
+     * @param elem - Target element
      * @param className
      */
     public static add(elem, className: string): void {
@@ -15,7 +15,7 @@ export class SetClassNative {
 
     /**
      * Removes a class from an element.
-     * @param elem
+     * @param elem - Target element
      * @param className
      */
     public static remove(elem, className: string): void {
@@ -24,7 +24,7 @@ export class SetClassNative {
 
     /**
      * Toggles a class of a specified element.
-     * @param elem
+     * @param elem - Target element
      * @param className
      */
     public static toggle(elem, className: string): void {

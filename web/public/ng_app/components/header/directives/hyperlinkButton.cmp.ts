@@ -15,6 +15,10 @@ import {EditorSelection} from "../../editor/services/EditorSelection";
         </div>`
 })
 export class HyperlinkButtonDirective {
+    /**
+     * Wraps the text selection in A tag by a provided URL.
+     * @param url - URL to the source
+     */
     public wrapInAnchor(url: string): void {
         var a;
 
@@ -26,7 +30,12 @@ export class HyperlinkButtonDirective {
         }
     }
 
-    private createAnchorTag(url: string) {
+    /**
+     * Creates the HTML for the anchor tag.
+     * @param url - URL to the source
+     * @returns {HTMLAnchorElement|HTMLElement}
+     */
+    private createAnchorTag(url: string): HTMLAnchorElement {
         var a = document.createElement("a");
 
         a.href = url;

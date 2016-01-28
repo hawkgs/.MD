@@ -34,7 +34,7 @@ export class ToggleSidebar {
 
     /**
      * Sets the toggle button reference and initializes the corresponding events associated with it.
-     * @param value
+     * @param value - Reference to the button
      */
     set buttonRef(value: ElementRef) {
         this._buttonRef = value;
@@ -45,7 +45,7 @@ export class ToggleSidebar {
     }
 
     /**
-     * Toggles the sidebar
+     * Toggles the sidebar (on/off).
      */
     public toggle(): void {
         this.setSidebarState(!this._isExpanded);

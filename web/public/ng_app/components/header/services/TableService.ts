@@ -1,4 +1,14 @@
+/**
+ * Service for generating HTML tables.
+ */
 export class TableService {
+    /**
+     * Generates and returns a HTML table (as a string) by provided row and column.
+     * @param row
+     * @param col
+     * @returns {string}
+     * @constructor
+     */
     public static GenerateTable(row: number, col: number): string {
         var table = "<table>",
             closeTag = "</table>",

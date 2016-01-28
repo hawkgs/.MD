@@ -7,6 +7,9 @@ import {Directive} from "angular2/core";
     }
 })
 export class HorizontalRuleDirective {
+    /**
+     * Inserts HR in the editor.
+     */
     public onClick(): void {
         document.execCommand("insertHorizontalRule", false);
     }

@@ -7,6 +7,9 @@ import {Directive} from "angular2/core";
     }
 })
 export class BoldButtonDirective {
+    /**
+     * Wraps/inserts B (bold) to the text selection in the editor.
+     */
     public onClick(): void {
         document.execCommand("bold", false);
     }

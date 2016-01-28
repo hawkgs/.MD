@@ -13,12 +13,19 @@ export class DropDownDirective {
     private static CLOSE_EL_CLASS: string = "dd-close";
     private _nativeEl: any;
 
+    /**
+     * Sets injected element reference and binds needed events.
+     * @param elem
+     */
     constructor(elem: ElementRef) {
         this._nativeEl = elem.nativeElement;
         this.bindClickEvent();
         this.bindCloseAndCleanEvent();
     }
 
+    /**
+     * Binds click event to the drop down - open/close mechanism.
+     */
     private bindClickEvent(): void {
         var displayBtn = this._nativeEl.childNodes[1], // .disp button
             self: DropDownDirective = this;
@@ -43,13 +50,17 @@ export class DropDownDirective {
         });
     }
 
+    /**
+     * Binds close and clean event to the drop down. Close - attached to CLOSE_EL_CLASS elements;
+     * Clean - cleans the first found input[type="text"].
+     */
     private bindCloseAndCleanEvent(): void {
         var cont = this._nativeEl.childNodes[3],
             input = cont.querySelector("input[type=\"text\"]"), // Covers only one input per menu
             self: DropDownDirective = this;
 
         cont.addEventListener("click", function (event) {
-            var elem: any = event.target; // todo bad any
+            var elem: any = event.target;
 
             if (elem && elem.className.indexOf(DropDownDirective.CLOSE_EL_CLASS) !== -1) {
                 self.closeCurrentlyOpenedMenu();
@@ -61,6 +72,9 @@ export class DropDownDirective {
         });
     }
 
+    /**
+     * Closes currently opened menu by modifying OpenedDropDown container.
+     */
     private closeCurrentlyOpenedMenu(): void {
         SetClassNative.remove(OpenedDropDown.openedMenu, DropDownConsts.OPENED_CLASS);
         SetClassNative.remove(OpenedDropDown.button, DropDownConsts.BTN_CLICK_CLASS);

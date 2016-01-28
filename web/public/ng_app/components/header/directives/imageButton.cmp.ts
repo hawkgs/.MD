@@ -15,6 +15,10 @@ import {EditorSelection} from "../../editor/services/EditorSelection";
         </div>`
 })
 export class ImageButtonComponent {
+    /**
+     * Inserts IMG in the editor by a provided URL.
+     * @param url - URL to the image
+     */
     public wrapInImage(url: string): void {
         var img;
 
@@ -26,7 +30,12 @@ export class ImageButtonComponent {
         }
     }
 
-    private createImageTag(url: string) {
+    /**
+     * Creates HTML for the IMG tag.
+     * @param url - URL to the image
+     * @returns {HTMLImageElement|HTMLElement}
+     */
+    private createImageTag(url: string): HTMLImageElement {
         var img = document.createElement("img");
 
         img.src = url;

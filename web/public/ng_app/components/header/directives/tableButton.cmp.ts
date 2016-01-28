@@ -21,14 +21,21 @@ export class TableButtonComponent {
     private _cellCont;
     private _cells;
 
+    /**
+     * Sets injected element reference and builds the table cell selector (generator) widget.
+     * @param elem
+     */
     constructor(elem: ElementRef) {
         this._elem = elem;
-        this._cellCont = this._elem.nativeElement.childNodes[3].childNodes[1];
+        this._cellCont = this._elem.nativeElement.childNodes[3].childNodes[1]; //todo
 
         this.buildTableCellSelector();
         this.bindCellsClickEvent();
     }
 
+    /**
+     * Builds table cell selector (generator) widget.
+     */
     private buildTableCellSelector(): void {
         var cellContainer = document.createDocumentFragment(),
             pSize: number = TableButtonComponent.TABLE_SIZE * TableButtonComponent.TABLE_SIZE,
@@ -59,6 +66,9 @@ export class TableButtonComponent {
         this.bindHoverEventsForCells();
     }
 
+    /**
+     * Binds hover event to the cells (background changing).
+     */
     private bindHoverEventsForCells(): void {
         var self = this;
 
@@ -73,6 +83,9 @@ export class TableButtonComponent {
         });
     }
 
+    /**
+     * Sends clicked cell row and column to the .cellHighlighter().
+     */
     private bindCellsClickEvent(): void {
         // For keeping focus on editor
         this._cellCont.addEventListener("mousedown", function (event) {
@@ -91,6 +104,10 @@ export class TableButtonComponent {
         });
     }
 
+    /**
+     * Highlights the corresponding cells (top/left) according to the provided root cell.
+     * @param elem - Root cell
+     */
     private cellHighlighter(elem): void {
         var row = elem.dataset.row,
             col = elem.dataset.col,

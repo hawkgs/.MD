@@ -7,7 +7,7 @@ export class EditorSelection {
 
     /**
      * Extracts the text content from a '.getSelection()'.
-     * @param winSelection
+     * @param winSelection - window.getSelection()
      */
     public static getTextFromSelection(winSelection): void {
         var sel = winSelection,

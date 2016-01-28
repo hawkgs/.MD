@@ -14,11 +14,19 @@ import {CloakService} from "../../../services/CloakService"; // Required as depe
 export class SidebarButtonDirective {
     private _sidebarService: ToggleSidebar;
 
+    /**
+     * Sets injected sidebar service and element reference.
+     * @param sidebarService
+     * @param elem
+     */
     constructor(sidebarService: ToggleSidebar, elem: ElementRef) {
         this._sidebarService = sidebarService;
         this._sidebarService.buttonRef = elem;
     }
 
+    /**
+     * Toggles sidebar on click (on/off).
+     */
     public onClick(): void {
         this._sidebarService.toggle();
     }
