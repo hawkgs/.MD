@@ -3,6 +3,9 @@ import {Component, ElementRef} from "angular2/core";
 // Components
 import {SwitchControlComponent} from "../../directives/switchControl.cmp";
 
+// Directives
+import {SidebarListDirective} from "./directives/common/sidebarList.drv";
+
 // Services
 import {ToggleSidebar} from "./services/ToggleSidebar";
 
@@ -10,7 +13,10 @@ import {ToggleSidebar} from "./services/ToggleSidebar";
     selector: "[sidebar-cmp]",
     templateUrl: "./components/sidebar/sidebar.html",
     styleUrls: ["./components/sidebar/sidebar.css"],
-    directives: [SwitchControlComponent]
+    directives: [
+        SwitchControlComponent,
+        SidebarListDirective
+    ]
 })
 export class SidebarComponent {
     /**

@@ -34,7 +34,7 @@ export class PreviewComponent {
      * Toggles the state of the preview container (on/off).
      */
     public static togglePreview(): void {
-        EditorRef.ref.setAttribute("contenteditable", PreviewComponent.isOpened); // disables editing when opened
+        EditorRef.ref.setAttribute("contenteditable", PreviewComponent.isOpened.toString()); // disables editing when opened
 
         // reloads MD only on opening
         if (!PreviewComponent.isOpened) {

@@ -32,7 +32,7 @@ import {GfmService} from "../../services/GfmService";
     encapsulation: ViewEncapsulation.None,
     providers: [DropDownMenuCloser],
     directives: [
-        ButtonClickDirective,
+        ButtonClickDirective, // todo sort
         BoldButtonDirective,
         ItalicButtonDirective,
         BlockquoteButtonDirective,

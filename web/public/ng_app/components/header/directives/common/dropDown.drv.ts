@@ -27,7 +27,7 @@ export class DropDownDirective {
      * Binds click event to the drop down - open/close mechanism.
      */
     private bindClickEvent(): void {
-        var displayBtn = this._nativeEl.childNodes[1], // .disp button
+        var displayBtn = this._nativeEl.childNodes[1], // .disp button todo
             self: DropDownDirective = this;
 
         // Needed in order to keep focus over 'contenteditable' container, since .focus() is not a relevant solution.
