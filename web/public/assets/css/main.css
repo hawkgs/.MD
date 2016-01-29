@@ -168,8 +168,11 @@ body {
 }
 
 /* Ng2 related */
+/* Note that the opacity and height are used for transition effect (instead of display). */
 [hidden] {
-    display: none !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    /*display: none !important;*/
 }
 
 /* Main layout components */

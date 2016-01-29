@@ -31,10 +31,6 @@ export class GfmService {
      * Toggles GFM (on/off).
      */
     public static toggleGfm(): void {
-        if (GfmService.isGfmOn) {
-            GfmService.setGfm(false);
-        } else {
-            GfmService.setGfm(true);
-        }
+        GfmService.setGfm(!GfmService.isGfmOn);
     }
 }

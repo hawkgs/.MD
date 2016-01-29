@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
+import {Component, Input, ViewEncapsulation} from "angular2/core";
 
 @Component({
     selector: "switch-ctrl",
@@ -16,10 +16,6 @@ import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
             cursor: pointer;
         }
 
-        span.switch:hover::after {
-            background: #FFF;
-        }
-
         span.switch::after {
             content: "";
             position: absolute;
@@ -30,22 +26,11 @@ import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
             transition: left 0.3s ease;
         }
 
-        span.switch.clicked::after {
-            left: 23px;
-        }
+        span.switch.clicked::after { left: 23px; }
     `],
 })
 export class SwitchControlComponent {
-    public isClicked: boolean;
-    private _elem: ElementRef;
-
-    /**
-     * Sets the injected element reference to a local field.
-     * @param elem
-     */
-    constructor(elem: ElementRef) {
-        this._elem = elem;
-    }
+    @Input() isClicked: boolean;
 
     /**
      * Changes the state of the switch from on to off and vise versa.

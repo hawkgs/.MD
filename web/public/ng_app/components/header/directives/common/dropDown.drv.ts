@@ -64,6 +64,7 @@ export class DropDownDirective {
 
             if (elem && elem.className.indexOf(DropDownDirective.CLOSE_EL_CLASS) !== -1) {
                 self.closeCurrentlyOpenedMenu();
+                // todo: monitor this 'close' as it may cause issues - OpenDropDown container isn't emptied.
 
                 if (input) {
                     input.value = "";

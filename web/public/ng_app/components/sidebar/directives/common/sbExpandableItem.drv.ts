@@ -2,14 +2,14 @@ import {Directive, ElementRef} from "angular2/core";
 
 // Services
 import {OpenedSidebarExpandable} from "../../services/common/OpenedSidebarExpandable";
+import {SidebarConsts} from "../../services/common/SidebarConsts";
 import {SetClassNative} from "../../../../services/SetClassNative";
 
 @Directive({
     selector: "[sb-expandable-drv]"
 })
-export class SbExpandableItemDirective { // todo todo todo todo todo todo todo tododododo
-    private static OPENED_CLASS: string = "expanded";
-    private _nativeEl: any;
+export class SbExpandableItemDirective {
+    private _nativeEl: HTMLElement;
 
     /**
      * Sets injected element reference and binds needed events.
@@ -30,13 +30,13 @@ export class SbExpandableItemDirective { // todo todo todo todo todo todo todo t
             var next = this.parentNode.childNodes[3]; // div sibling //todo
 
             if (OpenedSidebarExpandable.content && OpenedSidebarExpandable.content !== next) {
-                SetClassNative.remove(OpenedSidebarExpandable.content, SbExpandableItemDirective.OPENED_CLASS);
+                SetClassNative.remove(OpenedSidebarExpandable.content, SidebarConsts.OPENED_CLASS);
             }
 
             OpenedSidebarExpandable.content = next;
             OpenedSidebarExpandable.button = this.parentNode;
 
-            SetClassNative.toggle(OpenedSidebarExpandable.content, SbExpandableItemDirective.OPENED_CLASS);
+            SetClassNative.toggle(OpenedSidebarExpandable.content, SidebarConsts.OPENED_CLASS);
         });
     }
 }

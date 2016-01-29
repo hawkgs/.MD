@@ -3,10 +3,10 @@ import {Component, ElementRef} from "angular2/core";
 // Directives
 import {LoginFormComponent} from "./directives/loginForm.cmp";
 import {ExportMdComponent} from "./directives/exportMd.cmp";
+import {GfmToggleComponent} from "./directives/gfmToggle.cmp";
 import {ThemeSelectorComponent} from "./directives/themeSelector.cmp";
 
 // common
-import {SwitchControlComponent} from "../../directives/switchControl.cmp";
 import {SbExpandableItemDirective} from "./directives/common/sbExpandableItem.drv";
 
 // Services
@@ -19,8 +19,8 @@ import {ToggleSidebar} from "./services/ToggleSidebar";
     directives: [
         LoginFormComponent,
         ExportMdComponent,
+        GfmToggleComponent,
         ThemeSelectorComponent,
-        SwitchControlComponent,
         SbExpandableItemDirective
     ]
 })

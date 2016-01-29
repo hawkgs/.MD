@@ -2,6 +2,9 @@ import {ElementRef, Inject, Renderer} from "angular2/core";
 
 // Services
 import {CloakService} from "../../../services/CloakService";
+import {SetClassNative} from "../../../services/SetClassNative";
+import {OpenedSidebarExpandable} from "./common/OpenedSidebarExpandable";
+import {SidebarConsts} from "./common/SidebarConsts";
 
 declare var jqlite;
 
@@ -36,7 +39,7 @@ export class ToggleSidebar {
      * Sets the toggle button reference and initializes the corresponding events associated with it.
      * @param value - Reference to the button
      */
-    set buttonRef(value: ElementRef) {
+    public set buttonRef(value: ElementRef) {
         this._buttonRef = value;
         this._isBtnClicked = false;
 
@@ -96,6 +99,10 @@ export class ToggleSidebar {
                 self.setButtonState(false);
                 self.setSidebarState(false);
                 self._cloakService.deactivate();
+
+                if (OpenedSidebarExpandable.content) {
+                    SetClassNative.remove(OpenedSidebarExpandable.content, SidebarConsts.OPENED_CLASS);
+                }
             }
         });
     }
