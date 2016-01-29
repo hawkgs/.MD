@@ -30,27 +30,3 @@
 .sb-item.list > div.expanded {
     max-height: 300px;
 }
-
-/* Components */
-
-/* list menu */
-ul.sb-list {
-    list-style-type: none;
-}
-
-ul.sb-list > li {
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-ul.sb-list a {
-    width: 100%; height: 100%;
-    color: inherit;
-    padding: 15px 30px;
-    display: block;
-    transition: background 0.3s ease;
-}
-
-ul.sb-list a:hover {
-    border: none;
-    background: rgba(255, 255, 255, 0.05);
-}

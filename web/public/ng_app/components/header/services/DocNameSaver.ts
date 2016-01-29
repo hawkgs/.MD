@@ -17,6 +17,14 @@ export class DocNameSaver {
     }
 
     /**
+     * Returns the name of the document from the localStorage.
+     * @returns {string}
+     */
+    public static getDocName(): string {
+        return localStorage.getItem(DocNameSaver.LS_DOC_NAME_KEY);
+    }
+
+    /**
      * Sets reference to the doc/file name input and initializes the corresponding processes.
      * @param inputRef - Reference to the input element
      */
