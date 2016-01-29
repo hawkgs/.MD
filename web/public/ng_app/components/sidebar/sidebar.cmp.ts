@@ -1,10 +1,13 @@
 import {Component, ElementRef} from "angular2/core";
 
-// Components
-import {SwitchControlComponent} from "../../directives/switchControl.cmp";
-
 // Directives
-import {SidebarListDirective} from "./directives/common/sidebarList.drv";
+import {LoginFormComponent} from "./directives/loginForm.cmp";
+import {ExportMdComponent} from "./directives/exportMd.cmp";
+import {ThemeSelectorComponent} from "./directives/themeSelector.cmp/themeSelector.cmp";
+
+// common
+import {SwitchControlComponent} from "../../directives/switchControl.cmp";
+import {SbExpandableItemDirective} from "./directives/common/sbExpandableItem.drv";
 
 // Services
 import {ToggleSidebar} from "./services/ToggleSidebar";
@@ -14,8 +17,11 @@ import {ToggleSidebar} from "./services/ToggleSidebar";
     templateUrl: "./components/sidebar/sidebar.html",
     styleUrls: ["./components/sidebar/sidebar.css"],
     directives: [
+        LoginFormComponent,
+        ExportMdComponent,
+        ThemeSelectorComponent,
         SwitchControlComponent,
-        SidebarListDirective
+        SbExpandableItemDirective
     ]
 })
 export class SidebarComponent {

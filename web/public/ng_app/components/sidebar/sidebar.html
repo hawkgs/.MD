@@ -1,24 +1,12 @@
 <div class="cont">
-    <div sb-list-drv id="login-sb-item" class="sb-item list">
+    <div sb-expandable-drv id="login-sb-item" class="sb-item list">
         <p>Login</p>
-        <div>
-            <form id="login-form">
-                <p class="error-msg">Wrong password mate</p>
-                <p><input type="text" placeholder="Username" /></p>
-                <p><input type="password" placeholder="Password" /></p>
-                <p><button class="default theme-bg">Login</button><a id="create-acc" href=":;">Create account</a></p>
-            </form>
-        </div>
+        <div login-form-cmp></div>
     </div>
     <hr/>
-    <div sb-list-drv class="sb-item list">
+    <div sb-expandable-drv class="sb-item list">
         <p>Export As</p>
-        <div>
-            <ul class="sb-list">
-                <li><a href="">MD</a></li>
-                <li><a href="">PDF</a></li>
-            </ul>
-        </div>
+        <div export-md-cmp></div>
     </div>
     <hr/>
     <div class="sb-item">
@@ -28,18 +16,9 @@
         </p>
     </div>
     <hr/>
-    <div sb-list-drv class="sb-item list">
+    <div sb-expandable-drv class="sb-item list">
         <p>Pick Theme Color</p>
-        <div>
-            <div id="theme-selector">
-                <div class="color-pick" data-color="grey"></div>
-                <div class="color-pick" data-color="red"></div>
-                <div class="color-pick" data-color="purple"></div>
-                <div class="color-pick" data-color="blue"></div>
-                <div class="color-pick" data-color="green"></div>
-                <div class="color-pick" data-color="orange"></div>
-            </div>
-        </div>
+        <div theme-selector-cmp></div>
     </div>
     <hr/>
     <div class="sb-item">
