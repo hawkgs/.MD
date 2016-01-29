@@ -155,18 +155,16 @@ body {
 
 /* Theme colors */
 
-.theme-bg,
-.theme-bg-ev.clicked {
-    background: #744da9;
+.theme-bg, .theme-bg-ev.clicked {
     transition: 0.5s ease;
 }
 
-#btn-table .theme-bg-ev.hovered {
-    background: #744da9;
+.theme-bg {
+    background: #3b3b3b;
 }
 
-.theme-clr {
-    color: #00a55d;
+.theme-bg-ev.clicked, #btn-table .theme-bg-ev.hovered {
+    background: #007acc;
 }
 
 /* Ng2 related */
