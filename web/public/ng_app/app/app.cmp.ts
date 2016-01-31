@@ -6,6 +6,7 @@ import {HeaderComponent} from "../components/header/header.cmp";
 import {EditorComponent} from "../components/editor/editor.cmp";
 import {SidebarComponent} from "../components/sidebar/sidebar.cmp";
 import {PreviewComponent} from "../components/preview/preview.cmp";
+import {WindowsComponent} from "../components/windows/windows.cmp";
 
 // Directives
 import {CloakDirective} from "../directives/cloak.drv";
@@ -25,6 +26,7 @@ import {GfmService} from "../services/GfmService"; // Load-only
         EditorComponent,
         SidebarComponent,
         PreviewComponent,
+        WindowsComponent,
         CloakDirective,
         LoaderComponent
     ],
