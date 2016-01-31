@@ -1,9 +1,9 @@
-<div class="window" data-id="register">
+<div class="window">
     <div class="titlebar theme-bg">
         <span>{{title}}</span>
-        <span class="close" (click)="closeWindow()">&#10006;</span>
+        <span class="close" (click)="close()">&#10006;</span>
     </div>
     <div class="content">
-        <ng-content></ng-content>
+        <ng-content win-id="{{winId}}"></ng-content>
     </div>
 </div>
