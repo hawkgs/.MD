@@ -1,0 +1,11 @@
+input, button, hr {
+    margin-bottom: 10px;
+}
+
+button {
+    font-size: 16px;
+}
+
+form > :last-child {
+    margin-bottom: 0;
+}

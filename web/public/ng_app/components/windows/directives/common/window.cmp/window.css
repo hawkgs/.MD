@@ -1,12 +1,11 @@
 .window {
     position: fixed;
-    width: auto; height: auto;
-    min-width: 200px;
+    width: 0; height: 0;
     color: #FFF;
-    display: none;
-    opacity: 0;
+    opacity: 0.5;
     box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.2);
     transition: opacity 0.4s ease;
+    overflow: hidden;
 }
 
 .window > .titlebar {
@@ -31,18 +30,8 @@
 }
 
 .window.show {
-    display: block;
+    min-width: 200px;
+    width: auto; height: auto;
     opacity: 1.0;
-}
-
-.window input, .window button, .window hr {
-    margin-bottom: 10px;
-}
-
-.window button {
-    font-size: 16px;
-}
-
-.window > .content > :last-child {
-    margin-bottom: 0;
+    overflow: visible;
 }

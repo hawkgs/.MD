@@ -12,8 +12,8 @@ import {SetClassNative} from "../../../../../services/SetClassNative";
 export class WindowComponent {
     private static SHOW_CLASS: string = "show";
 
-    @Input() title: string;
-    @Input("win-id") winId: string;
+    @Input("win-title") title: string;
+    @Input("win-id") id: string;
 
     private _nativeElem: HTMLElement;
     private _renderer: Renderer;
@@ -29,24 +29,21 @@ export class WindowComponent {
         var ref: HTMLElement = WinReferences.getRef(id);
 
         if (ref) {
-            WindowComponent.centerWindow(ref);
             SetClassNative.add(ref, WindowComponent.SHOW_CLASS);
+            WindowComponent.centerWindow(ref);
         }
     }
 
     private static centerWindow(ref: HTMLElement): void {
-        //$window.css({
-        //    top: ($pageWindow.outerHeight() - $window.outerHeight()) / 2,
-        //    left: ($pageWindow.outerWidth() - $window.outerWidth()) / 2
-        //});
+        var calculatedHeight: number = Math.round((window.innerHeight - ref.offsetHeight) / 2),
+            calculatedWidth: number = Math.round((window.innerWidth - ref.offsetWidth) / 2);
+
+        ref.style.top = calculatedHeight.toString() + "px";
+        ref.style.left = calculatedWidth.toString() + "px";
     }
 
     public close(): void {
         SetClassNative.remove(this._nativeElem, WindowComponent.SHOW_CLASS);
-    }
-
-    public open(): void {
-        WindowComponent.open(this.winId);
     }
 
     // todo: Bad design! This is a temporary method until a more convenient way is found.
@@ -63,8 +60,8 @@ export class WindowComponent {
         listener = setInterval(function () {
             iterations += 1;
 
-            if (self.winId) {
-                WinReferences.setRef(self.winId, self._nativeElem);
+            if (self.id) {
+                WinReferences.setRef(self.id, self._nativeElem);
                 clearInterval(listener);
             } else if (iterations >= IT_LIMIT) {
                 console.error("Window Error: window ID is not set (or timeout).");

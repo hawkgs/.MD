@@ -5,6 +5,7 @@ import {LoginFormComponent} from "./directives/loginForm.cmp";
 import {ExportMdComponent} from "./directives/exportMd.cmp";
 import {GfmToggleComponent} from "./directives/gfmToggle.cmp";
 import {ThemeSelectorComponent} from "./directives/themeSelector.cmp";
+import {AboutDirective} from "./directives/about.drv";
 
 // common
 import {SbExpandableItemDirective} from "./directives/common/sbExpandableItem.drv";
@@ -21,6 +22,7 @@ import {ToggleSidebar} from "./services/ToggleSidebar";
         ExportMdComponent,
         GfmToggleComponent,
         ThemeSelectorComponent,
+        AboutDirective,
         SbExpandableItemDirective
     ]
 })
