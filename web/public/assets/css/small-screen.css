@@ -29,8 +29,8 @@
 }
 
 @media screen and (max-width: 1000px) {
-    #main-field {
-        width: auto;
+    #main-field, #preview {
+        width: auto !important;
         right: 20px;
     }
 }
