@@ -6,6 +6,10 @@ button {
     font-size: 16px;
 }
 
+p {
+    white-space: nowrap;
+}
+
 form > :last-child {
     margin-bottom: 0;
 }
