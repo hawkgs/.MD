@@ -24,15 +24,14 @@ export class ToggleSidebar {
     private _isBtnClicked: boolean;
 
     /**
-     * Injects a Renderer and the cloak service.
+     * Injects a Renderer and gets CloakService instance.
      * @param renderer
-     * @param cloakSrv
      */
-    constructor(@Inject(Renderer) renderer: Renderer, @Inject(CloakService) cloakSrv: CloakService) {
+    constructor(@Inject(Renderer) renderer: Renderer/*, @Inject(CloakService) cloakSrv: CloakService*/) {
         this._renderer = renderer;
         this._isExpanded = false;
 
-        this._cloakService = cloakSrv;
+        this._cloakService = CloakService.getInstance(renderer);
     }
 
     /**
