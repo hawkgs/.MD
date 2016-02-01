@@ -3,7 +3,7 @@
 var express = require("express"),
     exphbs = require('express-handlebars'),
     bodyParser = require("body-parser"),
-    cookieParser = require("cookie-parser"),
+    //cookieParser = require("cookie-parser"),
     session = require("express-session"),
     passport = require("passport");
 
@@ -21,17 +21,17 @@ module.exports = function (app, config) {
 
     app.set("view engine", "hbs");
 
-    app.use(cookieParser());
+    //app.use(cookieParser());
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
-    app.use(session({
-        secret: "cookie_secret",
-        name: "cookie_name",
-        proxy: true,
-        resave: true,
-        saveUninitialized: true
-    }));
+    //app.use(session({
+    //    secret: "cookie_secret",
+    //    name: "cookie_name",
+    //    proxy: true,
+    //    resave: true,
+    //    saveUninitialized: true
+    //}));
 
     app.use(passport.initialize());
     app.use(passport.session());

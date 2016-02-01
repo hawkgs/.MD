@@ -33,6 +33,8 @@ export class DocNameSaver {
 
         this.loadName();
         this.saveNameOnLeave();
+        this.saveNameOnBlur();
+        this.updatePageTitle();
     }
 
     /**
@@ -76,5 +78,24 @@ export class DocNameSaver {
         window.addEventListener("beforeunload", function () {
             self.saveName();
         });
+    }
+
+    /**
+     * Saves the name whenever the input field is out of focus (blur).
+     */
+    private saveNameOnBlur(): void {
+        var self: DocNameSaver = this;
+
+        this._inputRef.addEventListener("blur", function () {
+            self.saveName();
+            self.updatePageTitle();
+        });
+    }
+
+    /**
+     * Updates page title according to the name of the file (input value).
+     */
+    private updatePageTitle(): void {
+        document.title = `.MD - ${this._inputRef.value}`;
     }
 }

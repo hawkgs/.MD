@@ -5,7 +5,7 @@
         you can access them from everywhere.
     </p>
     <p>
-        <input type="text" size="25" placeholder="Username" />
+        <input type="text" size="25" placeholder="Username" maxlength="25" pattern="[A-Za-z0-9_\.]*" />
         <span class="input-info">
             Must be between 6 - 25 symbols;<br/>
             Containing only A-Z, a-z, 0-9, _, .
@@ -14,12 +14,12 @@
     <p><input type="email" size="25" placeholder="Email" /></p>
     <hr/>
     <p>
-        <input type="password" size="25" placeholder="Password" />
+        <input type="password" size="25" placeholder="Password" maxlength="25" />
         <span class="input-info">
             Must be between 8 - 25 symbols
         </span>
     </p>
-    <p><input type="password" size="25" placeholder="Repeat Password" /></p>
+    <p><input type="password" size="25" placeholder="Repeat Password" maxlength="25" /></p>
     <hr/>
     <p><button class="default theme-bg">Register</button></p>
 </form>

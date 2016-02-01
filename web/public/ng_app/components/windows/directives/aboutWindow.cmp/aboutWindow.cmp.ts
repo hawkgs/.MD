@@ -4,7 +4,8 @@ import {WindowComponent} from "../common/window.cmp/window.cmp";
 
 @Component({
     selector: "[about-win-cmp]",
-    templateUrl: "./components/windows/directives/aboutWindow.cmp/about-window.html"
+    templateUrl: "./components/windows/directives/aboutWindow.cmp/about-window.html",
+    styleUrls: ["./components/windows/directives/aboutWindow.cmp/about-window.css"]
 })
 export class AboutWindowComponent {
     private static ID: string = "about";

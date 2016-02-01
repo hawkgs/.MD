@@ -1,7 +1,7 @@
 "use strict";
 
 var mongoose = require("mongoose"),
-    Models = require("../areas/user/data/models");
+    Models = require("../app_modules/user/data/models");
 
 module.exports = function (config) {
     var db;

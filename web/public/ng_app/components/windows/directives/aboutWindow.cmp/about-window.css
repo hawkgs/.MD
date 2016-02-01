@@ -1,0 +1,35 @@
+p.disclaimer {
+    max-width: 450px;
+    font-size: 10px;
+    color: #BBB;
+}
+
+span.dark {
+    color: #BBB;
+}
+
+span.copy {
+    margin-left: 10px;
+    top: 5px;
+}
+
+span.red {
+    color: #e03237;
+}
+
+span.small-description {
+    font-size: 13px;
+    color: #AAA;
+}
+
+img {
+    vertical-align: middle;
+}
+
+p {
+    margin-bottom: 5px;
+}
+
+hr {
+    margin: 10px 0;
+}
