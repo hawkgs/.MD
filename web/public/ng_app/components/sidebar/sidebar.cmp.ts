@@ -3,6 +3,7 @@ import {Component, ElementRef} from "angular2/core";
 // Directives
 import {LoginFormComponent} from "./directives/loginForm.cmp";
 import {ExportMdComponent} from "./directives/exportMd.cmp";
+import {NewDocumentDirective} from "./directives/newDocument.drv";
 import {GfmToggleComponent} from "./directives/gfmToggle.cmp";
 import {ThemeSelectorComponent} from "./directives/themeSelector.cmp";
 import {AboutDirective} from "./directives/about.drv";
@@ -20,6 +21,7 @@ import {ToggleSidebar} from "./services/ToggleSidebar";
     directives: [
         LoginFormComponent,
         ExportMdComponent,
+        NewDocumentDirective,
         GfmToggleComponent,
         ThemeSelectorComponent,
         AboutDirective,
