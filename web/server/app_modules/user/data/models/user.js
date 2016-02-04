@@ -1,20 +1,22 @@
 "use strict";
 
-var mongoose = require('mongoose'),
-    encryption = require('../../../../utilities/encryption');
+var mongoose = require("mongoose"),
+    encryption = require("../../../../utilities/encryption");
 
 var User;
 
 module.exports.init = function () {
     var userSchema = mongoose.Schema({
-        username: { type: String, require: '{PATH} is required', unique: true },
+        username: { type: String, require: "{PATH} is required", unique: true },
         email: {type: String, require: "{PATH} is required", unique: true },
         salt: String,
         hashPass: String,
-        avatarUrl: { type: String, default: 'default-avatar.jpg'}
+        files: [{
+            fileName: String
+        }]
     });
 
-    userSchema.index({username: 1, 'stats.rating': -1});
+    //userSchema.index({ username: 1, 'stats.rating': -1 });
 
     userSchema.method({
         authenticate: function(password) {
@@ -22,12 +24,12 @@ module.exports.init = function () {
         }
     });
 
-    User = mongoose.model('User', userSchema);
+    User = mongoose.model("User", userSchema);
 };
 
-function addPassword(user) {
-    var salt = encryption.generateSalt();
-    var hashedPwd = encryption.generateHashedPassword(salt, user.username);
-    user.salt = salt;
-    user.hashPass = hashedPwd;
-}
+//function addPassword(user) {
+//    var salt = encryption.generateSalt();
+//    var hashedPwd = encryption.generateHashedPassword(salt, user.username);
+//    user.salt = salt;
+//    user.hashPass = hashedPwd;
+//}

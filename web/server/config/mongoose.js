@@ -23,6 +23,4 @@ module.exports = function (config) {
     });
 
     Models.User.init();
-
-    /*Models.Category.seedCategories();*/
 };

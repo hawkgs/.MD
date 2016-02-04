@@ -1,154 +1,167 @@
 "use strict";
 
-var fs = require("fs"),
-    formidable = require('formidable'),
-    encryption = require('../utilities/encryption'),
-    clients = require('../config/token').clients,
-    users = require('./users'),
-    DEFAULT_UPLOAD_DIRECTORY = './public/images',
-    DEFAULT_AVATAR = 'default-avatar.jpg',
-    UNDEFINED = "undefined";
+var encryption = require("../../../utilities/encryption"),
+    users = require("../data/users"),
+    DUPL_ERR_CODE = 11000;
 
+var UserController = {
+    /**
+     * Creates a user.
+     * @param req - Request object
+     * @param res - Response object
+     * @returns {*}
+     */
+    createUser: function (req, res) {
+        var userObject,
+            validationErrMsgs;
 
-var getImageGuid = function (image) {
-    var guidIndex = image.path.lastIndexOf('/');
+        validationErrMsgs = UserController._validate(req.body);
 
-    if (guidIndex < 0) {
-        guidIndex = image.path.lastIndexOf('\\');
-    }
-
-    return image.path.substring(guidIndex + 1);
-};
-
-module.exports = {
-    createUser: function (req, res, next) {
-        if (!req.body.password || !req.body.confirmPassword) {
+        // Validation
+        if (validationErrMsgs.length > 0) {
             res.status(400);
-            return res.send({reason: "Missing password"});
+            return res.send({ errors: validationErrMsgs });
         }
 
-        if (req.body.password !== req.body.confirmPassword) {
-            res.status(400);
-            res.send({reason: "The passwords aren't the same"});
-            return;
-        }
-
-        // TODO: Add validation
-        var newUserData = {
+        userObject = {
             username: req.body.username,
             email: req.body.email
         };
 
-        newUserData.roles = ["standard"]; // In order to avoid JSON injection for roles
+        // Password
+        userObject.salt = encryption.generateSalt();
+        userObject.hashPass = encryption.generateHashedPassword(userObject.salt, req.body.password);
 
-        newUserData.salt = encryption.generateSalt();
-        newUserData.hashPass = encryption.generateHashedPassword(newUserData.salt, req.body.password);
-
-        users.create(newUserData, function (err, user) {
-            if (err) {
-                console.log('Failed to register new user: ' + err);
+        // Creating
+        users.create(userObject, function (error, user) {
+            // Mongo errors
+            if (error) {
                 res.status(400);
-                res.send({reason: err.toString()});
-                return;
+                return res.send({ errors: [UserController._mongoValidation(error)] });
             }
 
-            req.logIn(user, function (err) {
-                if (err) {
+            req.logIn(user, function (error) {
+                if (error) {
                     res.status(400);
-                    res.send({reason: err.toString()});
-                    return;
+                    return res.send({ errors: error.toString() });
                 }
 
                 res.send(user);
             });
         });
     },
-    updateUser: function (req, res, next) {
-        if (!fs.existsSync(DEFAULT_UPLOAD_DIRECTORY)) {
-            fs.mkdirSync(DEFAULT_UPLOAD_DIRECTORY);
+
+    /**
+     * Combines all validation methods.
+     * @param body - Request body
+     * @returns {Array.<string>} Error messages array
+     * @private
+     */
+    _validate: function (body) {
+        var errors = [];
+
+        errors.push(this._validatePasswords(body));
+        errors.push(this._validateUsername(body.username));
+        errors.push(this._validateEmail(body.email));
+
+        return errors.filter(function (error) {
+            if (error) {
+                return error;
+            }
+        });
+    },
+
+    /**
+     * Validates passwords for existence, match, length, allowed symbols.
+     * @param body - Request body
+     * @returns {string} Error message
+     * @private
+     */
+    _validatePasswords: function (body) {
+        // Check if the password are present
+        if (!body.password || !body.confirmPassword) {
+            return "Missing password(s).";
         }
 
-        var isNewAvatar = false;
-        var form = new formidable.IncomingForm();
+        // Check if the passwords are the same
+        if (body.password !== body.confirmPassword) {
+            return "The passwords aren't the same.";
+        }
 
-        form.encoding = 'utf-8';
-        form.uploadDir = DEFAULT_UPLOAD_DIRECTORY;
-        form.keepExtensions = true;
+        if (body.password.length < 8 || 25 < body.password.length) {
+            return "The password length must be between 8 and 25 symbols.";
+        }
 
-        form.parse(req, function (err, fields, files) {
-            users.findById(fields._id, function (err, user) {
-                if (err || !user) {
-                    res.status(400).send({reason: 'Error updating user: ' + err});
-                    return;
+        return null;
+    },
+
+    /**
+     * Validates username for existence, length and allowed symbols.
+     * @param {string} username
+     * @returns {string} Error message
+     * @private
+     */
+    _validateUsername: function (username) {
+        if (!username) {
+            return "Missing username.";
+        }
+
+        if (username.length < 6 || 25 < username.length) {
+            return "The username length must be between 6 and 25 symbols.";
+        }
+
+        if (!/^[\w.]+$/.test(username)) {
+            return "The username can contain only A-Z, a-z, 0-9, _, . symbols.";
+        }
+
+        return "";
+    },
+
+    /**
+     * Validates email address.
+     * @param {string} email
+     * @returns {string} Error message
+     * @private
+     */
+    _validateEmail: function (email) {
+        if (!email) {
+            return "Missing email.";
+        }
+
+        if (!/^[\w.+-]+@[a-zA-Z\d-]+\.[a-zA-Z0-9-.]+$/.test(email)) {
+            return "The email address is invalid.";
+        }
+
+        return "";
+    },
+
+    /**
+     * All errors related to MongoDB which occur when attempting 'create'.
+     * @param error - Error object
+     * @returns {string} Error message
+     * @private
+     */
+    _mongoValidation: function (error) {
+        var unique = ["username", "email"],
+            duplicated;
+
+        // Duplicated field errors
+        if (error.code === DUPL_ERR_CODE) {
+            unique.forEach(function (field) {
+                if (error.errmsg.indexOf(field) !== -1) {
+                    duplicated = field;
                 }
-                
-                if (fields.confirmPassword === UNDEFINED) {
-                    res.status(400).send({ reason: "The password field is empty" });
-                    return;
-                }
-
-                var hashPass = encryption.generateHashedPassword(user.salt, fields.confirmPassword);
-
-                if (hashPass !== user.hashPass) {
-                    res.status(400).send({reason: "Wrong password"});
-                    return;
-                }
-
-                if (fields.password !== UNDEFINED && fields.repeatPassword !== UNDEFINED) {
-                    if ((fields.password !== fields.repeatPassword) || fields.password.length < 6) {
-                        res.status(400).send({reason: "There has been an error with the new password. Type again"});
-                        return;
-                    } else {
-                        user.salt = encryption.generateSalt();
-                        user.hashPass = encryption.generateHashedPassword(user.salt, fields.password);
-
-                        console.log(user.hashPass);
-                    }
-                }
-
-                if (files.image) {
-
-                    /* if (process.env.NODE_ENV) {
-                     return res.status(403).send({reason: 'Changing profile photos has been disabled for security reasons!'});
-                     }*/
-
-                    // removes the old image
-                    var oldImagePath = DEFAULT_UPLOAD_DIRECTORY + '/' + user.avatarUrl;
-                    if (user.avatarUrl !== DEFAULT_AVATAR && fs.existsSync(oldImagePath)) {
-                        fs.unlink(oldImagePath);
-                    }
-
-                    // set the new imageUrl
-                    var newImageGuid = getImageGuid(files.image);
-                    user.avatarUrl = newImageGuid;
-                    isNewAvatar = true;
-                }
-
-
-                // TODO: Validation
-                if (fields.email) {
-                    user.email = fields.email;
-                }
-
-                user.save(function (err, updatedUser, numberAffected) {
-                    var successObj = {
-                        avatarUrl: updatedUser.avatarUrl,
-                        email: updatedUser.email,
-                        reason: "Профил ъпдейтнат!"
-                    };
-
-                    if (err) {
-                        res.status(400).send({reason: 'Error updating user: ' + err});
-                        return;
-                    }
-
-                    if (isNewAvatar) {
-                    }
-                    else {
-                        res.status(200).send(successObj);
-                    }
-                });
             });
-        });
+
+            return "The " + duplicated + " is already in use.";
+        }
+
+        // Anything else
+        // todo dev only
+        return error.errmsg;
     }
+};
+
+module.exports = {
+    createUser: UserController.createUser
 };
