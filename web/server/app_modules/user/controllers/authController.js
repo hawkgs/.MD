@@ -1,9 +1,11 @@
 "use strict";
 
 var passport = require("passport"),
-    token = require("./token");
+    jwt = require("jsonwebtoken"),
+    SECRET = "#yoloMojeBi #sweg trolololo lel",
+    TOKEN_EXP_MIN = 5;
 
-module.exports = {
+var AuthController = {
     login: function (req, res, next) {
         var auth = passport.authenticate("local", function (err, user) {
             if (err) {
@@ -20,7 +22,7 @@ module.exports = {
                 }
 
                 // The username will be sent inside the token
-                user.token = token.generateToken({ username: user.username });
+                user.token = AuthController._generateToken({ username: user.username });
                 res.send({ success: true, user: user, token: user.token });
             });
         });
@@ -42,14 +44,13 @@ module.exports = {
         }
     },
 
-    isInRole: function (role) {
-        return function (req, res, next) {
-            if (req.isAuthenticated() && req.user.roles.indexOf(role) >= 0) {
-                next();
-            } else {
-                res.status(401);
-                res.send("Not authorized for this content");
-            }
-        };
+    _generateToken: function (payload) {
+        return jwt.sign(payload, SECRET, { expiresInMinutes: 60 * TOKEN_EXP_MIN });
     }
+};
+
+module.exports = {
+    login: AuthController.login,
+    logout: AuthController.logout,
+    isAuthenticated: AuthController.isAuthenticated
 };

@@ -4,17 +4,8 @@
 export class DocNameSaver {
     private static LS_DOC_NAME_KEY = "md_doc_name";
     private static DEF_DOC_NAME = "Untitled";
-    private static KEY_COUNT_SAVE = 3;
 
-    private _keyPressCount: number;
     private _inputRef; // Native DOM Element
-
-    /**
-     * Sets default values to the watcher fields.
-     */
-    constructor() {
-        this._keyPressCount = 0;
-    }
 
     /**
      * Returns the name of the document from the localStorage.
@@ -38,17 +29,6 @@ export class DocNameSaver {
     }
 
     /**
-     * Determines (watches for) when a save must be performed.
-     */
-    public saveWatcher(): void {
-        this._keyPressCount += 1;
-
-        if (this._keyPressCount >= DocNameSaver.KEY_COUNT_SAVE) {
-            this.saveName();
-        }
-    }
-
-    /**
      * Loads the current name from the local storage, if there is any - or sets default ("Untitled").
      */
     private loadName(): void {
@@ -62,11 +42,14 @@ export class DocNameSaver {
     }
 
     /**
-     * Saves the name to the localStorage.
+     * Saves the name to the localStorage, if not empty.
      */
     private saveName(): void {
         var name = this._inputRef.value;
-        localStorage.setItem(DocNameSaver.LS_DOC_NAME_KEY, name);
+
+        if (name) {
+            localStorage.setItem(DocNameSaver.LS_DOC_NAME_KEY, name);
+        }
     }
 
     /**
@@ -82,13 +65,18 @@ export class DocNameSaver {
 
     /**
      * Saves the name whenever the input field is out of focus (blur).
+     * If emptied/cleared, the latest saved name from the localStorage is loaded instead.
      */
     private saveNameOnBlur(): void {
         var self: DocNameSaver = this;
 
         this._inputRef.addEventListener("blur", function () {
-            self.saveName();
-            self.updatePageTitle();
+            if (this.value) {
+                self.saveName();
+                self.updatePageTitle();
+            } else {
+                this.value = localStorage.getItem(DocNameSaver.LS_DOC_NAME_KEY);
+            }
         });
     }
 

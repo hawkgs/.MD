@@ -1,7 +1,6 @@
 "use strict";
 
-var auth = require("./auth"),
-    userControllers = require("../app_modules/user/controllers");
+var userControllers = require("../app_modules/user/controllers");
 
 module.exports = function (app) {
 
@@ -11,8 +10,8 @@ module.exports = function (app) {
     });
 
     app.route("/api/users")
-        .post(userControllers.users.createUser);
+       .post(userControllers.user.createUser);
 
-    app.post("/login", auth.login);
-    app.post("/logout", auth.logout);
+    app.post("/login", userControllers.auth.login);
+    app.post("/logout", userControllers.auth.logout);
 };

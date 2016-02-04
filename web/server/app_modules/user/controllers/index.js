@@ -1,7 +1,9 @@
 "use strict";
 
-var usersController = require("./usersController");
+var userController = require("./userController"),
+    authController = require("./authController");
 
 module.exports = {
-    users: usersController
+    user: userController,
+    auth: authController
 };

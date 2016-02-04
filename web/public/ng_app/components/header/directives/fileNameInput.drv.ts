@@ -5,10 +5,7 @@ import {DocNameSaver} from "../services/DocNameSaver";
 
 @Directive({
     selector: "[file-inp-drv]",
-    providers: [DocNameSaver],
-    host: {
-        "(keypress)": "onKeyPress()"
-    }
+    providers: [DocNameSaver]
 })
 export class FileNameInputDirective {
     private _saver: DocNameSaver;
@@ -21,12 +18,5 @@ export class FileNameInputDirective {
     constructor(saver: DocNameSaver, elem: ElementRef) {
         this._saver = saver;
         this._saver.init(elem.nativeElement);
-    }
-
-    /**
-     * Calls the document/file name save watcher.
-     */
-    public onKeyPress(): void {
-        this._saver.saveWatcher();
     }
 }
