@@ -1,7 +1,7 @@
 /**
  * Provides an interface for editor auto saver.
  */
-export interface IAutoSaver {
+export interface IDocSaveManager {
     /**
      * Mechanism for calculating/determining when a save should be performed.
      */
@@ -11,4 +11,9 @@ export interface IAutoSaver {
      * Save mechanism that provides extra time for UI reaction/update.
      */
     uiFriendlySave(): void;
+
+    /**
+     * Clears the document and saves.
+     */
+    clearDocument(): void;
 }

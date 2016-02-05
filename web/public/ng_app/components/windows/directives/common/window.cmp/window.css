@@ -27,6 +27,7 @@
 .window > .content {
     background: #282828;
     padding: 15px 20px;
+    overflow: hidden;
 }
 
 .window.show {

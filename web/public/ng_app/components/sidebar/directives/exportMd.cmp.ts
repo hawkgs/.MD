@@ -3,7 +3,7 @@ import {Component} from "angular2/core";
 // Services
 import {EditorRef} from "../../editor/services/EditorRef";
 import {MdParser} from "../../../services/MdParser";
-import {DocNameSaver} from "../../header/services/DocNameSaver";
+import {DocNameSaveManager} from "../../header/services/DocNameSaveManager";
 
 // Interfaces
 import {IFileData} from "./contracts/IFileData";
@@ -35,6 +35,6 @@ export class ExportMdComponent {
         var generatedMd: string = MdParser.parseHtmlToMd(EditorRef.ref.innerHTML);
 
         this.mdData.data = ExportMdComponent.DEF_DATA + btoa(generatedMd);
-        this.mdData.fileName = DocNameSaver.getDocName() + ".md"; //todo save name here
+        this.mdData.fileName = DocNameSaveManager.getDocName() + ".md"; //todo save name here
     }
 }

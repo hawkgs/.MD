@@ -1,8 +1,8 @@
 import {Directive, ElementRef, Renderer} from "angular2/core";
 
 // Services
-import {IAutoSaver} from "../components/editor/services/contracts/IAutoSaver";
-import {AutoSaver} from "../components/editor/services/AutoSaver";
+import {IDocSaveManager} from "../components/editor/services/contracts/IDocSaveManager";
+import {DocSaveManager} from "../components/editor/services/DocSaveManager";
 
 @Directive({
     selector: "[btn-click]",
@@ -17,17 +17,18 @@ export class ButtonClickDirective {
 
     private _elem: ElementRef;
     private _renderer: Renderer;
-    private _autoSaver: IAutoSaver;
+    private _saveManager: IDocSaveManager;
 
     /**
-     * Sets element reference, renderer and the AutoSaver service.
+     * Sets element reference, renderer and the DocSaveManager service.
      * @param elem
      * @param renderer
+     * @param saveManager
      */
-    constructor(elem: ElementRef, renderer: Renderer) {
+    constructor(elem: ElementRef, renderer: Renderer, saveManager: DocSaveManager) {
         this._elem = elem;
         this._renderer = renderer;
-        this._autoSaver = AutoSaver.instance;
+        this._saveManager = saveManager;
     }
 
     /**
@@ -37,7 +38,7 @@ export class ButtonClickDirective {
         var self: ButtonClickDirective = this;
 
         this._renderer.setElementClass(this._elem, ButtonClickDirective.CLICK_CLASS, true);
-        this._autoSaver.uiFriendlySave(); // save
+        this._saveManager.uiFriendlySave(); // save
 
         setTimeout(function () {
             self.onMouseup();

@@ -1,7 +1,9 @@
+import {IDocNameSaveManager} from "./contracts/IDocNameSaveManager";
+
 /**
  * Auto saving service for the document/file name.
  */
-export class DocNameSaver {
+export class DocNameSaveManager implements IDocNameSaveManager {
     private static LS_DOC_NAME_KEY = "md_doc_name";
     private static DEF_DOC_NAME = "Untitled";
 
@@ -12,7 +14,7 @@ export class DocNameSaver {
      * @returns {string}
      */
     public static getDocName(): string {
-        return localStorage.getItem(DocNameSaver.LS_DOC_NAME_KEY);
+        return localStorage.getItem(DocNameSaveManager.LS_DOC_NAME_KEY);
     }
 
     /**
@@ -29,15 +31,24 @@ export class DocNameSaver {
     }
 
     /**
+     * Resets the name to its default value.
+     */
+    public resetName(): void {
+        this._inputRef.value = DocNameSaveManager.DEF_DOC_NAME;
+        this.saveName();
+        this.updatePageTitle();
+    }
+
+    /**
      * Loads the current name from the local storage, if there is any - or sets default ("Untitled").
      */
     private loadName(): void {
-        var name: string = localStorage.getItem(DocNameSaver.LS_DOC_NAME_KEY);
+        var name: string = localStorage.getItem(DocNameSaveManager.LS_DOC_NAME_KEY);
 
         if (name) {
             this._inputRef.value = name;
         } else {
-            this._inputRef.value = DocNameSaver.DEF_DOC_NAME;
+            this._inputRef.value = DocNameSaveManager.DEF_DOC_NAME;
         }
     }
 
@@ -48,7 +59,7 @@ export class DocNameSaver {
         var name = this._inputRef.value;
 
         if (name) {
-            localStorage.setItem(DocNameSaver.LS_DOC_NAME_KEY, name);
+            localStorage.setItem(DocNameSaveManager.LS_DOC_NAME_KEY, name);
         }
     }
 
@@ -56,7 +67,7 @@ export class DocNameSaver {
      * Saves the name automatically whenever a user decides to leave the page.
      */
     private saveNameOnLeave(): void {
-        var self: DocNameSaver = this;
+        var self: DocNameSaveManager = this;
 
         window.addEventListener("beforeunload", function () {
             self.saveName();
@@ -68,14 +79,14 @@ export class DocNameSaver {
      * If emptied/cleared, the latest saved name from the localStorage is loaded instead.
      */
     private saveNameOnBlur(): void {
-        var self: DocNameSaver = this;
+        var self: DocNameSaveManager = this;
 
         this._inputRef.addEventListener("blur", function () {
             if (this.value) {
                 self.saveName();
                 self.updatePageTitle();
             } else {
-                this.value = localStorage.getItem(DocNameSaver.LS_DOC_NAME_KEY);
+                this.value = localStorage.getItem(DocNameSaveManager.LS_DOC_NAME_KEY);
             }
         });
     }

@@ -14,6 +14,9 @@ import {LoaderComponent} from "../directives/loader.cmp";
 
 // Services
 import {GfmService} from "../services/GfmService"; // Load-only
+// savers
+import {DocSaveManager} from "../components/editor/services/DocSaveManager";
+import {DocNameSaveManager} from "../components/header/services/DocNameSaveManager";
 
 // Main Component (App)
 @Component({
@@ -30,7 +33,11 @@ import {GfmService} from "../services/GfmService"; // Load-only
         CloakDirective,
         LoaderComponent
     ],
-    providers: [GfmService]
+    providers: [
+        GfmService,
+        DocSaveManager,
+        DocNameSaveManager
+    ]
 })
 @RouteConfig([
 /*    { path: "/", component: HomeCmp, as: "Home" },

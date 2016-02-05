@@ -1,16 +1,15 @@
 import {EditorRef} from "./EditorRef";
-import {IAutoSaver} from "./contracts/IAutoSaver";
+import {IDocSaveManager} from "./contracts/IDocSaveManager";
 
 /**
  * In charge for auto saving managing of the document contents (HTML).
  */
-export class AutoSaver implements IAutoSaver {
+export class DocSaveManager implements IDocSaveManager {
     public static LS_DOC_KEY: string = "md_doc_html";
     private static KEY_COUNT_SAVE: number = 30;
     private static AUTO_SAVE_SEC: number = 30000; // 30sec
     private static UI_REACT_PREC_TIME = 300; // 0.3s
 
-    private static _instance: AutoSaver;
     private _keyPressCount: number;
     private _autoSaverInterval;
 
@@ -25,24 +24,12 @@ export class AutoSaver implements IAutoSaver {
     }
 
     /**
-     * Returns the instance of the AutoSaver or creates one if non-existent (singleton).
-     * @returns {AutoSaver}
-     */
-    public static get instance(): AutoSaver {
-        if (!AutoSaver._instance) {
-            AutoSaver._instance = new AutoSaver();
-        }
-
-        return AutoSaver._instance;
-    }
-
-    /**
      * Determines whether a save should be performed based on key press count (used when typing in the editor).
      */
     public saveWatcher(): void {
         this._keyPressCount += 1;
 
-        if (this._keyPressCount >= AutoSaver.KEY_COUNT_SAVE) {
+        if (this._keyPressCount >= DocSaveManager.KEY_COUNT_SAVE) {
             this.performSave();
             this._keyPressCount = 0;
         }
@@ -53,11 +40,19 @@ export class AutoSaver implements IAutoSaver {
      * to react on changes, then it performs saving.
      */
     public uiFriendlySave(): void {
-        var self: AutoSaver = this;
+        var self: DocSaveManager = this;
 
         setTimeout(function () {
             self.performSave();
-        }, AutoSaver.UI_REACT_PREC_TIME);
+        }, DocSaveManager.UI_REACT_PREC_TIME);
+    }
+
+    /**
+     * Cleans the contents of the document from the editor and localStorage.
+     */
+    public clearDocument(): void {
+        EditorRef.ref.innerHTML = "";
+        localStorage.setItem(DocSaveManager.LS_DOC_KEY, "");
     }
 
     /**
@@ -66,21 +61,21 @@ export class AutoSaver implements IAutoSaver {
     private performSave(): void {
         var html: string = EditorRef.ref.innerHTML;
 
-        localStorage.setItem(AutoSaver.LS_DOC_KEY, JSON.stringify({ html: html }));
+        localStorage.setItem(DocSaveManager.LS_DOC_KEY, JSON.stringify({ html: html }));
     }
 
     /**
      * Performs a save on a specified (AUTO_SAVE_SEC) time interval.
      */
     private startAutoSaver(): void {
-        this._autoSaverInterval = setInterval(this.performSave, AutoSaver.AUTO_SAVE_SEC);
+        this._autoSaverInterval = setInterval(this.performSave, DocSaveManager.AUTO_SAVE_SEC);
     }
 
     /**
      * Performs a save on page leave (beforeunload event).
      */
     private bindPageLeaveSave(): void {
-        var self: AutoSaver = this;
+        var self: DocSaveManager = this;
 
         window.addEventListener("beforeunload", function() {
             self.performSave();

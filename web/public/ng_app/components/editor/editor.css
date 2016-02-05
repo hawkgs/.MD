@@ -8,6 +8,7 @@
     box-sizing: border-box;
     padding: 45px;
     overflow-y: scroll;
+    word-wrap: break-word;
 }
 
 /* COMPONENTS */

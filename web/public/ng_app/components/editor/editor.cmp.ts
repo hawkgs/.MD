@@ -4,12 +4,12 @@ import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
 import {PreviewComponent} from "../preview/preview.cmp";
 
 // Interfaces
-import {IAutoSaver} from "./services/contracts/IAutoSaver";
+import {IDocSaveManager} from "./services/contracts/IDocSaveManager";
 
 // Services
 import {EditorSelection} from "./services/EditorSelection";
 import {EditorRef} from "./services/EditorRef";
-import {AutoSaver} from "./services/AutoSaver";
+import {DocSaveManager} from "./services/DocSaveManager";
 
 @Component({
     selector: "[editor-cmp]",
@@ -18,15 +18,16 @@ import {AutoSaver} from "./services/AutoSaver";
     encapsulation: ViewEncapsulation.None
 })
 export class EditorComponent {
-    private _autoSaver: IAutoSaver;
+    private _saveManager: IDocSaveManager;
 
     /**
-     * Sets injected element reference, loads auto saver, loads contents of current document.
+     * Sets injected element reference, loads save manager, loads contents of current document.
      * @param elem
+     * @param saveManager
      */
-    constructor(elem: ElementRef) {
+    constructor(elem: ElementRef, saveManager: DocSaveManager) {
         EditorRef.ref = elem.nativeElement.childNodes[1];
-        this._autoSaver = AutoSaver.instance;
+        this._saveManager = saveManager;
 
         this.loadCurrentDocument();
     }
@@ -54,21 +55,21 @@ export class EditorComponent {
      * Calls the auto saver watcher on each key press.
      */
     public onKeyPressSave(): void {
-        this._autoSaver.saveWatcher();
+        this._saveManager.saveWatcher();
     }
 
     /**
      * Performs UI-friendly save on each pasting (Ctrl+V or 'Paste' from context menu).
      */
     public onPasteSave(): void {
-        this._autoSaver.uiFriendlySave();
+        this._saveManager.uiFriendlySave();
     }
 
     /**
      * Loads the contents of the previously worked document in the editor from the localStorage.
      */
     private loadCurrentDocument(): void {
-        var storageData = localStorage.getItem(AutoSaver.LS_DOC_KEY);
+        var storageData = localStorage.getItem(DocSaveManager.LS_DOC_KEY);
 
         if (storageData) {
             EditorRef.ref.innerHTML = JSON.parse(storageData).html;
