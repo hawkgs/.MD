@@ -16,6 +16,7 @@ import {CloakState} from "../../../../../services/enums/CloakState";
 export class WindowComponent {
     private static SHOW_CLASS: string = "show";
     private static cloakService: CloakService;
+    private static currentlyOpened: HTMLElement;
 
     @Input("win-title") title: string;
     @Input("win-id") id: string;
@@ -44,13 +45,41 @@ export class WindowComponent {
     public static open(id: string): void {
         var ref: HTMLElement = WinReferences.getRef(id);
 
-        if (ref) {
+        if (ref && ref !== WindowComponent.currentlyOpened) {
+            // Closes the currently opened window, if there is any.
+            if (WindowComponent.currentlyOpened) {
+                SetClassNative.remove(WindowComponent.currentlyOpened, WindowComponent.SHOW_CLASS);
+            }
+
+            WindowComponent.currentlyOpened = ref;
             SetClassNative.add(ref, WindowComponent.SHOW_CLASS);
             WindowComponent.centerWindow(ref);
 
             WindowComponent.cloakService.activate();
             WindowComponent.cloakService.state = CloakState.Locked;
         }
+    }
+
+    /**
+     * Closes a window by provided ID (must be in WinReferences container).
+     * @param id - ID of the window
+     */
+    public static close(id: string): void {
+        var ref: HTMLElement = WinReferences.getRef(id);
+
+        if (ref) {
+            SetClassNative.remove(ref, WindowComponent.SHOW_CLASS);
+            WindowComponent.unsetCorrespondingWindowObjects();
+        }
+    }
+
+    /**
+     * Unsets/removes/sets to initial state all objects/variables related to window opening.
+     */
+    private static unsetCorrespondingWindowObjects(): void {
+        WindowComponent.currentlyOpened = null;
+        WindowComponent.cloakService.state = CloakState.Free;
+        WindowComponent.cloakService.deactivate();
     }
 
     /**
@@ -70,9 +99,7 @@ export class WindowComponent {
      */
     public close(): void {
         SetClassNative.remove(this._nativeElem, WindowComponent.SHOW_CLASS);
-
-        WindowComponent.cloakService.state = CloakState.Free;
-        WindowComponent.cloakService.deactivate();
+        WindowComponent.unsetCorrespondingWindowObjects();
     }
 
     // todo: Bad design! This is a temporary method until a more convenient way is found.
