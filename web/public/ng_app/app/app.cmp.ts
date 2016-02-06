@@ -1,5 +1,6 @@
 import {Component, ViewEncapsulation} from "angular2/core";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
+import {HTTP_PROVIDERS} from "angular2/http";
 
 // Components
 import {HeaderComponent} from "../components/header/header.cmp";
@@ -17,6 +18,11 @@ import {GfmService} from "../services/GfmService"; // Load-only
 // savers
 import {DocSaveManager} from "../components/editor/services/DocSaveManager";
 import {DocNameSaveManager} from "../components/header/services/DocNameSaveManager";
+//authentication
+import {AuthService} from "../services/AuthService";
+
+// RxJS
+import "rxjs/Rx"; // all operators
 
 // Main Component (App)
 @Component({
@@ -34,9 +40,11 @@ import {DocNameSaveManager} from "../components/header/services/DocNameSaveManag
         LoaderComponent
     ],
     providers: [
+        HTTP_PROVIDERS,
         GfmService,
         DocSaveManager,
-        DocNameSaveManager
+        DocNameSaveManager,
+        AuthService
     ]
 })
 @RouteConfig([

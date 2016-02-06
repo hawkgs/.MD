@@ -7,27 +7,34 @@ var passport = require("passport"),
 
 var AuthController = {
     login: function (req, res, next) {
-        var auth = passport.authenticate("local", function (err, user) {
-            if (err) {
-                return next(err);
-            }
+        console.log('attempting login...');
+        //res.status(200);
 
-            if (!user) {
-                res.send({ success: false });
-            }
-
-            req.logIn(user, function (err) {
-                if (err) {
-                    return next(err);
-                }
-
-                // The username will be sent inside the token
-                user.token = AuthController._generateToken({ username: user.username });
-                res.send({ success: true, user: user, token: user.token });
-            });
-        });
-
-        auth(req, res, next);
+        return res.send({tolotolo: "trololo" });
+        //
+        //var auth = passport.authenticate("local", function (err, user) {
+        //    console.log(user);
+        //
+        //    if (err) {
+        //        return next(err);
+        //    }
+        //
+        //    if (!user) {
+        //        res.send({ success: false });
+        //    }
+        //
+        //    req.logIn(user, function (err) {
+        //        if (err) {
+        //            return next(err);
+        //        }
+        //
+        //        // The username will be sent inside the token
+        //        user.token = AuthController._generateToken({ username: user.username });
+        //        res.send({ success: true, user: user, token: user.token });
+        //    });
+        //});
+        //
+        //auth(req, res, next);
     },
 
     logout: function (req, res) {
