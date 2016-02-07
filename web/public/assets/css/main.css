@@ -97,9 +97,18 @@ p.error-msg {
     background: #cd2a2a;
     font-weight: 600;
     font-size: 13px;
-    padding: 5px 10px;
     margin-bottom: 10px;
-    transition: 0.3s ease;
+    max-height: 100px;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+    height: 0;
+    opacity: 0;
+}
+
+p.error-msg.show {
+    padding: 5px 10px;
+    height: auto;
+    opacity: 1.0
 }
 
 /* Description */

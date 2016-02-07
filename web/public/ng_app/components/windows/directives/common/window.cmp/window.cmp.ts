@@ -104,7 +104,7 @@ export class WindowComponent {
 
     // todo: Bad design! This is a temporary method until a more convenient way is found.
     /**
-     * Puts the window reference in a container by the given this.winId.
+     * Puts the window reference in a container by the given @id.
      */
     private setReference(): void {
         var self: WindowComponent = this,

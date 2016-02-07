@@ -18,7 +18,7 @@ import {GfmService} from "../services/GfmService"; // Load-only
 // savers
 import {DocSaveManager} from "../components/editor/services/DocSaveManager";
 import {DocNameSaveManager} from "../components/header/services/DocNameSaveManager";
-//authentication
+// authentication
 import {AuthService} from "../services/AuthService";
 
 // RxJS

@@ -1,15 +1,15 @@
 import {Injectable} from "angular2/core";
-import {Http, Response} from "angular2/http";
+import {Http/*, Response*/} from "angular2/http";
 
 // Interfaces
 import {ILoginCredentials} from "../components/sidebar/directives/contracts/ILoginCredentials";
-import {Observable} from "rxjs/Observable";
-import {Headers} from "angular2/http";
-import {RequestOptions} from "angular2/http";
+//import {Observable} from "rxjs/Observable";
+//import {Headers} from "angular2/http";
+//import {RequestOptions} from "angular2/http";
 
 @Injectable()
 export class AuthService {
-    private static LOGIN_API_URL: string = "/login";
+    //private static LOGIN_API_URL: string = "/login";
     private _http: Http;
 
     constructor(http: Http) {
