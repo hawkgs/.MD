@@ -15,6 +15,7 @@ import {LoaderComponent} from "../directives/loader.cmp";
 
 // Services
 import {GfmService} from "../services/GfmService"; // Load-only
+import {Logger} from "../services/Logger";
 // savers
 import {DocSaveManager} from "../components/editor/services/DocSaveManager";
 import {DocNameSaveManager} from "../components/header/services/DocNameSaveManager";
@@ -42,6 +43,7 @@ import "rxjs/Rx"; // all operators
     providers: [
         HTTP_PROVIDERS,
         GfmService,
+        Logger,
         DocSaveManager,
         DocNameSaveManager,
         AuthService

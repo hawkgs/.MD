@@ -16,7 +16,6 @@ var AuthController = {
 
             // If the user doesn't exist
             if (!user) {
-                res.status(400);
                 res.send({ success: false });
             }
 
@@ -26,8 +25,6 @@ var AuthController = {
                 }
 
                 token = AuthController._generateToken({ username: user.username });
-
-                res.status(200);
                 res.send({ success: true, username: user.username, token: token });
             });
         });
@@ -43,7 +40,7 @@ var AuthController = {
     isAuthenticated: function (req, res, next) {
         if (!req.isAuthenticated()) {
             res.status(401);
-            res.send("Not authorized for this content");
+            res.send("You are not authorized for this content.");
         } else {
             next();
         }

@@ -9,6 +9,7 @@ import {ControlValidators} from "../../../services/ControlValidators";
 
 // Interfaces
 import {ILoginCredentials} from "./contracts/ILoginCredentials";
+import {IServerAuthData} from "../../../services/contracts/IServerAuthData";
 
 @Component({
     selector: "[login-form-cmp]",
@@ -66,7 +67,6 @@ export class LoginFormComponent {
         RegisterWindowComponent.open();
     }
 
-    // todo
     /**
      * Sends the input data (if valid) to the AuthService in attempt for a login.
      * @param formObj
@@ -74,14 +74,30 @@ export class LoginFormComponent {
     public login(formObj: ILoginCredentials): void {
         // Basic validation (pre-query) - requirement, length, allowed symbols.
         if (!this.loginForm.valid) {
-            this.displayErrors = true;
-            this.errMsg = "The login credentials are invalid";
+            this.showInvalidLoginError();
+            return;
+        }
 
+        // Proceed with the request
+        this._auth.login(formObj)
+            .subscribe(
+                data => this.authenticate(data),
+                err => console.error(err) // TODO LOGGER
+            );
+    }
+
+    /**
+     * Process the authentication server output data.
+     * @param data - Returned JSON from the server
+     */
+    private authenticate(data: IServerAuthData): void {
+        if (!data.success) {
+            this.showInvalidLoginError();
             return;
         }
 
         this.displayErrors = false;
-        console.log(formObj);
+        this._auth.saveAuthData(data);
     }
 
     /**
@@ -103,5 +119,13 @@ export class LoginFormComponent {
 
         this.username = new Control("", usernameValidators);
         this.password = new Control("", passwordValidators);
+    }
+
+    /**
+     * Puts a login error message in the error container for invalid credentials.
+     */
+    private showInvalidLoginError(): void {
+        this.displayErrors = true;
+        this.errMsg = "The login credentials are invalid";
     }
 }
