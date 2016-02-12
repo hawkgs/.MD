@@ -13,10 +13,10 @@ declare var jqlite;
  */
 @Injectable()
 export class ToggleSidebar {
-    public static sidebarEl: ElementRef;
     private static EXPND_CLASS: string = "expanded";
     private static BTN_CLICK_CLASS: string = "clicked";
 
+    private _sidebarRef: ElementRef;
     private _isExpanded: boolean;
     private _renderer: Renderer;
     private _cloakService: CloakService;
@@ -33,6 +33,14 @@ export class ToggleSidebar {
         this._isExpanded = false;
 
         this._cloakService = CloakService.getInstance(renderer);
+    }
+
+    /**
+     * Sets the sidebar reference.
+     * @param value - Reference to the sidebar
+     */
+    public set sidebarRef(value: ElementRef) {
+        this._sidebarRef = value;
     }
 
     /**
@@ -70,7 +78,7 @@ export class ToggleSidebar {
      */
     private setSidebarState(isExpanded: boolean): void {
         this._isExpanded = isExpanded;
-        this._renderer.setElementClass(ToggleSidebar.sidebarEl, ToggleSidebar.EXPND_CLASS, isExpanded);
+        this._renderer.setElementClass(this._sidebarRef, ToggleSidebar.EXPND_CLASS, isExpanded);
     }
 
     /**
@@ -88,7 +96,7 @@ export class ToggleSidebar {
      */
     private documentHideOnClickOut(): void {
         var self: ToggleSidebar = this,
-            sidebarId: string = "#" + ToggleSidebar.sidebarEl.nativeElement.id,
+            sidebarId: string = "#" + this._sidebarRef.nativeElement.id,
             buttonId: string = "#" + this._buttonRef.nativeElement.id;
 
         jqlite(document).on("click", function(event) {

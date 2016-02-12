@@ -6,7 +6,7 @@ import {CloakService} from "../../../services/CloakService"; // Required as depe
 
 @Directive({
     selector: "[sidebar-btn-drv]",
-    providers: [ToggleSidebar, CloakService],
+    providers: [CloakService],
     host: {
         "(click)": "onClick()"
     }

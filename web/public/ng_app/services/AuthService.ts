@@ -85,6 +85,10 @@ export class AuthService {
         }
     }
 
+    public register(): void {
+        // todo: not implemented
+    }
+
     /**
      * Saves the authentication data to the localStorage.
      * @param data
@@ -98,6 +102,7 @@ export class AuthService {
         this._username = data.username;
         this._token = data.token;
         this._isAuthenticated = true;
+
         localStorage.setItem(AuthService.LS_AUTH_DATA, JSON.stringify(authData));
     }
 

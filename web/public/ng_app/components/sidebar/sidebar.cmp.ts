@@ -20,7 +20,6 @@ import {AuthService} from "../../services/AuthService";
     selector: "[sidebar-cmp]",
     templateUrl: "./components/sidebar/sidebar.html",
     styleUrls: ["./components/sidebar/sidebar.css"],
-    providers: [ToggleSidebar],
     directives: [
         LoginFormComponent,
         LogoutDirective,
@@ -36,12 +35,13 @@ export class SidebarComponent {
     public auth: AuthService;
 
     /**
-     * Puts the injected sidebar element reference in a container and sets AuthService.
+     * Puts the injected sidebar element reference in its container (in ToggleSidebar) and sets AuthService.
      * @param elem
+     * @param sidebarService
      * @param auth
      */
-    constructor(elem: ElementRef, auth: AuthService) {
-        ToggleSidebar.sidebarEl = elem;
+    constructor(elem: ElementRef, sidebarService: ToggleSidebar, auth: AuthService) {
+        sidebarService.sidebarRef = elem;
         this.auth = auth;
     }
 }

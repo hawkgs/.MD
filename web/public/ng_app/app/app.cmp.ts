@@ -15,6 +15,7 @@ import {LoaderComponent} from "../directives/loader.cmp";
 
 // Services
 import {GfmService} from "../services/GfmService"; // Load-only
+import {ToggleSidebar} from "../components/sidebar/services/ToggleSidebar";
 import {Logger} from "../services/Logger";
 // savers
 import {DocSaveManager} from "../components/editor/services/DocSaveManager";
@@ -43,6 +44,7 @@ import "rxjs/Rx"; // all operators
     providers: [
         HTTP_PROVIDERS,
         GfmService,
+        ToggleSidebar,
         Logger,
         DocSaveManager,
         DocNameSaveManager,

@@ -1,4 +1,4 @@
-import {ElementRef, Inject, Renderer} from "angular2/core";
+import {ElementRef, Injectable, Renderer} from "angular2/core";
 
 // Enums
 import {CloakState} from "./enums/CloakState";
@@ -6,6 +6,7 @@ import {CloakState} from "./enums/CloakState";
 /**
  * In charge for managing the cloak that covers the editor whenever a side operation is in process.
  */
+@Injectable()
 export class CloakService {
     public static cloakEl: ElementRef;
     private static ACTIVE_CLASS: string = "activated";
@@ -19,7 +20,7 @@ export class CloakService {
      * Injects a Renderer (angular2/core) and sets default state to deactivated.
      * @param renderer
      */
-    constructor(@Inject(Renderer) renderer: Renderer) {
+    constructor(renderer: Renderer) {
         this._renderer = renderer;
         this._isActivated = false;
         this._state = CloakState.Free;
