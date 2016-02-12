@@ -17,6 +17,8 @@ export class AuthService {
 
     private _http: Http;
     private _isAuthenticated: boolean;
+    private _username: string;
+    private _token: string;
 
     /**
      * Sets HTTP client.
@@ -40,13 +42,17 @@ export class AuthService {
      * @returns {string}
      */
     public get username(): string {
-        var lsObj = localStorage.getItem(AuthService.LS_AUTH_DATA);
+        var lsObj;
 
-        if (lsObj) {
-            return JSON.parse(lsObj).username;
+        if (!this._username) {
+            lsObj = localStorage.getItem(AuthService.LS_AUTH_DATA);
+
+            if (lsObj) {
+                this._username = JSON.parse(lsObj).username;
+            }
         }
 
-        return "";
+        return this._username;
     }
 
     /**
@@ -72,6 +78,8 @@ export class AuthService {
      */
     public logout(): void {
         if (this._isAuthenticated) {
+            this._username = "";
+            this._token = "";
             this._isAuthenticated = false;
             localStorage.removeItem(AuthService.LS_AUTH_DATA);
         }
@@ -87,6 +95,8 @@ export class AuthService {
             token: data.token
         };
 
+        this._username = data.username;
+        this._token = data.token;
         this._isAuthenticated = true;
         localStorage.setItem(AuthService.LS_AUTH_DATA, JSON.stringify(authData));
     }
@@ -131,8 +141,10 @@ export class AuthService {
      * @returns {Headers}
      */
     private getJwtBearerHeader(): Headers {
-        var token: string = JSON.parse(localStorage.getItem(AuthService.LS_AUTH_DATA)).token;
+        if (!this._token) {
+            this._token = JSON.parse(localStorage.getItem(AuthService.LS_AUTH_DATA)).token;
+        }
 
-        return new Headers({ "Authorization": `Bearer ${token}` });
+        return new Headers({ "Authorization": `Bearer ${this._token}` });
     }
 }
