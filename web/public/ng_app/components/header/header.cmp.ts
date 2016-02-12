@@ -24,6 +24,7 @@ import {DropDownDirective} from "./directives/common/dropDown.drv";
 // Services
 import {DropDownMenuCloser} from "./services/common/DropDownMenuCloser";
 import {GfmService} from "../../services/GfmService";
+import {AuthService} from "../../services/AuthService";
 
 @Component({
     selector: "[header-cmp]",
@@ -52,11 +53,15 @@ import {GfmService} from "../../services/GfmService";
     ]
 })
 export class HeaderComponent {
+    public auth: AuthService;
+
     /**
      * Initializes all processes and event related with header toolbar.
      * @param dropDownCloser
+     * @param auth
      */
-    constructor(dropDownCloser: DropDownMenuCloser) {
+    constructor(dropDownCloser: DropDownMenuCloser, auth: AuthService) {
+        this.auth = auth;
         dropDownCloser.bindCloseMenuOnDocumentClick();
     }
 

@@ -2,24 +2,23 @@
 
 var passport = require("passport"),
     jwt = require("jsonwebtoken"),
-    SECRET = "#yoloMojeBi #sweg trolololo lel",
-    TOKEN_EXP_MIN = 3; // todo change mate
+    consts = require("../../../utilities/consts");
 
 var AuthController = {
     login: function (req, res, next) {
-        var auth = passport.authenticate("local", function (err, user) {
-            var token;
-
+        passport.authenticate("local", function (err, user) {
             if (err) {
                 return next(err);
             }
 
-            // If the user doesn't exist
+            // If something is wrong.
             if (!user) {
-                res.send({ success: false });
+                return res.send({ success: false });
             }
 
-            req.logIn(user, function (err) {
+            req.logIn(user, { session: false }, function (err) {
+                var token;
+
                 if (err) {
                     return next(err);
                 }
@@ -27,32 +26,19 @@ var AuthController = {
                 token = AuthController._generateToken({ username: user.username });
                 res.send({ success: true, username: user.username, token: token });
             });
-        });
-
-        auth(req, res, next);
+        })(req, res, next);
     },
 
-    logout: function (req, res) {
-        req.logout();
-        res.end();
-    },
-
-    isAuthenticated: function (req, res, next) {
-        if (!req.isAuthenticated()) {
-            res.status(401);
-            res.send("You are not authorized for this content.");
-        } else {
-            next();
-        }
+    isJwtValid: function (req, res) {
+        res.status(200).send({ success: true });
     },
 
     _generateToken: function (payload) {
-        return jwt.sign(payload, SECRET, { expiresIn: 60 * TOKEN_EXP_MIN });
+        return jwt.sign(payload, consts.JWT_SECRET, { expiresIn: 60 * consts.JWT_EXP_MIN });
     }
 };
 
 module.exports = {
     login: AuthController.login,
-    logout: AuthController.logout,
-    isAuthenticated: AuthController.isAuthenticated
+    isJwtValid: AuthController.isJwtValid
 };

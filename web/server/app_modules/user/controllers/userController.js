@@ -1,7 +1,7 @@
 "use strict";
 
 var encryption = require("../../../utilities/encryption"),
-    users = require("../data/users"),
+    usersData = require("../data/users"),
     DUPL_ERR_CODE = 11000;
 
 var UserController = {
@@ -19,8 +19,7 @@ var UserController = {
 
         // Validation
         if (validationErrMsgs.length > 0) {
-            res.status(400);
-            return res.send({ errors: validationErrMsgs });
+            return res.status(400).send({ errors: validationErrMsgs });
         }
 
         userObject = {
@@ -33,21 +32,13 @@ var UserController = {
         userObject.hashPass = encryption.generateHashedPassword(userObject.salt, req.body.password);
 
         // Creating
-        users.create(userObject, function (error, user) {
+        usersData.create(userObject, function (error, user) {
             // Mongo errors
             if (error) {
-                res.status(400);
-                return res.send({ errors: [UserController._mongoValidation(error)] });
+                return res.status(400).send({ errors: [UserController._mongoValidation(error)] });
             }
 
-            req.logIn(user, function (error) {
-                if (error) {
-                    res.status(400);
-                    return res.send({ errors: error.toString() });
-                }
-
-                res.send(user);
-            });
+            res.send(user);
         });
     },
 

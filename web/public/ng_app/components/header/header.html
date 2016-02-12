@@ -31,4 +31,4 @@
     <!-- GFM -->
 </div>
 <div sidebar-btn-drv id="sidebar-btn"></div>
-<!--<div id="username-disp">user123</div>-->
+<div [hidden]="auth.isAuthenticated" id="username-disp">{{auth.username}}</div>

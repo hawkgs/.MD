@@ -1,7 +1,9 @@
 import {Component} from "angular2/core";
 import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, AbstractControl, Validators} from "angular2/common";
 
+// Directives
 import {RegisterWindowComponent} from "../../windows/directives/registerWindow.cmp/registerWindow.cmp";
+import {LoaderComponent} from "../../../directives/loader.cmp";
 
 // Services
 import {AuthService} from "../../../services/AuthService";
@@ -72,17 +74,22 @@ export class LoginFormComponent {
      * @param formObj
      */
     public login(formObj: ILoginCredentials): void {
-        // Basic validation (pre-query) - requirement, length, allowed symbols.
+        // Pre-request validation - requirement, length, allowed symbols.
         if (!this.loginForm.valid) {
             this.showInvalidLoginError();
             return;
         }
 
+        // Start the loader
+        LoaderComponent.turnOn();
+
         // Proceed with the request
         this._auth.login(formObj)
+            //.delay(2000) // testing loader
             .subscribe(
                 data => this.authenticate(data),
-                err => console.error(err) // TODO LOGGER
+                err => console.error(err), // TODO LOGGER
+                () => LoaderComponent.turnOff()
             );
     }
 

@@ -23,11 +23,9 @@
   "homepage": "https://github.com/hAWKdv/.MD#readme",
   "dependencies": {
     "body-parser": "^1.14.0",
-    "cookie-parser": "^1.4.0", // remove
     "express": "^4.13.3",
     "express-handlebars": "^2.0.1",
-    "express-session": "^1.11.3", // remove
-    "formidable": "^1.0.17", // remove
+    "express-jwt": "^3.3.0",
     "jsonwebtoken": "^5.4.0",
     "mongoose": "^4.2.2",
     "passport": "^0.3.0",
