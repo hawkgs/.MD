@@ -4,6 +4,9 @@ var encryption = require("../../../utilities/encryption"),
     usersData = require("../data/users"),
     DUPL_ERR_CODE = 11000;
 
+/**
+ * Controller in charge of user management.
+ */
 var UserController = {
     /**
      * Creates a user.

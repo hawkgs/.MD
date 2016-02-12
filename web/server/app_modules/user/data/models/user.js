@@ -3,6 +3,9 @@
 var mongoose = require("mongoose"),
     encryption = require("../../../../utilities/encryption");
 
+/**
+ * Defines 'user' database schema and methods.
+ */
 module.exports.init = function () {
     var User;
     var userSchema = mongoose.Schema({

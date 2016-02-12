@@ -22,5 +22,6 @@ module.exports = function (config) {
         console.log("Database error: " + err);
     });
 
+    // Models initialization
     Models.User.init();
 };
