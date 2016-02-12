@@ -1,7 +1,7 @@
 import {Component} from "angular2/core";
 
 // Services
-import {EditorSelection} from "../../editor/services/EditorSelection";
+import {EditorSelection} from "../../md_editor/editor/services/EditorSelection";
 
 @Component({
     selector: "[hlink-btn-cmp]",

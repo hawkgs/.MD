@@ -13,8 +13,8 @@ import {DocSaveManager} from "./services/DocSaveManager";
 
 @Component({
     selector: "[editor-cmp]",
-    templateUrl: "./components/editor/editor.html",
-    styleUrls: ["./components/editor/editor.css"],
+    templateUrl: "./components/md_editor/editor/editor.html",
+    styleUrls: ["./components/md_editor/editor/editor.css"],
     encapsulation: ViewEncapsulation.None
 })
 export class EditorComponent {

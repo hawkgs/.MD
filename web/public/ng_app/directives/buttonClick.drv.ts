@@ -1,8 +1,8 @@
 import {Directive, ElementRef, Renderer} from "angular2/core";
 
 // Services
-import {IDocSaveManager} from "../components/editor/services/contracts/IDocSaveManager";
-import {DocSaveManager} from "../components/editor/services/DocSaveManager";
+import {IDocSaveManager} from "../components/md_editor/editor/services/contracts/IDocSaveManager";
+import {DocSaveManager} from "../components/md_editor/editor/services/DocSaveManager";
 
 @Directive({
     selector: "[btn-click]",

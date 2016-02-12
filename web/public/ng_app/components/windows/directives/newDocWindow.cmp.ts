@@ -3,8 +3,8 @@ import {Component} from "angular2/core";
 import {WindowComponent} from "./common/window.cmp/window.cmp";
 
 // Services
-import {IDocSaveManager} from "../../editor/services/contracts/IDocSaveManager";
-import {DocSaveManager} from "../../editor/services/DocSaveManager";
+import {IDocSaveManager} from "../../md_editor/editor/services/contracts/IDocSaveManager";
+import {DocSaveManager} from "../../md_editor/editor/services/DocSaveManager";
 import {IDocNameSaveManager} from "../../header/services/contracts/IDocNameSaveManager";
 import {DocNameSaveManager} from "../../header/services/DocNameSaveManager";
 

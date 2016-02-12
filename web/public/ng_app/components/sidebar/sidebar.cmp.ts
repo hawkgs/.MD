@@ -1,4 +1,5 @@
 import {Component, ElementRef} from "angular2/core";
+import {Router} from "angular2/router";
 
 // Directives
 import {LoginFormComponent} from "./directives/loginForm.cmp";
@@ -33,15 +34,22 @@ import {AuthService} from "../../services/AuthService";
 })
 export class SidebarComponent {
     public auth: AuthService;
+    public router: Router;
 
     /**
-     * Puts the injected sidebar element reference in its container (in ToggleSidebar) and sets AuthService.
+     * Puts the injected sidebar element reference in its container (in ToggleSidebar) and sets services.
      * @param elem
      * @param sidebarService
      * @param auth
+     * @param router
      */
-    constructor(elem: ElementRef, sidebarService: ToggleSidebar, auth: AuthService) {
+    constructor(elem: ElementRef,
+                sidebarService: ToggleSidebar,
+                auth: AuthService,
+                router: Router
+    ) {
         sidebarService.sidebarRef = elem;
         this.auth = auth;
+        this.router = router;
     }
 }

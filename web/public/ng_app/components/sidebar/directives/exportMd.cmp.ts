@@ -1,7 +1,7 @@
 import {Component} from "angular2/core";
 
 // Services
-import {EditorRef} from "../../editor/services/EditorRef";
+import {EditorRef} from "../../md_editor/editor/services/EditorRef";
 import {MdParser} from "../../../services/MdParser";
 import {DocNameSaveManager} from "../../header/services/DocNameSaveManager";
 

@@ -1,4 +1,5 @@
 import {Component, ViewEncapsulation} from "angular2/core";
+import {Router} from "angular2/router";
 
 // Directives
 import {ButtonClickDirective} from "../../directives/buttonClick.drv";
@@ -33,7 +34,7 @@ import {AuthService} from "../../services/AuthService";
     encapsulation: ViewEncapsulation.None,
     providers: [DropDownMenuCloser],
     directives: [
-        ButtonClickDirective, // todo sort
+        ButtonClickDirective,
         BoldButtonDirective,
         ItalicButtonDirective,
         BlockquoteButtonDirective,
@@ -54,14 +55,18 @@ import {AuthService} from "../../services/AuthService";
 })
 export class HeaderComponent {
     public auth: AuthService;
+    public router: Router;
 
     /**
-     * Initializes all processes and event related with header toolbar.
+     * Initializes all processes and events related with header toolbar. Injects and sets needed services.
      * @param dropDownCloser
      * @param auth
+     * @param router
      */
-    constructor(dropDownCloser: DropDownMenuCloser, auth: AuthService) {
+    constructor(dropDownCloser: DropDownMenuCloser, auth: AuthService, router: Router) {
         this.auth = auth;
+        this.router = router;
+
         dropDownCloser.bindCloseMenuOnDocumentClick();
     }
 

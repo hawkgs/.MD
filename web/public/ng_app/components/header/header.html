@@ -1,5 +1,5 @@
 <div id="logo"></div>
-<div id="menu">
+<div id="menu" *ngIf="router.isRouteActive(router.generate(['Home']))">
     <!-- Regular -->
     <input file-inp-drv type="text" id="file-name" class="menu-txt" value="Untitled" maxlength="50" placeholder="Put filename" />
 

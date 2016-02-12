@@ -4,10 +4,10 @@ import {HTTP_PROVIDERS} from "angular2/http";
 
 // Components
 import {HeaderComponent} from "../components/header/header.cmp";
-import {EditorComponent} from "../components/editor/editor.cmp";
+import {MdEditorComponent} from "../components/md_editor/mdEditor.cmp";
 import {SidebarComponent} from "../components/sidebar/sidebar.cmp";
-import {PreviewComponent} from "../components/preview/preview.cmp";
 import {WindowsComponent} from "../components/windows/windows.cmp";
+import {ProfileComponent} from "../components/profile/profile.cmp";
 
 // Directives
 import {CloakDirective} from "../directives/cloak.drv";
@@ -18,7 +18,7 @@ import {GfmService} from "../services/GfmService"; // Load-only
 import {ToggleSidebar} from "../components/sidebar/services/ToggleSidebar";
 import {Logger} from "../services/Logger";
 // savers
-import {DocSaveManager} from "../components/editor/services/DocSaveManager";
+import {DocSaveManager} from "../components/md_editor/editor/services/DocSaveManager";
 import {DocNameSaveManager} from "../components/header/services/DocNameSaveManager";
 // authentication
 import {AuthService} from "../services/AuthService";
@@ -34,9 +34,7 @@ import "rxjs/Rx"; // all operators
     directives: [
         ROUTER_DIRECTIVES,
         HeaderComponent,
-        EditorComponent,
         SidebarComponent,
-        PreviewComponent,
         WindowsComponent,
         CloakDirective,
         LoaderComponent
@@ -52,8 +50,8 @@ import "rxjs/Rx"; // all operators
     ]
 })
 @RouteConfig([
-/*    { path: "/", component: HomeCmp, as: "Home" },
-    { path: "/about", component: AboutCmp, as: "About" }*/
+    { path: "/", component: MdEditorComponent, as: "Home", useAsDefault: true },
+    { path: "/profile", component: ProfileComponent, as: "Profile" },
 ])
 export class AppComponent {
     constructor (gfm: GfmService) { /***/ }

@@ -7,12 +7,12 @@ import {CopyButtonDirective} from "./directives/copyButton.drv";
 // Services
 import {EditorRef} from "../editor/services/EditorRef";
 import {MdPreviewRef} from "./services/MdPreviewRef";
-import {MdParser} from "../../services/MdParser";
+import {MdParser} from "../../../services/MdParser";
 
 @Component({
     selector: "preview-cmp",
-    templateUrl: "./components/preview/preview.html",
-    styleUrls: ["./components/preview/preview.css"],
+    templateUrl: "./components/md_editor/preview/preview.html",
+    styleUrls: ["./components/md_editor/preview/preview.css"],
     directives: [
         MdPreviewDirective,
         CopyButtonDirective

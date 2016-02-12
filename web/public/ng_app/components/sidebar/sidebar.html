@@ -17,25 +17,23 @@
         <div class="sb-item">
             <p>Repository</p>
         </div>
-        <hr/>
-        <div class="sb-item">
-            <p>Save to DB</p>
-        </div>
     </template>
     <hr/>
-    <div sb-expandable-drv class="sb-item list">
-        <p>Export As</p>
-        <div export-md-cmp></div>
-    </div>
-    <hr/>
-    <div new-doc-drv class="sb-item">
-        <p>Start New Document</p>
-    </div>
-    <hr/>
-    <div class="sb-item">
-        <p gfm-toggle-cmp></p>
-    </div>
-    <hr/>
+    <template [ngIf]="router.isRouteActive(router.generate(['Home']))">
+        <div sb-expandable-drv class="sb-item list">
+            <p>Export As</p>
+            <div export-md-cmp></div>
+        </div>
+        <hr/>
+        <div new-doc-drv class="sb-item">
+            <p>Start New Document</p>
+        </div>
+        <hr/>
+        <div class="sb-item">
+            <p gfm-toggle-cmp></p>
+        </div>
+        <hr/>
+    </template>
     <div sb-expandable-drv class="sb-item list">
         <p>Pick Theme Color</p>
         <div theme-selector-cmp></div>
