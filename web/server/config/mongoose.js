@@ -3,6 +3,10 @@
 var mongoose = require("mongoose"),
     Models = require("../app_modules/user/data/models");
 
+/**
+ * Opens a connection to the MongoDB database and initializes needed models.
+ * @param config - Server configuration
+ */
 module.exports = function (config) {
     var db;
 

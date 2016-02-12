@@ -5,6 +5,10 @@ var userControllers = require("../app_modules/user/controllers"),
     expressJwt = require("express-jwt"),
     consts = require("../utilities/consts");
 
+/**
+ * Router.
+ * @param app - Express
+ */
 module.exports = function (app) {
     var authenticate = expressJwt({ secret: consts.JWT_SECRET });
 

@@ -10,7 +10,7 @@ console.log("process.env.NODE_ENV: " + process.env.NODE_ENV);
 app = express();
 config = require("./server/config/config")[env];
 
-// Require components
+// Require and run configuration components
 require("./server/config/express")(app, config);
 require("./server/config/mongoose")(config);
 require("./server/config/passport")();

@@ -1,5 +1,9 @@
 "use strict";
 
+/**
+ * Helpers
+ * @type {{logToConsole: helpers.logToConsole}}
+ */
 var helpers = {
     logToConsole: function (err) {
         console.log("\n/////////////////\n" + err.name.toUpperCase() + "\n/////////////////");
@@ -7,14 +11,19 @@ var helpers = {
     }
 };
 
+/**
+ * Manages all uncaught router errors.
+ * @param app - Express
+ */
 module.exports = function (app) {
     app.use(function (err, req, res, next) {
         if (!err) {
             return next();
         }
 
-        // Errors:
+        // ERRORS
 
+        // express-jwt
         if (err.name === "UnauthorizedError") {
             return res.status(401).send({ success: false, message: err.message });
         }

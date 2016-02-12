@@ -3,6 +3,9 @@
 var path = require("path"),
     rootPath = path.normalize(__dirname + "/../../");
 
+/**
+ * Server configuration - development and production.
+ */
 module.exports = {
     development: {
         host: "http://localhost",
