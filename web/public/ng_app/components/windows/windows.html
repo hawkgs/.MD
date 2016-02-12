@@ -4,6 +4,6 @@
 <window win-title="About" win-id="about">
     <div about-win-cmp></div>
 </window>
-<window win-title="New Document" win-id="new_document">
+<window *ngIf="router.isRouteActive(router.generate(['Home']))" win-title="New Document" win-id="new_document">
     <div new-doc-cmp></div>
 </window>
