@@ -23,7 +23,7 @@ export class WindowsComponent {
     public auth: AuthService;
 
     /**
-     *
+     * Sets the injected authentication service.
      * @param auth
      */
     constructor(auth: AuthService) {

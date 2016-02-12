@@ -1,4 +1,4 @@
-import {Component, ElementRef, Renderer, Input} from "angular2/core";
+import {Component, ElementRef, Renderer, Input, OnInit, OnDestroy} from "angular2/core";
 
 // Services
 import {WinReferences} from "../../../services/WinReferences";
@@ -13,7 +13,7 @@ import {CloakState} from "../../../../../services/enums/CloakState";
     templateUrl: "./components/windows/directives/common/window.cmp/window.html",
     styleUrls: ["./components/windows/directives/common/window.cmp/window.css"]
 })
-export class WindowComponent {
+export class WindowComponent implements OnInit, OnDestroy {
     private static SHOW_CLASS: string = "show";
     private static cloakService: CloakService;
     private static currentlyOpened: HTMLElement;
@@ -25,8 +25,7 @@ export class WindowComponent {
     private _renderer: Renderer;
 
     /**
-     * Sets injected element reference and renderer, gets cloak reference,
-     * puts window reference in WinReference container.
+     * Sets injected element reference and renderer, gets cloak reference.
      * @param elem
      * @param renderer
      */
@@ -34,8 +33,6 @@ export class WindowComponent {
         this._nativeElem = elem.nativeElement.querySelector(".window"); // first child => .window element
         this._renderer = renderer;
         WindowComponent.cloakService = CloakService.getInstance(renderer); // todo not so cool
-
-        this.setReference();
     }
 
     /**
@@ -95,34 +92,24 @@ export class WindowComponent {
     }
 
     /**
+     * Puts the window reference in a container by the given @id on window initialization.
+     */
+    public ngOnInit(): void {
+        WinReferences.setRef(this.id, this._nativeElem);
+    }
+
+    /**
+     * Removes the reference of the window from the container whenever it gets destroyed.
+     */
+    public ngOnDestroy(): void {
+        WinReferences.removeRef(this.id);
+    }
+
+    /**
      * Closes the window on 'X' click.
      */
     public close(): void {
         SetClassNative.remove(this._nativeElem, WindowComponent.SHOW_CLASS);
         WindowComponent.unsetCorrespondingWindowObjects();
-    }
-
-    // todo: Bad design! This is a temporary method until a more convenient way is found.
-    /**
-     * Puts the window reference in a container by the given @id.
-     */
-    private setReference(): void {
-        var self: WindowComponent = this,
-            LISTEN_FREQ: number = 300, // ms
-            iterations: number = 0,
-            IT_LIMIT: number = 10,
-            listener;
-
-        listener = setInterval(function () {
-            iterations += 1;
-
-            if (self.id) {
-                WinReferences.setRef(self.id, self._nativeElem);
-                clearInterval(listener);
-            } else if (iterations >= IT_LIMIT) {
-                console.error("Window Error: window ID is not set (or timeout).");
-                clearInterval(listener);
-            }
-        }, LISTEN_FREQ);
     }
 }

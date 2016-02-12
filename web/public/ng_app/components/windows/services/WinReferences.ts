@@ -26,4 +26,14 @@ export class WinReferences {
 
         WinReferences.references[id] = ref;
     }
+
+    /**
+     * Removes the respective reference in the container by provided unique ID.
+     * @param id - Unique ID of the window
+     */
+    public static removeRef(id: string) {
+        if (WinReferences.references[id]) {
+            WinReferences.references[id] = undefined;
+        }
+    }
 }
