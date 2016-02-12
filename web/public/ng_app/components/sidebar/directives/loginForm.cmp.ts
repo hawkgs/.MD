@@ -8,6 +8,7 @@ import {LoaderComponent} from "../../../directives/loader.cmp";
 // Services
 import {AuthService} from "../../../services/AuthService";
 import {ControlValidators} from "../../../services/ControlValidators";
+import {ToggleSidebar} from "../services/ToggleSidebar";
 
 // Interfaces
 import {ILoginCredentials} from "./contracts/ILoginCredentials";
@@ -45,15 +46,18 @@ export class LoginFormComponent {
     public username: AbstractControl;
     public password: AbstractControl;
     private _auth: AuthService;
+    private _sidebarToggler: ToggleSidebar;
 
     /**
      * Sets needed service(s) and builds the login form from the created controls.
      * @param fb
      * @param auth
+     * @param sbToggler
      */
-    constructor(fb: FormBuilder, auth: AuthService) {
+    constructor(fb: FormBuilder, auth: AuthService, sbToggler: ToggleSidebar) {
         this.displayErrors = false;
         this._auth = auth;
+        this._sidebarToggler = sbToggler;
         this.createControls();
 
         this.loginForm = fb.group({
@@ -104,6 +108,7 @@ export class LoginFormComponent {
         }
 
         this.displayErrors = false;
+        //this._sidebarToggler.toggle();
         this._auth.saveAuthData(data);
     }
 

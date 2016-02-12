@@ -1,4 +1,4 @@
-<window win-title="Registration" win-id="register">
+<window *ngIf="!auth.isAuthenticated" win-title="Registration" win-id="register">
     <div register-win-cmp></div>
 </window>
 <window win-title="About" win-id="about">

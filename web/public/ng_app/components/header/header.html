@@ -31,4 +31,6 @@
     <!-- GFM -->
 </div>
 <div sidebar-btn-drv id="sidebar-btn"></div>
-<div [hidden]="auth.isAuthenticated" id="username-disp">{{auth.username}}</div>
+<template [ngIf]="auth.isAuthenticated">
+    <div id="username-disp">{{auth.username}}</div>
+</template>

@@ -6,6 +6,9 @@ import {RegisterWindowComponent} from "./directives/registerWindow.cmp/registerW
 import {AboutWindowComponent} from "./directives/aboutWindow.cmp/aboutWindow.cmp";
 import {NewDocWindowComponent} from "./directives/newDocWindow.cmp";
 
+// Services
+import {AuthService} from "../../services/AuthService";
+
 @Component({
     selector: "windows",
     templateUrl: "./components/windows/windows.html",
@@ -16,4 +19,14 @@ import {NewDocWindowComponent} from "./directives/newDocWindow.cmp";
         NewDocWindowComponent
     ]
 })
-export class WindowsComponent {}
+export class WindowsComponent {
+    public auth: AuthService;
+
+    /**
+     *
+     * @param auth
+     */
+    constructor(auth: AuthService) {
+        this.auth = auth;
+    }
+}

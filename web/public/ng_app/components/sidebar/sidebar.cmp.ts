@@ -2,6 +2,7 @@ import {Component, ElementRef} from "angular2/core";
 
 // Directives
 import {LoginFormComponent} from "./directives/loginForm.cmp";
+import {LogoutDirective} from "./directives/logout.drv";
 import {ExportMdComponent} from "./directives/exportMd.cmp";
 import {NewDocumentDirective} from "./directives/newDocument.drv";
 import {GfmToggleComponent} from "./directives/gfmToggle.cmp";
@@ -13,13 +14,16 @@ import {SbExpandableItemDirective} from "./directives/common/sbExpandableItem.dr
 
 // Services
 import {ToggleSidebar} from "./services/ToggleSidebar";
+import {AuthService} from "../../services/AuthService";
 
 @Component({
     selector: "[sidebar-cmp]",
     templateUrl: "./components/sidebar/sidebar.html",
     styleUrls: ["./components/sidebar/sidebar.css"],
+    providers: [ToggleSidebar],
     directives: [
         LoginFormComponent,
+        LogoutDirective,
         ExportMdComponent,
         NewDocumentDirective,
         GfmToggleComponent,
@@ -29,11 +33,15 @@ import {ToggleSidebar} from "./services/ToggleSidebar";
     ]
 })
 export class SidebarComponent {
+    public auth: AuthService;
+
     /**
-     * Puts the injected sidebar element reference in a container.
+     * Puts the injected sidebar element reference in a container and sets AuthService.
      * @param elem
+     * @param auth
      */
-    constructor(elem: ElementRef) {
+    constructor(elem: ElementRef, auth: AuthService) {
         ToggleSidebar.sidebarEl = elem;
+        this.auth = auth;
     }
 }

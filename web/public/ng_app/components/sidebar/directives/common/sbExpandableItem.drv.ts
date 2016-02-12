@@ -1,4 +1,4 @@
-import {Directive, ElementRef} from "angular2/core";
+import {Directive, ElementRef, OnInit, OnDestroy} from "angular2/core";
 
 // Services
 import {OpenedSidebarExpandable} from "../../services/common/OpenedSidebarExpandable";
@@ -8,35 +8,46 @@ import {SetClassNative} from "../../../../services/SetClassNative";
 @Directive({
     selector: "[sb-expandable-drv]"
 })
-export class SbExpandableItemDirective {
-    private _nativeEl: HTMLElement;
+export class SbExpandableItemDirective implements OnInit, OnDestroy {
+    /**
+     * Click listener for menu toggling.
+     * Note: Needs to be set that way, because TS doesn't allow static functions with unresolved 'this'.
+     * @param event - Event target
+     */
+    private static clickListener = function (event) {
+        var next = this.parentNode.childNodes[3]; // div sibling //todo
+
+        if (OpenedSidebarExpandable.content && OpenedSidebarExpandable.content !== next) {
+            SetClassNative.remove(OpenedSidebarExpandable.content, SidebarConsts.OPENED_CLASS);
+        }
+
+        OpenedSidebarExpandable.content = next;
+        OpenedSidebarExpandable.button = this.parentNode;
+
+        SetClassNative.toggle(OpenedSidebarExpandable.content, SidebarConsts.OPENED_CLASS);
+    };
+
+    private _displayBtn: HTMLElement;
 
     /**
      * Sets injected element reference and binds needed events.
      * @param elem
      */
     constructor(elem: ElementRef) {
-        this._nativeEl = elem.nativeElement;
-        this.bindClickEvent();
+        this._displayBtn = elem.nativeElement.querySelector("p:first-child");
     }
 
     /**
-     * Binds click event to sidebar list item - open/close mechanism.
+     * Adds the click event on directive init.
      */
-    private bindClickEvent(): void {
-        var displayBtn = this._nativeEl.childNodes[1]; // p button todo
+    public ngOnInit(): void {
+        this._displayBtn.addEventListener("click", SbExpandableItemDirective.clickListener);
+    }
 
-        displayBtn.addEventListener("click", function (event) {
-            var next = this.parentNode.childNodes[3]; // div sibling //todo
-
-            if (OpenedSidebarExpandable.content && OpenedSidebarExpandable.content !== next) {
-                SetClassNative.remove(OpenedSidebarExpandable.content, SidebarConsts.OPENED_CLASS);
-            }
-
-            OpenedSidebarExpandable.content = next;
-            OpenedSidebarExpandable.button = this.parentNode;
-
-            SetClassNative.toggle(OpenedSidebarExpandable.content, SidebarConsts.OPENED_CLASS);
-        });
+    /**
+     * Removes the click event on directive destroy.
+     */
+    public ngOnDestroy(): void {
+        this._displayBtn.removeEventListener("click", SbExpandableItemDirective.clickListener);
     }
 }

@@ -1,4 +1,4 @@
-import {ElementRef, Inject, Renderer} from "angular2/core";
+import {ElementRef, Injectable, Renderer} from "angular2/core";
 
 // Services
 import {CloakService} from "../../../services/CloakService";
@@ -11,6 +11,7 @@ declare var jqlite;
 /**
  * Sidebar toggle manager.
  */
+@Injectable()
 export class ToggleSidebar {
     public static sidebarEl: ElementRef;
     private static EXPND_CLASS: string = "expanded";
@@ -27,7 +28,7 @@ export class ToggleSidebar {
      * Injects a Renderer and gets CloakService instance.
      * @param renderer
      */
-    constructor(@Inject(Renderer) renderer: Renderer/*, @Inject(CloakService) cloakSrv: CloakService*/) {
+    constructor(renderer: Renderer/*, @Inject(CloakService) cloakSrv: CloakService*/) {
         this._renderer = renderer;
         this._isExpanded = false;
 

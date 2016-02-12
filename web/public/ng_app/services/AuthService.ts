@@ -6,10 +6,12 @@ import {Observable} from "rxjs/Observable";
 import {ILoginCredentials} from "../components/sidebar/directives/contracts/ILoginCredentials";
 import {IServerAuthData} from "./contracts/IServerAuthData";
 
+/**
+ * Manages all of the processes related to user authentication.
+ */
 @Injectable()
 export class AuthService {
     private static LOGIN_API_URL: string = "/auth/login";
-    //private static LOGOUT_API_URL: string = "/auth/logout";
     private static AUTH_API_URL: string = "/auth/valid";
     private static LS_AUTH_DATA: string = "md_auth_data";
 
@@ -40,7 +42,11 @@ export class AuthService {
     public get username(): string {
         var lsObj = localStorage.getItem(AuthService.LS_AUTH_DATA);
 
-        return JSON.parse(lsObj).username;
+        if (lsObj) {
+            return JSON.parse(lsObj).username;
+        }
+
+        return "";
     }
 
     /**
@@ -49,12 +55,26 @@ export class AuthService {
      * @returns {Observable<R>} Observable object to which we should .subscribe()
      */
     public login(credentials: ILoginCredentials): Observable<IServerAuthData> {
-        var stringifyied =  JSON.stringify(credentials),
+        if (this._isAuthenticated) {
+            return;
+        }
+
+        let stringifyied =  JSON.stringify(credentials),
             headers = new Headers({ "Content-Type": "application/json" }),
             options = new RequestOptions({ headers: headers });
 
         return this._http.post(AuthService.LOGIN_API_URL, stringifyied, options)
             .map(res => <IServerAuthData> res.json());
+    }
+
+    /**
+     * Log outs the user by removing the auth data from the localStorage.
+     */
+    public logout(): void {
+        if (this._isAuthenticated) {
+            this._isAuthenticated = false;
+            localStorage.removeItem(AuthService.LS_AUTH_DATA);
+        }
     }
 
     /**
@@ -67,16 +87,22 @@ export class AuthService {
             token: data.token
         };
 
+        this._isAuthenticated = true;
         localStorage.setItem(AuthService.LS_AUTH_DATA, JSON.stringify(authData));
     }
 
+    /**
+     * Performs validation check of the current JWT in the localStorage.
+     */
     private authValidityCheck(): void {
+        // If there is nothing in localStorage ...
         if (!localStorage.getItem(AuthService.LS_AUTH_DATA)) {
             this._isAuthenticated = false;
             return;
         }
 
-        let tokenHeader: Headers = this.getJwtBearerTokenHeader(),
+        // Else check the validity of the token with a request to the server
+        let tokenHeader: Headers = this.getJwtBearerHeader(),
             options = new RequestOptions({ headers: tokenHeader });
 
         this._http.get(AuthService.AUTH_API_URL, options)
@@ -87,16 +113,24 @@ export class AuthService {
             );
     }
 
+    /**
+     * Sets the authorization state by providing validity request output.
+     * @param data - Returned JSON data from the validity request
+     */
     private processAuthValidity(data): void {
         if (!data.success) {
             localStorage.removeItem(AuthService.LS_AUTH_DATA);
             this._isAuthenticated = false;
+        } else {
+            this._isAuthenticated = true;
         }
-
-        this._isAuthenticated = true;
     }
 
-    private getJwtBearerTokenHeader(): Headers {
+    /**
+     * Returns the Authorization header with the JWT.
+     * @returns {Headers}
+     */
+    private getJwtBearerHeader(): Headers {
         var token: string = JSON.parse(localStorage.getItem(AuthService.LS_AUTH_DATA)).token;
 
         return new Headers({ "Authorization": `Bearer ${token}` });
