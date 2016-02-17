@@ -12,7 +12,6 @@
 
 *   `express` - Main framework for the REST API of the server
 *   `express-handlebars` - Express view engine used for rendering of the main Ng2 page
-
 *   `body-parser` - Request body parsing middleware
 *   `passport` - Used for describing authentication strategies (currently only _local_)
 *   `jsonwebtoken & express-jwt` - Authentication modules
