@@ -1,5 +1,5 @@
 import {Component} from "angular2/core";
-import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, AbstractControl, Validators} from "angular2/common";
+import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, AbstractControl} from "angular2/common";
 
 // Directives
 import {RegisterWindowComponent} from "../../windows/directives/registerWindow.cmp/registerWindow.cmp";
@@ -7,7 +7,7 @@ import {LoaderComponent} from "../../../directives/loader.cmp";
 
 // Services
 import {AuthService} from "../../../services/AuthService";
-import {ControlValidators} from "../../../services/ControlValidators";
+import {AuthValidators} from "../../../services/validators/AuthValidators";
 import {ToggleSidebar} from "../services/ToggleSidebar";
 
 // Interfaces
@@ -117,21 +117,8 @@ export class LoginFormComponent {
      * Sets all input controls and their respective validators.
      */
     private createControls(): void {
-        let usernameValidators = Validators.compose([
-            Validators.required,
-            Validators.minLength(6),
-            Validators.maxLength(25),
-            ControlValidators.regexMatch(/^[\w.]+$/)
-        ]);
-
-        let passwordValidators = Validators.compose([
-            Validators.required,
-            Validators.minLength(8),
-            Validators.maxLength(25)
-        ]);
-
-        this.username = new Control("", usernameValidators);
-        this.password = new Control("", passwordValidators);
+        this.username = new Control("", AuthValidators.usernameValidation());
+        this.password = new Control("", AuthValidators.usernameValidation());
     }
 
     /**

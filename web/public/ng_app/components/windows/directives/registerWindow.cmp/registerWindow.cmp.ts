@@ -1,10 +1,11 @@
 import {Component} from "angular2/core";
-import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, AbstractControl, Validators} from "angular2/common";
+import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, AbstractControl} from "angular2/common";
 
 import {WindowComponent} from "../common/window.cmp/window.cmp";
 
 // Services
 import {AuthService} from "../../../../services/AuthService";
+import {AuthValidators} from "../../../../services/validators/AuthValidators";
 
 // Interfaces
 import {IRegisterData} from "./contracts/IRegisterData";
@@ -18,6 +19,7 @@ import {IRegisterData} from "./contracts/IRegisterData";
 export class RegisterWindowComponent {
     private static ID: string = "register";
 
+    public displayErrors: boolean;
     public registerForm: ControlGroup;
     public username: AbstractControl;
     public email: AbstractControl;
@@ -33,6 +35,7 @@ export class RegisterWindowComponent {
     constructor(fb: FormBuilder, auth: AuthService) {
         this._auth = auth;
         this.createControls();
+        this.displayErrors = false;
 
         this.registerForm = fb.group({
             "username": this.username,
@@ -56,9 +59,11 @@ export class RegisterWindowComponent {
      */
     public register(formObj: IRegisterData): void {
         if (!this.registerForm.valid) {
+            this.showRegistrationErrors();
             return;
         }
 
+        this.displayErrors = false;
         console.log(formObj);
     }
 
@@ -67,9 +72,13 @@ export class RegisterWindowComponent {
      * Sets all input controls and their respective validators.
      */
     private createControls(): void {
-        this.username = new Control("", Validators.minLength(6));
-        this.email = new Control("", Validators.required);
-        this.password = new Control("");
-        this.confirmPassword = new Control("");
+        this.username = new Control("", AuthValidators.usernameValidation());
+        this.email = new Control("", AuthValidators.emailValidation());
+        this.password = new Control("", AuthValidators.passwordValidation());
+        this.confirmPassword = new Control("", AuthValidators.passwordConfirmationValidation(this.password));
+    }
+
+    private showRegistrationErrors(): void {
+        this.displayErrors = true;
     }
 }
