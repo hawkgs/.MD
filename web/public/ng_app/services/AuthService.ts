@@ -3,7 +3,9 @@ import {Http, Headers, RequestOptions} from "angular2/http";
 import {Observable} from "rxjs/Observable";
 
 // Interfaces
+import {IRegisterData} from "../components/windows/directives/registerWindow.cmp/contracts/IRegisterData";
 import {ILoginCredentials} from "../components/sidebar/directives/contracts/ILoginCredentials";
+import {IServerRegistrationData} from "./contracts/IServerRegistrationData";
 import {IServerAuthData} from "./contracts/IServerAuthData";
 
 /**
@@ -11,6 +13,7 @@ import {IServerAuthData} from "./contracts/IServerAuthData";
  */
 @Injectable()
 export class AuthService {
+    private static USER_API_URL: string = "/api/users";
     private static LOGIN_API_URL: string = "/auth/login";
     private static AUTH_API_URL: string = "/auth/valid";
     private static LS_AUTH_DATA: string = "md_auth_data";
@@ -65,9 +68,8 @@ export class AuthService {
             return;
         }
 
-        let stringifyied =  JSON.stringify(credentials),
-            headers = new Headers({ "Content-Type": "application/json" }),
-            options = new RequestOptions({ headers: headers });
+        let stringifyied = JSON.stringify(credentials),
+            options = new RequestOptions({ headers: this.getJsonContentTypeHeader() });
 
         return this._http.post(AuthService.LOGIN_API_URL, stringifyied, options)
             .map(res => <IServerAuthData> res.json());
@@ -81,12 +83,26 @@ export class AuthService {
             this._username = "";
             this._token = "";
             this._isAuthenticated = false;
+
             localStorage.removeItem(AuthService.LS_AUTH_DATA);
         }
     }
 
-    public register(): void {
-        // todo: not implemented
+    /**
+     * Sends a POST request to the server in attempt for a registration.
+     * @param data - Form data
+     * @returns {Observable<R>}
+     */
+    public register(data: IRegisterData): Observable<IServerRegistrationData> {
+        if (!this._isAuthenticated) {
+            return;
+        }
+
+        let stringifyied = JSON.stringify(data),
+            options = new RequestOptions({ headers: this.getJsonContentTypeHeader() });
+
+        return this._http.post(AuthService.USER_API_URL, stringifyied, options)
+            .map(res => <IServerRegistrationData> res.json());
     }
 
     /**
@@ -150,6 +166,14 @@ export class AuthService {
             this._token = JSON.parse(localStorage.getItem(AuthService.LS_AUTH_DATA)).token;
         }
 
-        return new Headers({ "Authorization": `Bearer ${this._token}` });
+        return new Headers({ "Content-Type": "application/json", "Authorization": `Bearer ${this._token}` });
+    }
+
+    /**
+     * Returns JSON content type header.
+     * @returns {Headers}
+     */
+    private getJsonContentTypeHeader(): Headers {
+        return new Headers({ "Content-Type": "application/json" });
     }
 }

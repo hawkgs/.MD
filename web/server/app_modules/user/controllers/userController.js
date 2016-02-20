@@ -38,10 +38,10 @@ var UserController = {
         usersData.create(userObject, function (error, user) {
             // Mongo errors
             if (error) {
-                return res.status(400).send({ errors: [UserController._mongoValidation(error)] });
+                return res.status(400).send({ success: false, errors: [UserController._mongoValidation(error)] });
             }
 
-            res.send(user);
+            res.send({ success: true });
         });
     },
 

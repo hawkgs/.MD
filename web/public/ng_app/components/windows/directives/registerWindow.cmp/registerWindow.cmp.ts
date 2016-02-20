@@ -21,6 +21,7 @@ export class RegisterWindowComponent {
 
     public errorMsg: string;
     public displayErrors: boolean;
+    
     public registerForm: ControlGroup;
     public username: AbstractControl;
     public email: AbstractControl;
@@ -53,7 +54,6 @@ export class RegisterWindowComponent {
         WindowComponent.open(RegisterWindowComponent.ID);
     }
 
-    // todo
     /**
      * Sends the input data (if valid) to the AuthService in attempt for a registration.
      * @param formObj
@@ -68,7 +68,6 @@ export class RegisterWindowComponent {
         console.log(formObj);
     }
 
-    // todo
     /**
      * Sets all input controls and their respective validators.
      */
@@ -79,8 +78,11 @@ export class RegisterWindowComponent {
         this.confirmPassword = new Control("", AuthValidators.passwordConfirmationValidation(this.password));
     }
 
+    /**
+     * Displays the errors occurred when a user attempts to register.
+     */
     private showRegistrationErrors(): void {
-        this.errorMsg = "Error message";
+        this.errorMsg = "Error message"; // todo
         this.displayErrors = true;
     }
 }
