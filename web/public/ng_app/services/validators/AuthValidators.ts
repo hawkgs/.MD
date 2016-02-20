@@ -43,10 +43,15 @@ export class AuthValidators {
         ]);
     }
 
+    /**
+     * Confirmation password validation.
+     * @param password - Reference to password control
+     * @returns {Function}
+     */
     public static passwordConfirmationValidation(password: AbstractControl): Function {
         return Validators.compose([
             Validators.required,
-            //ControlValidators.compare(password)
+            ControlValidators.compare(password)
         ]);
     }
 }

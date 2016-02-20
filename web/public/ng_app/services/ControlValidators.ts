@@ -22,11 +22,15 @@ export class ControlValidators {
         };
     }
 
-    // todo
+    /**
+     * Compares a control value with another control's value.
+     * @param comparer - The comparer control
+     * @returns {function(Control): IValidationResult}
+     */
     public static compare(comparer: AbstractControl): Function {
         return (control: Control): IValidationResult => {
-            if (control.value === comparer.value) {
-                return { same: true };
+            if (control.value !== comparer.value) {
+                return { mismatch: true };
             }
 
             return null;

@@ -19,6 +19,7 @@ import {IRegisterData} from "./contracts/IRegisterData";
 export class RegisterWindowComponent {
     private static ID: string = "register";
 
+    public errorMsg: string;
     public displayErrors: boolean;
     public registerForm: ControlGroup;
     public username: AbstractControl;
@@ -79,6 +80,7 @@ export class RegisterWindowComponent {
     }
 
     private showRegistrationErrors(): void {
+        this.errorMsg = "Error message";
         this.displayErrors = true;
     }
 }
