@@ -63,7 +63,16 @@ export class RegisterWindowComponent {
     public register(formObj: IRegisterData): void {
         // Pre-request validation
         if (!this.registerForm.valid) {
-            this.showRegistrationErrors(["an error m8", "lol", "strange"]); // todo
+            let controls = this.registerForm.controls,
+                errors = [];
+
+            for (let prop in controls) {
+                if (controls.hasOwnProperty(prop) && !controls[prop].valid) {
+                    errors.push(`'${prop}' is invalid.`); // Note: 'confirmPassword' looks ugly.
+                }
+            }
+
+            this.showRegistrationErrors(errors);
             return;
         }
 
@@ -78,7 +87,7 @@ export class RegisterWindowComponent {
                 () => LoaderComponent.turnOff()
             );
     }
-    
+
     /**
      * Processes the registration request.
      * @param data
@@ -103,6 +112,7 @@ export class RegisterWindowComponent {
         if (error.status === 400) {
             this.processBadRequest(error._body);
         } else {
+            console.error(error);
             // todo log server error
         }
     }
