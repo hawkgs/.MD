@@ -25,10 +25,10 @@ export class RegisterWindowComponent {
     public displayErrors: boolean;
 
     public registerForm: ControlGroup;
-    public username: AbstractControl;
-    public email: AbstractControl;
-    public password: AbstractControl;
-    public confirmPassword: AbstractControl;
+    public username: Control;
+    public email: Control;
+    public password: Control;
+    public confirmPassword: Control;
     private _auth: AuthService;
 
     /**
@@ -94,12 +94,7 @@ export class RegisterWindowComponent {
      */
     private processRegistration(data: IServerRegistrationData): void {
         this.displayErrors = false;
-
-        // Reset fields
-        this.username.value = "";
-        this.email.value = "";
-        this.password.value = "";
-        this.confirmPassword.value = "";
+        this.resetForm();
 
         WindowComponent.close(RegisterWindowComponent.ID);
     }
@@ -126,6 +121,17 @@ export class RegisterWindowComponent {
 
         this.showRegistrationErrors(data.errors);
         LoaderComponent.turnOff();
+    }
+
+    /**
+     * Reset the form by clearing the values of all controls.
+     */
+    private resetForm() {
+        // todo check the null stuff
+        this.username.updateValue("", null);
+        this.email.updateValue("", null);
+        this.password.updateValue("", null);
+        this.confirmPassword.updateValue("", null);
     }
 
     /**
