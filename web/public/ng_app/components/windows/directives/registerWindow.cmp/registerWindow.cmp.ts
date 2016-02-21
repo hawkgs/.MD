@@ -74,23 +74,48 @@ export class RegisterWindowComponent {
         this._auth.register(formObj)
             .subscribe(
                 data => this.processRegistration(data),
-                err => console.error(err), // TODO LOGGER
+                err => this.handleErrors(err),
                 () => LoaderComponent.turnOff()
             );
     }
-
-    // todo
+    
     /**
      * Processes the registration request.
      * @param data
      */
     private processRegistration(data: IServerRegistrationData): void {
-        if (!data.success) {
-            this.showRegistrationErrors(data.errors);
-            return;
-        }
-
         this.displayErrors = false;
+
+        // Reset fields
+        this.username.value = "";
+        this.email.value = "";
+        this.password.value = "";
+        this.confirmPassword.value = "";
+
+        WindowComponent.close(RegisterWindowComponent.ID);
+    }
+
+    /**
+     * Handle all incoming errors occurred on registration request.
+     * @param error
+     */
+    private handleErrors(error): void {
+        if (error.status === 400) {
+            this.processBadRequest(error._body);
+        } else {
+            // todo log server error
+        }
+    }
+
+    /**
+     * Process a registration request (Error 400).
+     * @param outputData
+     */
+    private processBadRequest(outputData): void {
+        var data: IServerRegistrationData = JSON.parse(outputData);
+
+        this.showRegistrationErrors(data.errors);
+        LoaderComponent.turnOff();
     }
 
     /**
