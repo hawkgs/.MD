@@ -2,6 +2,7 @@ import {Component} from "angular2/core";
 import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, AbstractControl} from "angular2/common";
 
 import {WindowComponent} from "../common/window.cmp/window.cmp";
+import {LoaderComponent} from "../../../../directives/loader.cmp";
 
 // Services
 import {AuthService} from "../../../../services/AuthService";
@@ -9,6 +10,7 @@ import {AuthValidators} from "../../../../services/validators/AuthValidators";
 
 // Interfaces
 import {IRegisterData} from "./contracts/IRegisterData";
+import {IServerRegistrationData} from "../../../../services/contracts/IServerRegistrationData";
 
 @Component({
     selector: "[register-win-cmp]",
@@ -21,7 +23,7 @@ export class RegisterWindowComponent {
 
     public errorMsg: string;
     public displayErrors: boolean;
-    
+
     public registerForm: ControlGroup;
     public username: AbstractControl;
     public email: AbstractControl;
@@ -59,13 +61,36 @@ export class RegisterWindowComponent {
      * @param formObj
      */
     public register(formObj: IRegisterData): void {
+        // Pre-request validation
         if (!this.registerForm.valid) {
-            this.showRegistrationErrors();
+            this.showRegistrationErrors(["an error m8", "lol", "strange"]); // todo
+            return;
+        }
+
+        // Start the loader
+        LoaderComponent.turnOn();
+
+        // Proceed with the request
+        this._auth.register(formObj)
+            .subscribe(
+                data => this.processRegistration(data),
+                err => console.error(err), // TODO LOGGER
+                () => LoaderComponent.turnOff()
+            );
+    }
+
+    // todo
+    /**
+     * Processes the registration request.
+     * @param data
+     */
+    private processRegistration(data: IServerRegistrationData): void {
+        if (!data.success) {
+            this.showRegistrationErrors(data.errors);
             return;
         }
 
         this.displayErrors = false;
-        console.log(formObj);
     }
 
     /**
@@ -81,8 +106,15 @@ export class RegisterWindowComponent {
     /**
      * Displays the errors occurred when a user attempts to register.
      */
-    private showRegistrationErrors(): void {
-        this.errorMsg = "Error message"; // todo
+    private showRegistrationErrors(errors?: string[]): void {
+        this.errorMsg = "";
+
+        if (errors) {
+            errors.forEach((err) => {
+                this.errorMsg += err + "<br>";
+            });
+        }
+
         this.displayErrors = true;
     }
 }

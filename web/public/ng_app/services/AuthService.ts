@@ -94,7 +94,7 @@ export class AuthService {
      * @returns {Observable<R>}
      */
     public register(data: IRegisterData): Observable<IServerRegistrationData> {
-        if (!this._isAuthenticated) {
+        if (this._isAuthenticated) {
             return;
         }
 

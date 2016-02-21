@@ -4,7 +4,7 @@
         keep your files on our server, so that<br/>
         you can access them from everywhere.
     </p>
-    <p class="error-msg" [ngClass]="{show: displayErrors}">{{errorMsg}}</p>
+    <p class="error-msg" [ngClass]="{show: displayErrors}" [innerHTML]="errorMsg"></p>
     <p>
         <input type="text"
                [ngFormControl]="registerForm.controls['username']"
