@@ -1,5 +1,5 @@
 import {Component} from "angular2/core";
-import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup, AbstractControl} from "angular2/common";
+import {FORM_DIRECTIVES, FormBuilder, Control, ControlGroup} from "angular2/common";
 
 import {WindowComponent} from "../common/window.cmp/window.cmp";
 import {LoaderComponent} from "../../../../directives/loader.cmp";
@@ -7,10 +7,14 @@ import {LoaderComponent} from "../../../../directives/loader.cmp";
 // Services
 import {AuthService} from "../../../../services/AuthService";
 import {AuthValidators} from "../../../../services/validators/AuthValidators";
+import {NotifierService} from "../../../../services/NotifierService";
 
 // Interfaces
 import {IRegisterData} from "./contracts/IRegisterData";
 import {IServerRegistrationData} from "../../../../services/contracts/IServerRegistrationData";
+
+// Enums
+import {NotifierType} from "../../../../services/enums/NotifierType";
 
 @Component({
     selector: "[register-win-cmp]",
@@ -30,14 +34,17 @@ export class RegisterWindowComponent {
     public password: Control;
     public confirmPassword: Control;
     private _auth: AuthService;
+    private _notifier: NotifierService;
 
     /**
      * Sets needed service(s) and builds the register form from the created controls.
      * @param fb
      * @param auth
+     * @param notifier
      */
-    constructor(fb: FormBuilder, auth: AuthService) {
+    constructor(fb: FormBuilder, auth: AuthService, notifier: NotifierService) {
         this._auth = auth;
+        this._notifier = notifier;
         this.createControls();
         this.displayErrors = false;
 
@@ -61,6 +68,7 @@ export class RegisterWindowComponent {
      * @param formObj
      */
     public register(formObj: IRegisterData): void {
+        this._notifier.show(NotifierType.Success, "test"); // todo testing
         // Pre-request validation
         if (!this.registerForm.valid) {
             let controls = this.registerForm.controls,

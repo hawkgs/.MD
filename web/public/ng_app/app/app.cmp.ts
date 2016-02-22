@@ -12,10 +12,12 @@ import {ProfileComponent} from "../components/profile/profile.cmp";
 // Directives
 import {CloakDirective} from "../directives/cloak.drv";
 import {LoaderComponent} from "../directives/loader.cmp";
+import {NotifierComponent} from "../directives/notifier.cmp";
 
 // Services
 import {GfmService} from "../services/GfmService"; // Load-only
 import {ToggleSidebar} from "../components/sidebar/services/ToggleSidebar";
+import {NotifierService} from "../services/NotifierService";
 import {Logger} from "../services/Logger";
 // savers
 import {DocSaveManager} from "../components/md_editor/editor/services/DocSaveManager";
@@ -37,12 +39,14 @@ import "rxjs/Rx"; // all operators
         SidebarComponent,
         WindowsComponent,
         CloakDirective,
-        LoaderComponent
+        LoaderComponent,
+        NotifierComponent
     ],
     providers: [
         HTTP_PROVIDERS,
         GfmService,
         ToggleSidebar,
+        NotifierService,
         Logger,
         DocSaveManager,
         DocNameSaveManager,
