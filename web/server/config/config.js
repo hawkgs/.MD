@@ -16,7 +16,7 @@ module.exports = {
     production: {
         host: "https://dot-md.herokuapp.com/",
         rootPath: rootPath,
-        db: "mongodb://web_client:dbpassword@ds059692.mongolab.com:59692/dot_md",
+        db: "fill",
         port: process.env.PORT || 3000
     }
 };

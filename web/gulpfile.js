@@ -58,18 +58,6 @@ gulp.task("build.dev", ["clean"], function() {
     compileDevTs("./public/ng_app/**/*.ts", "./public/app");
 });
 
-// NOTE: Intended for Heroku usage
-// todo: install gulp-sequence for running build.dev, build.prod, clean, rename.prod
-gulp.task("build.prod", function () {
-    var tsResult = gulp.src("./public/ng_app/**/*.ts")
-        .pipe(inlineNg2Template({ base: "/public/ng_app" }))
-        .pipe(ts(tsProject));
-
-    tsResult.js
-        .pipe(uglify())
-        .pipe(gulp.dest("./public/app")); // Build JS
-});
-
 gulp.task("typedoc", function() {
     return gulp
         .src(["./public/ng_app/**/*.ts"])
@@ -77,7 +65,6 @@ gulp.task("typedoc", function() {
 });
 
 gulp.task("watch.ts", ["build.dev"], function () {
-
     // brute solution: recompile all
     watch("./public/ng_app/**/*", function () {
         var time = new Date();
@@ -85,22 +72,14 @@ gulp.task("watch.ts", ["build.dev"], function () {
         console.log(`[${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}] recompiling ...`);
         compileDevTs("./public/ng_app/**/*.ts", "./public/app");
     });
+});
 
-    // todo: The following code triggers errors when the modified .ts file has dependencies ('import')
-    //watch("./public/ng_app/**/*", function (obj) {
-    //    var fileExt = path.extname(obj.path),
-    //        basePath = path.dirname(obj.path).replace(__dirname, ""),
-    //        builtBasePath = path.join(".", basePath.replace("ng_app", "app")),
-    //        modified;
-    //
-    //    if (fileExt === ".ts") {
-    //        modified = path.join(".", obj.path.replace(__dirname, ""));
-    //    } else {
-    //        modified = path.join(".", basePath, "*.ts");
-    //    }
-    //
-    //    console.log("Modified: " + modified);
-    //
-    //    compileDevTs(modified, builtBasePath);
-    //});
+gulp.task("heroku.prod", function () {
+    var tsResult = gulp.src("./public/ng_app/**/*.ts")
+        .pipe(inlineNg2Template({ base: "/public/ng_app" }))
+        .pipe(ts(tsProject));
+
+    tsResult.js
+        .pipe(uglify())
+        .pipe(gulp.dest("./public/app"));
 });

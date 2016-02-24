@@ -10,7 +10,7 @@
     "public.deps": "cd public && npm install",
     "local.bower": "./node_modules/bower/bin/bower install",
     "watch.ts": "gulp watch.ts",
-    "postinstall": "npm run public.deps && npm run local.bower && gulp build.prod"
+    "postinstall": "npm run public.deps && npm run local.bower && gulp heroku.prod"
   },
   "repository": {
     "type": "git",
@@ -30,8 +30,9 @@
     "jsonwebtoken": "^5.4.0",
     "mongoose": "^4.2.2",
     "passport": "^0.3.0",
-    "passport-local": "^1.0.0",
-
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
     "bower": "^1.7.7",
     "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
@@ -47,6 +48,5 @@
     "merge2": "^0.3.6",
     "tslint": "^3.2.1",
     "typescript": "^1.8.2"
-  },
-  "devDependencies": {}
+  }
 }
