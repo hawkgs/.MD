@@ -68,7 +68,8 @@ export class RegisterWindowComponent {
      * @param formObj
      */
     public register(formObj: IRegisterData): void {
-        this._notifier.show(NotifierType.Success, "test"); // todo testing
+        this._notifier.show(NotifierType.Error, "test a new test my friend", 5000); // todo testing
+
         // Pre-request validation
         if (!this.registerForm.valid) {
             let controls = this.registerForm.controls,
@@ -103,6 +104,7 @@ export class RegisterWindowComponent {
     private processRegistration(data: IServerRegistrationData): void {
         this.displayErrors = false;
         this.resetForm();
+        this._notifier.show(NotifierType.Success, "Successful registration");
 
         WindowComponent.close(RegisterWindowComponent.ID);
     }
@@ -115,7 +117,9 @@ export class RegisterWindowComponent {
         if (error.status === 400) {
             this.processBadRequest(error._body);
         } else {
+            this._notifier.show(NotifierType.Error, "An unexpected error occurred. Please reload.");
             console.error(error);
+
             // todo log server error
         }
     }
@@ -135,11 +139,10 @@ export class RegisterWindowComponent {
      * Reset the form by clearing the values of all controls.
      */
     private resetForm() {
-        // todo check the null stuff
-        this.username.updateValue("", null);
-        this.email.updateValue("", null);
-        this.password.updateValue("", null);
-        this.confirmPassword.updateValue("", null);
+        this.username.updateValue("");
+        this.email.updateValue("");
+        this.password.updateValue("");
+        this.confirmPassword.updateValue("");
     }
 
     /**
