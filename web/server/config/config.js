@@ -13,11 +13,10 @@ module.exports = {
         db: "mongodb://localhost/dot-md",
         port: process.env.PORT || 3000
     },
-    // WARNING: The production version is incomplete
     production: {
-        host: "",
+        host: "https://dot-md.herokuapp.com/",
         rootPath: rootPath,
-        db: "",
+        db: "mongodb://web_client:dbpassword@ds059692.mongolab.com:59692/dot_md",
         port: process.env.PORT || 3000
     }
 };

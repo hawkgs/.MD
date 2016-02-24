@@ -58,12 +58,16 @@ gulp.task("build.dev", ["clean"], function() {
     compileDevTs("./public/ng_app/**/*.ts", "./public/app");
 });
 
-// WARNING: !!! Turn off all watchers before running !!!
+// NOTE: Intended for Heroku usage
 // todo: install gulp-sequence for running build.dev, build.prod, clean, rename.prod
 gulp.task("build.prod", function () {
-    return gulp.src("./public/app/**/*.js")
+    var tsResult = gulp.src("./public/ng_app/**/*.ts")
+        .pipe(inlineNg2Template({ base: "/public/ng_app" }))
+        .pipe(ts(tsProject));
+
+    tsResult.js
         .pipe(uglify())
-        .pipe(gulp.dest("./public/_tmp"));
+        .pipe(gulp.dest("./public/app")); // Build JS
 });
 
 gulp.task("typedoc", function() {

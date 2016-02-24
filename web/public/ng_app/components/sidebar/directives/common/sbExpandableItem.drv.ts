@@ -9,6 +9,16 @@ import {SetClassNative} from "../../../../services/SetClassNative";
     selector: "[sb-expandable-drv]"
 })
 export class SbExpandableItemDirective implements OnInit, OnDestroy {
+    private _displayBtn: HTMLElement;
+
+    /**
+     * Sets injected element reference and binds needed events.
+     * @param elem
+     */
+    constructor(elem: ElementRef) {
+        this._displayBtn = elem.nativeElement.querySelector("p:first-child");
+    }
+
     /**
      * Click listener for menu toggling.
      * Note: Needs to be set that way, because TS doesn't allow static functions with unresolved 'this'.
@@ -26,16 +36,6 @@ export class SbExpandableItemDirective implements OnInit, OnDestroy {
 
         SetClassNative.toggle(OpenedSidebarExpandable.content, SidebarConsts.OPENED_CLASS);
     };
-
-    private _displayBtn: HTMLElement;
-
-    /**
-     * Sets injected element reference and binds needed events.
-     * @param elem
-     */
-    constructor(elem: ElementRef) {
-        this._displayBtn = elem.nativeElement.querySelector("p:first-child");
-    }
 
     /**
      * Adds the click event on directive init.

@@ -8,8 +8,10 @@
     "start": "node server.js",
     "nodemon": "nodemon server.js",
     "public.deps": "cd public && npm install",
+    "local.bower": "./node_modules/bower/bin/bower install",
+    "gulp.build.prod": "./node_modules/gulp/bin/gulp build.prod",
     "watch.ts": "gulp watch.ts",
-    "postinstall": "npm run public.deps && ./node_modules/bower/bin/bower install"
+    "postinstall": "npm run public.deps && npm run local.bower && npm run gulp.build.prod"
   },
   "repository": {
     "type": "git",
@@ -23,28 +25,30 @@
   "homepage": "https://github.com/hAWKdv/.MD#readme",
   "dependencies": {
     "body-parser": "^1.14.0",
-    "bower": "^1.7.7",
     "express": "^4.13.3",
     "express-handlebars": "^2.0.1",
     "express-jwt": "^3.3.0",
     "jsonwebtoken": "^5.4.0",
     "mongoose": "^4.2.2",
     "passport": "^0.3.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+
+    "bower": "^1.7.7",
+    "gulp": "^3.9.0",
+    "gulp-inline-ng2-template": "0.0.9",
+    "gulp-typescript": "^2.10.0",
+    "gulp-uglify": "^1.5.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.0",
     "gulp-clean": "^0.3.1",
-    "gulp-inline-ng2-template": "0.0.9",
     "gulp-plumber": "^1.0.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^4.2.2",
     "gulp-tslint-stylish": "^1.1.1",
     "gulp-typedoc": "^1.2.1",
-    "gulp-typescript": "^2.10.0",
-    "gulp-uglify": "^1.5.1",
     "gulp-watch": "^4.3.5",
     "merge2": "^0.3.6",
-    "tslint": "^3.2.1"
+    "tslint": "^3.2.1",
+    "typescript": "^1.8.2"
   }
 }
