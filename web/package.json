@@ -34,21 +34,19 @@
 
     "bower": "^1.7.7",
     "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.1",
     "gulp-inline-ng2-template": "0.0.9",
     "gulp-typescript": "^2.10.0",
-    "gulp-uglify": "^1.5.1",
-    "gulp-clean": "^0.3.1",
     "gulp-plumber": "^1.0.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tslint": "^4.2.2",
     "gulp-tslint-stylish": "^1.1.1",
     "gulp-typedoc": "^1.2.1",
+    "gulp-uglify": "^1.5.1",
     "gulp-watch": "^4.3.5",
     "merge2": "^0.3.6",
     "tslint": "^3.2.1",
     "typescript": "^1.8.2"
   },
-  "devDependencies": {
-
-  }
+  "devDependencies": {}
 }
