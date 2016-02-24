@@ -36,6 +36,7 @@ bower_components
 
 # Angular dist
 web/public/app
+# web/public/ng_app
 web/public/_tmp
 
 # Typescript definitions

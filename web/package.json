@@ -9,7 +9,7 @@
     "nodemon": "nodemon server.js",
     "public.deps": "cd public && npm install",
     "watch.ts": "gulp watch.ts",
-    "postinstall": "npm run public.deps && bower install"
+    "postinstall": "npm run public.deps && ./node_modules/bower/bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/hAWKdv/.MD#readme",
   "dependencies": {
     "body-parser": "^1.14.0",
+    "bower": "^1.7.7",
     "express": "^4.13.3",
     "express-handlebars": "^2.0.1",
     "express-jwt": "^3.3.0",
