@@ -37,7 +37,7 @@ export class NotifierService {
         }, NotifierService.ACTIVE_DURATION);
     }
 
-    private applyNotifierType() {
-        console.log();
-    }
+    //private applyNotifierType() {
+    //    console.log();
+    //}
 }

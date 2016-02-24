@@ -9,14 +9,14 @@ import {NotifierService} from "../services/NotifierService";
     styles: [`
         div {
             position: fixed;
-            bottom: 25px;
-            padding: 20px;
-            left: -100px;
+            bottom: 25px; left: 25px;
+            max-width: 0;
             color: #FFF;
-            background: grey;
+            background: red;
+            transition: left, max-width 0.3s ease;
         }
 
-        div.active { left: 25px; }
+        div.active { padding: 20px; max-width: 500px; }
         div.error { background: red; }
         div.success { background: green; }
         div.notice { background: blue; }
