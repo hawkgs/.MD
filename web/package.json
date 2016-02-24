@@ -9,7 +9,7 @@
     "nodemon": "nodemon server.js",
     "public.deps": "cd public && npm install",
     "local.bower": "./node_modules/bower/bin/bower install",
-    "gulp.build.prod": "./node_modules/gulp/bin/gulp build.prod",
+    "gulp.build.prod": "gulp build.prod",
     "watch.ts": "gulp watch.ts",
     "postinstall": "npm run public.deps && npm run local.bower && npm run gulp.build.prod"
   },
