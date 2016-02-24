@@ -10,7 +10,7 @@
     "public.deps": "cd public && npm install",
     "local.bower": "./node_modules/bower/bin/bower install",
     "watch.ts": "gulp watch.ts",
-    "postinstall": "npm run public.deps && npm run local.bower && npm run gulp build.prod"
+    "postinstall": "npm run public.deps && npm run local.bower && gulp build.prod"
   },
   "repository": {
     "type": "git",
