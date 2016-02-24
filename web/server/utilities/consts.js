@@ -6,5 +6,5 @@
  */
 module.exports = {
     JWT_SECRET: "#yoloMojeBi #sweg trolololo lel",
-    JWT_EXP_MIN: 10
+    JWT_EXP_HOURS: 24
 };

@@ -139,21 +139,33 @@ export class AuthService {
         this._http.get(AuthService.AUTH_API_URL, options)
             .map(res => res.json())
             .subscribe(
-                data => this.processAuthValidity(data),
-                err => console.error(err) // todo logger
+                data => this.processOkValidityRequest(data),
+                err => this.processBadValidityRequest(err) // todo logger
             );
     }
 
     /**
-     * Sets the authorization state by providing validity request output.
+     * Checks if the successful response is successful and if yes, sets the authentication state to true.
      * @param data - Returned JSON data from the validity request
      */
-    private processAuthValidity(data): void {
-        if (!data.success) {
+    private processOkValidityRequest(data): void {
+        if (data.success) {
+            this._isAuthenticated = true;
+        }
+    }
+
+    /**
+     * Checks whether the user is unauthenticated (401) or a server error occurred and sets the state accordingly.
+     * @param error - Returned error from the bad request
+     */
+    private processBadValidityRequest(error): void {
+        var body = error._body;
+
+        if (error.status === 401 && !body.success) {
             localStorage.removeItem(AuthService.LS_AUTH_DATA);
             this._isAuthenticated = false;
         } else {
-            this._isAuthenticated = true;
+            console.error(error); // todo logger
         }
     }
 

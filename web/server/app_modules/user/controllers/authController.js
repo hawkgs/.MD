@@ -56,7 +56,7 @@ var AuthController = {
      * @private
      */
     _generateToken: function (payload) {
-        return jwt.sign(payload, consts.JWT_SECRET, { expiresIn: 60 * consts.JWT_EXP_MIN });
+        return jwt.sign(payload, consts.JWT_SECRET, { expiresIn: 60 * 60 * consts.JWT_EXP_HOURS });
     }
 };
 
