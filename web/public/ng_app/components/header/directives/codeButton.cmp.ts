@@ -18,16 +18,14 @@ export class CodeButtonComponent {
      * Wraps/inserts CODE (inline code) to the text selection in the editor.
      */
     public inlineCode(): void {
-        var selection: string = Escapers.escapeHtml(window.getSelection().toString());
-
-        document.execCommand("insertHTML", false, `<code>${selection}</code>`);
+        this.wrapCodeInTag("code");
     }
 
     /**
      * Wraps/inserts PRE (block code) to the text selection in the editor.
      */
     public blockCode(): void {
-        document.execCommand("formatBlock", false, "<PRE>");
+        this.wrapCodeInTag("pre");
     }
 
     /**
@@ -36,5 +34,15 @@ export class CodeButtonComponent {
      */
     public keepFocusOnEditor(event): void {
         event.preventDefault();
+    }
+
+    /**
+     * Wraps the current code selection in tag (either 'code' for single-line or 'pre' for multi)
+     * @param tagName - 'code' or 'pre'
+     */
+    private wrapCodeInTag(tagName: string) {
+        var selection: string = Escapers.escapeHtml(window.getSelection().toString());
+
+        document.execCommand("insertHTML", false, `<${tagName}>${selection}</${tagName}>`);
     }
 }
