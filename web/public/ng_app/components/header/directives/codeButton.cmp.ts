@@ -1,5 +1,9 @@
 import {Component} from "angular2/core";
 
+// Services
+import {Escapers} from "../../../services/Escapers";
+
+
 @Component({
     selector: "[code-btn-cmp]",
     template: `
@@ -14,7 +18,9 @@ export class CodeButtonComponent {
      * Wraps/inserts CODE (inline code) to the text selection in the editor.
      */
     public inlineCode(): void {
-        document.execCommand("insertHTML", false, `<code>${window.getSelection()}</code>`);
+        var selection: string = Escapers.escapeHtml(window.getSelection().toString());
+
+        document.execCommand("insertHTML", false, `<code>${selection}</code>`);
     }
 
     /**
