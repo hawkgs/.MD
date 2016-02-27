@@ -180,6 +180,7 @@ button.menu-btn {
     font-style: normal;
     font-weight: 600;
     font-size: 13px;
+    line-height: normal;
     /*color: #333;*/
     color: #CCC;
     white-space: nowrap;
@@ -218,6 +219,13 @@ button.menu-btn {
     font-size: 26px;
     padding: 0 5px;
     top: -8px;
+}
+
+/* blockquote */
+#btn-blockquote {
+    font-family: Georgia, serif;
+    font-size: 55px;
+    line-height: 1.65em;
 }
 
 /* horizontal ruler */

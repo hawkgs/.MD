@@ -30,7 +30,7 @@ export class HeadingsButtonComponent {
     public insertHeading(num: number): void {
         var headingNum: number = ++num;
 
-        document.execCommand("heading", false, `H${headingNum}`);
+        document.execCommand("formatBlock", false, `<H${headingNum}>`);
     }
 
     /**
