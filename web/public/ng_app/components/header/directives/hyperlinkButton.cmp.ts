@@ -9,7 +9,7 @@ import {EditorSelection} from "../../md_editor/editor/services/EditorSelection";
         <div class="disp"></div>
         <div class="cont">
             <div class="item-cont">
-                <input #url type="text" placeholder="Text" />
+                <input #url type="text" placeholder="URL" />
                 <button class="default theme-bg dd-close" (click)="wrapInAnchor(url.value)">Create</button>
             </div>
         </div>`
