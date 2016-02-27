@@ -68,8 +68,6 @@ export class RegisterWindowComponent {
      * @param formObj
      */
     public register(formObj: IRegisterData): void {
-        this._notifier.show(NotifierType.Error, "test a new test my friend", 5000); // todo testing
-
         // Pre-request validation
         if (!this.registerForm.valid) {
             let controls = this.registerForm.controls,
