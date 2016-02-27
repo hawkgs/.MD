@@ -13,7 +13,7 @@ export class MdParser {
     private static converters = [{
         filter: "pre",
         replacement: function (content) {
-            return "```\n" + content.trim() + "\n```";
+            return "```\n" + content.trim() + "\n```\n";
         }
     }, {
         filter: "div",
