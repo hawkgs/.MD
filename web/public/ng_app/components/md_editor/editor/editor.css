@@ -86,6 +86,10 @@
 #editor pre {
     padding: 16px;
     line-height: 1.45;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
 }
 
 #editor code {

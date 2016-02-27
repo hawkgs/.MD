@@ -59,9 +59,10 @@ export class EditorComponent {
     }
 
     /**
-     * Performs UI-friendly save on each pasting (Ctrl+V or 'Paste' from context menu).
+     * Performs text formatting reset and UI-friendly save on each pasting (Ctrl+V or 'Paste' from context menu).
      */
-    public onPasteSave(): void {
+    public onPaste(event): void {
+        this.removeTextFormatting(event);
         this._saveManager.uiFriendlySave();
     }
 
@@ -73,6 +74,21 @@ export class EditorComponent {
 
         if (storageData) {
             EditorRef.ref.innerHTML = JSON.parse(storageData).html;
+        }
+    }
+
+    /**
+     * Removes text formatting of the text contained in the clipboard (Used on paste).
+     * @param event
+     */
+    private removeTextFormatting(event): void {
+        var ev = event.originalEvent || event;
+
+        if (ev) {
+            event.preventDefault();
+
+            let text: string = ev.clipboardData.getData("text/plain");
+            document.execCommand("insertText", false, text);
         }
     }
 }
