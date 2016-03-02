@@ -39,7 +39,7 @@ web/public/app
 web/public/_tmp
 
 # Typescript definitions
-_tsd
+typings
 
 # Documentation
 docs

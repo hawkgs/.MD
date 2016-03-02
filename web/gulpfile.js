@@ -12,10 +12,6 @@ var gulp = require("gulp"),
     tslintStylish = require("gulp-tslint-stylish"),
     typedoc = require("gulp-typedoc"),
 
-    // non-gulp
-    //path = require("path"),
-    //merge = require('merge2'),
-
     // vars
     tsProject = ts.createProject("tsconfig.json"),
     docsConfig = require("./typedoc.json");
@@ -37,14 +33,6 @@ function compileDevTs(pathToRebuild, basePath) {
     tsResult.js
         .pipe(sourcemaps.write()) // Write source maps
         .pipe(gulp.dest(basePath)); // Build JS
-
-    // Merge the two output streams, so this task is finished when the IO of both operations are done.
-    //return merge([
-    //    tsResult.dts.pipe(gulp.dest("./public/ng_app/_tsd")),
-    //    tsResult.js
-    //        .pipe(sourcemaps.write()) // Write source maps
-    //        .pipe(gulp.dest(basePath)) // Build JS
-    //]);
 }
 
 // Tasks
@@ -55,7 +43,10 @@ gulp.task("clean", function () {
 });
 
 gulp.task("build.dev", ["clean"], function() {
-    compileDevTs("./public/ng_app/**/*.ts", "./public/app");
+    compileDevTs([
+        "./typings/browser.d.ts", // TypeScript Typings
+        "./public/ng_app/**/*.ts" // Ng2 Code
+    ], "./public/app");
 });
 
 gulp.task("typedoc", function() {
