@@ -1,31 +1,40 @@
-import {Component} from "angular2/core";
+import {Component, Inject} from "angular2/core";
+import {NgModel} from "angular2/common";
+import {DOCUMENT} from "angular2/src/platform/dom/dom_tokens";
 
 // Services
 import {EditorSelection} from "../../md_editor/editor/services/EditorSelection";
 
 @Component({
     selector: "[hlink-btn-cmp]",
+    directives: [NgModel],
     template: `
         <div class="disp"></div>
         <div class="cont">
             <div class="item-cont">
-                <input #url type="text" placeholder="URL" />
-                <button class="default theme-bg dd-close" (click)="wrapInAnchor(url.value)">Create</button>
+                <input [(ngModel)]="url"  type="text" placeholder="URL" />
+                <button class="default theme-bg dd-close" (click)="wrapInAnchor()">Create</button>
             </div>
         </div>`
 })
 export class HyperlinkButtonDirective {
+    public url: string;
+    private _doc;
+
+    constructor(@Inject(DOCUMENT) doc) {
+        this._doc = doc;
+    }
+
     /**
-     * Wraps the text selection in A tag by a provided URL.
-     * @param url - URL to the source
+     * Wraps the text selection in A tag by a provided @url.
      */
-    public wrapInAnchor(url: string): void {
+    public wrapInAnchor(): void {
         var a;
 
         if (EditorSelection.sel) {
             EditorSelection.sel.deleteContents();
 
-            a = this.createAnchorTag(url);
+            a = this.createAnchorTag(this.url);
             EditorSelection.sel.insertNode(a);
         }
     }
@@ -36,7 +45,7 @@ export class HyperlinkButtonDirective {
      * @returns {HTMLAnchorElement|HTMLElement}
      */
     private createAnchorTag(url: string): HTMLAnchorElement {
-        var a = document.createElement("a");
+        var a = this._doc.createElement("a");
 
         a.href = url;
         a.innerHTML = EditorSelection.text;
