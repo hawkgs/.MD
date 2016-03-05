@@ -1,4 +1,4 @@
-import {Component, ElementRef, ViewEncapsulation} from "angular2/core";
+import {Component, ElementRef, ViewEncapsulation, OnInit} from "angular2/core";
 
 // Directives
 import {PreviewComponent} from "../preview/preview.cmp";
@@ -17,18 +17,27 @@ import {DocSaveManager} from "./services/DocSaveManager";
     styleUrls: ["./components/md_editor/editor/editor.css"],
     encapsulation: ViewEncapsulation.None
 })
-export class EditorComponent {
+export class EditorComponent implements OnInit {
     private _saveManager: IDocSaveManager;
+    private _nativeEl: HTMLElement;
 
     /**
-     * Sets injected element reference, loads save manager, loads contents of current document.
+     * Sets injected element reference, loads save manager.
      * @param elem
      * @param saveManager
      */
     constructor(elem: ElementRef, saveManager: DocSaveManager) {
-        EditorRef.ref = elem.nativeElement.childNodes[1];
+        this._nativeEl = elem.nativeElement;
         this._saveManager = saveManager;
+    }
 
+    /**
+     * Sets native ElementRef, starts saver processes, loads current document.
+     */
+    public ngOnInit(): void {
+        EditorRef.ref = this._nativeEl.querySelector("#editor");
+
+        this._saveManager.initializeEvents();
         this.loadCurrentDocument();
     }
 

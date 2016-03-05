@@ -90,6 +90,6 @@ export class CloakService {
      */
     private setCloakActivationState(isActivated: boolean): void {
         this._isActivated = isActivated;
-        this._renderer.setElementClass(CloakService.cloakEl, CloakService.ACTIVE_CLASS, isActivated);
+        this._renderer.setElementClass(CloakService.cloakEl.nativeElement, CloakService.ACTIVE_CLASS, isActivated);
     }
 }

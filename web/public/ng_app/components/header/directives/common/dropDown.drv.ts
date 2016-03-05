@@ -1,4 +1,4 @@
-import {Directive, ElementRef} from "angular2/core";
+import {Directive, ElementRef, OnInit} from "angular2/core";
 
 // Services
 import {OpenedDropDown} from "../../services/common/OpenedDropDown";
@@ -8,10 +8,10 @@ import {SetClassNative} from "../../../../services/SetClassNative";
 @Directive({
     selector: "[drop-down-drv]"
 })
-export class DropDownDirective {
+export class DropDownDirective implements OnInit {
     // The CLOSE_EL_CLASS represents all elements in the menu which can close it.
     private static CLOSE_EL_CLASS: string = "dd-close";
-    private _nativeEl: any;
+    private _nativeEl;
 
     /**
      * Sets injected element reference and binds needed events.
@@ -19,6 +19,12 @@ export class DropDownDirective {
      */
     constructor(elem: ElementRef) {
         this._nativeEl = elem.nativeElement;
+    }
+
+    /**
+     * Sets all needed events for the drop down after initialization.
+     */
+    public ngOnInit(): void {
         this.bindClickEvent();
         this.bindCloseAndCleanEvent();
     }
@@ -27,7 +33,7 @@ export class DropDownDirective {
      * Binds click event to the drop down - open/close mechanism.
      */
     private bindClickEvent(): void {
-        var displayBtn = this._nativeEl.childNodes[1], // .disp button todo
+        var displayBtn = this._nativeEl.querySelector(".disp"),
             self: DropDownDirective = this;
 
         // Needed in order to keep focus over 'contenteditable' container, since .focus() is not a relevant solution.
@@ -55,7 +61,7 @@ export class DropDownDirective {
      * Clean - cleans the first found input[type="text"].
      */
     private bindCloseAndCleanEvent(): void {
-        var cont = this._nativeEl.childNodes[3],
+        var cont = this._nativeEl.querySelector(".cont"),
             input = cont.querySelector("input[type=\"text\"]"), // Covers only one input per menu
             self: DropDownDirective = this;
 

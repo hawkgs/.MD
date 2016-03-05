@@ -1,4 +1,4 @@
-import {Component, ElementRef} from "angular2/core";
+import {Component, ElementRef, OnInit} from "angular2/core";
 
 // Services
 import {TableService} from "../services/TableService";
@@ -12,7 +12,7 @@ import {SetClassNative} from "../../../services/SetClassNative";
             <div class="item-cont"></div>
         </div>`
 })
-export class TableButtonComponent {
+export class TableButtonComponent implements OnInit {
     private static TABLE_SIZE: number = 5;
     private static HOV_CELL_CLASS: string = "hovered";
     private static CELL_CLASSES: string = "cell theme-bg-ev dd-close";
@@ -27,7 +27,13 @@ export class TableButtonComponent {
      */
     constructor(elem: ElementRef) {
         this._elem = elem;
-        this._cellCont = this._elem.nativeElement.childNodes[3].childNodes[1]; //todo
+    }
+
+    /**
+     * Sets cell container, builds the table selector and sets corresponding events.
+     */
+    public ngOnInit(): void {
+        this._cellCont = this._elem.nativeElement.querySelector(".item-cont");
 
         this.buildTableCellSelector();
         this.bindCellsClickEvent();

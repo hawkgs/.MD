@@ -1,15 +1,11 @@
-import {Directive, ElementRef, Renderer} from "angular2/core";
+import {Directive, HostListener, ElementRef, Renderer} from "angular2/core";
 
 // Services
 import {IDocSaveManager} from "../components/md_editor/editor/services/contracts/IDocSaveManager";
 import {DocSaveManager} from "../components/md_editor/editor/services/DocSaveManager";
 
 @Directive({
-    selector: "[btn-click]",
-    host: {
-        "(mousedown)": "onMousedown()",
-        "(mouseup)": "onMouseup()"
-    }
+    selector: "[btn-click]"
 })
 export class ButtonClickDirective {
     private static REMOVE_AFTER: number = 500; // 0.5s
@@ -34,6 +30,7 @@ export class ButtonClickDirective {
     /**
      * Highlights the clicked button.
      */
+    @HostListener("mousedown")
     public onMousedown(): void {
         var self: ButtonClickDirective = this;
 
@@ -48,6 +45,7 @@ export class ButtonClickDirective {
     /**
      * Un-highlights the clicked button.
      */
+    @HostListener("mouseup")
     public onMouseup(): void {
         this._renderer.setElementClass(this._elem, ButtonClickDirective.CLICK_CLASS, false);
     }

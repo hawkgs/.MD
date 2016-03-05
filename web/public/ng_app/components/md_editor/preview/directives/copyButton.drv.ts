@@ -1,13 +1,10 @@
-import {Directive, ElementRef, Renderer} from "angular2/core";
+import {Directive, HostListener, ElementRef, Renderer} from "angular2/core";
 
 // Services
 import {MdPreviewRef} from "../services/MdPreviewRef";
 
 @Directive({
-    selector: "[copy-btn-drv]",
-    host: {
-        "(click)": "onClick()"
-    }
+    selector: "[copy-btn-drv]"
 })
 export class CopyButtonDirective {
     private static SUCC_CLASS: string = "success";
@@ -30,6 +27,7 @@ export class CopyButtonDirective {
     /**
      * Copies the content of the preview to the user's clipboard.
      */
+    @HostListener("click")
     public onClick(): void {
         var isSuccessful,
             self: CopyButtonDirective = this;

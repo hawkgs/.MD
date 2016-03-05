@@ -18,7 +18,7 @@ export class WinReferences {
      * @param id - Unique ID of the window
      * @param ref - Reference of the window
      */
-    public static setRef(id: string, ref: HTMLElement): void {
+    public static setRef(id: string, ref: Element): void {
         if (WinReferences.references[id]) {
             console.error(`Window Error: '${id}' window ID is already set/in use.`);
             return;

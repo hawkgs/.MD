@@ -1,14 +1,11 @@
-import {Directive} from "angular2/core";
+import {Directive, HostListener} from "angular2/core";
 import {Router} from "angular2/router";
 
 // Services
 import {AuthService} from "../../../services/AuthService";
 
 @Directive({
-    selector: "[logout-drv]",
-    host: {
-        "(click)": "logout()"
-    }
+    selector: "[logout-drv]"
 })
 export class LogoutDirective {
     private _auth: AuthService;
@@ -26,6 +23,7 @@ export class LogoutDirective {
     /**
      * Performs logout whenever the user click on the directive and then redirects to home page.
      */
+    @HostListener("click")
     public logout(): void {
         this._auth.logout();
         this._router.navigate(["Home"]);

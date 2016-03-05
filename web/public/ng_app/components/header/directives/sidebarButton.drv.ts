@@ -1,4 +1,4 @@
-import {Directive, ElementRef} from "angular2/core";
+import {Directive, HostListener, ElementRef} from "angular2/core";
 
 // Services
 import {ToggleSidebar} from "../../sidebar/services/ToggleSidebar";
@@ -6,10 +6,7 @@ import {CloakService} from "../../../services/CloakService"; // Required as depe
 
 @Directive({
     selector: "[sidebar-btn-drv]",
-    providers: [CloakService],
-    host: {
-        "(click)": "onClick()"
-    }
+    providers: [CloakService]
 })
 export class SidebarButtonDirective {
     private _sidebarService: ToggleSidebar;
@@ -27,6 +24,7 @@ export class SidebarButtonDirective {
     /**
      * Toggles sidebar on click (on/off).
      */
+    @HostListener("click")
     public onClick(): void {
         this._sidebarService.toggle();
     }

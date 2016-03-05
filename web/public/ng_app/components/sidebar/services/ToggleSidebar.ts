@@ -1,4 +1,11 @@
-import {ElementRef, Injectable, Renderer} from "angular2/core";
+import {
+    ElementRef,
+    Injectable,
+    Renderer,
+    RootRenderer,
+    RenderComponentType,
+    ViewEncapsulation
+} from "angular2/core";
 
 // Services
 import {CloakService} from "../../../services/CloakService";
@@ -25,14 +32,16 @@ export class ToggleSidebar {
     private _isBtnClicked: boolean;
 
     /**
-     * Injects a Renderer and gets CloakService instance.
-     * @param renderer
+     * Injects a RootRenderer and gets CloakService instance.
+     * @param rootRenderer
      */
-    constructor(renderer: Renderer/*, @Inject(CloakService) cloakSrv: CloakService*/) {
-        this._renderer = renderer;
+    constructor(rootRenderer: RootRenderer) {
+        var type = new RenderComponentType(Math.random().toString(), ViewEncapsulation.None, []);
+
+        this._renderer = rootRenderer.renderComponent(type);
         this._isExpanded = false;
 
-        this._cloakService = CloakService.getInstance(renderer);
+        this._cloakService = CloakService.getInstance(this._renderer);
     }
 
     /**
@@ -41,6 +50,9 @@ export class ToggleSidebar {
      */
     public set sidebarRef(value: ElementRef) {
         this._sidebarRef = value;
+
+        // We don't know which reference will be set first - button or sidebar one
+        this.attemptSettingHideEvent();
     }
 
     /**
@@ -51,8 +63,8 @@ export class ToggleSidebar {
         this._buttonRef = value;
         this._isBtnClicked = false;
 
-        // Document event init when the button reference is loaded.
-        this.documentHideOnClickOut();
+        // We don't know which reference will be set first - button or sidebar one
+        this.attemptSettingHideEvent();
     }
 
     /**
@@ -63,6 +75,15 @@ export class ToggleSidebar {
 
         this._cloakService.toggle();
         this.toggleButton();
+    }
+
+    /**
+     * Attempts to set the hide event for the sidebar if both the button and sidebar references are present.
+     */
+    private attemptSettingHideEvent(): void {
+        if (this._buttonRef && this._sidebarRef) {
+            this.documentHideOnClickOut();
+        }
     }
 
     /**
@@ -78,7 +99,7 @@ export class ToggleSidebar {
      */
     private setSidebarState(isExpanded: boolean): void {
         this._isExpanded = isExpanded;
-        this._renderer.setElementClass(this._sidebarRef, ToggleSidebar.EXPND_CLASS, isExpanded);
+        this._renderer.setElementClass(this._sidebarRef.nativeElement, ToggleSidebar.EXPND_CLASS, isExpanded);
     }
 
     /**
@@ -87,7 +108,7 @@ export class ToggleSidebar {
      */
     private setButtonState(isClicked: boolean): void {
         this._isBtnClicked = isClicked;
-        this._renderer.setElementClass(this._buttonRef, ToggleSidebar.BTN_CLICK_CLASS, isClicked);
+        this._renderer.setElementClass(this._buttonRef.nativeElement, ToggleSidebar.BTN_CLICK_CLASS, isClicked);
     }
 
     /**

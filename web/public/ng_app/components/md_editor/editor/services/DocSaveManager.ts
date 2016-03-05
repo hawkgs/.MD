@@ -14,11 +14,16 @@ export class DocSaveManager implements IDocSaveManager {
     private _autoSaverInterval;
 
     /**
-     * Sets default/initial values needed for the watcher and initializes background processes.
+     * Sets default/initial values.
      */
     constructor() {
         this._keyPressCount = 0;
+    }
 
+    /**
+     * Initializes all events/background processes needed for the saver.
+     */
+    public initializeEvents(): void {
         this.startAutoSaver();
         this.bindPageLeaveSave();
     }
@@ -75,10 +80,8 @@ export class DocSaveManager implements IDocSaveManager {
      * Performs a save on page leave (beforeunload event).
      */
     private bindPageLeaveSave(): void {
-        var self: DocSaveManager = this;
-
-        window.addEventListener("beforeunload", function() {
-            self.performSave();
+        window.addEventListener("beforeunload", () => {
+            this.performSave();
         });
     }
 }

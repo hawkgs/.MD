@@ -3,6 +3,11 @@
  */
 export interface IDocSaveManager {
     /**
+     * Initializes all events/background processes needed for the saver.
+     */
+    initializeEvents(): void;
+
+    /**
      * Mechanism for calculating/determining when a save should be performed.
      */
     saveWatcher(): void;

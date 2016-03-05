@@ -1,20 +1,16 @@
-import {Directive, ElementRef, Renderer} from "angular2/core";
+import {Directive, HostListener, ElementRef, Renderer} from "angular2/core";
 
 @Directive({
-    selector: "[data-title]",
-    host: {
-        "(mouseover)": "onMouseover()",
-        "(mouseout)": "onMouseout()"
-    }
+    selector: "[data-title]"
 })
 export class TooltipDirective {
     private static APPEAR: number = 1700;
     private static DISAPPEAR: number = TooltipDirective.APPEAR + 1000 * 3; // Show for 3 seconds
     private static TOOLTIP_CLASS: string = "tooltip";
 
-    private _elem: any;
-    private _renderer: any;
-    private _timer: any;
+    private _elem: ElementRef;
+    private _renderer: Renderer;
+    private _timer;
 
     /**
      * Sets injected element reference and Renderer. Sets timer object.
@@ -30,21 +26,21 @@ export class TooltipDirective {
     /**
      * The tooltip appears after APPEAR time and disappears after DISAPPEAR.
      */
+    @HostListener("mouseover")
     public onMouseover(): void {
-        var self: TooltipDirective = this;
-
-        this._timer.appear = setTimeout(function () {
-            self.showTooltipClass(true);
+        this._timer.appear = setTimeout(() => {
+            this.showTooltipClass(true);
         }, TooltipDirective.APPEAR);
 
-        this._timer.disappear = setTimeout(function () {
-            self.showTooltipClass(false);
+        this._timer.disappear = setTimeout(() => {
+            this.showTooltipClass(false);
         }, TooltipDirective.DISAPPEAR);
     }
 
     /**
      * Tooltip disappears and clears all corresponding timer (so that they can be reset on mouseover).
      */
+    @HostListener("mouseout")
     public onMouseout(): void {
         clearTimeout(this._timer.appear);
         clearTimeout(this._timer.disappear);
@@ -57,6 +53,6 @@ export class TooltipDirective {
      * @param shouldShow
      */
     private showTooltipClass(shouldShow: boolean): void {
-        this._renderer.setElementClass(this._elem, TooltipDirective.TOOLTIP_CLASS, shouldShow);
+        this._renderer.setElementClass(this._elem.nativeElement, TooltipDirective.TOOLTIP_CLASS, shouldShow);
     }
 }

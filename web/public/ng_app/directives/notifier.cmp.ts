@@ -30,7 +30,8 @@ import {NotifierType} from "../services/enums/NotifierType";
     `]
 })
 export class NotifierComponent implements OnInit {
-    public service: NotifierService;
+    private _service: NotifierService;
+    private _nativeEl;
 
     /**
      * Sets element reference to the corresponding service (NotifierService).
@@ -38,8 +39,8 @@ export class NotifierComponent implements OnInit {
      * @param service
      */
     constructor(elem: ElementRef, service: NotifierService) {
-        this.service = service;
-        this.service.elem = elem.nativeElement.querySelector("div");
+        this._service = service;
+        this._nativeEl = elem.nativeElement;
     }
 
     /**
@@ -47,13 +48,15 @@ export class NotifierComponent implements OnInit {
      * @returns {string}
      */
     public get message(): string {
-        return this.service.message;
+        return this._service.message;
     }
 
     /**
-     * Calls all startup messages after the component is initialized.
+     * Calls all startup messages after the component is initialized and sets its reference.
      */
     public ngOnInit(): void {
+        this._service.elem = this._nativeEl.querySelector("div");
+
         // Put some delaying
         setTimeout(() => {
             this.startUpMessages();
@@ -71,6 +74,6 @@ export class NotifierComponent implements OnInit {
         functionality is incomplete and/or buggy.
         `;
 
-        this.service.show(NotifierType.Notice, startUpMessage, 7000);
+        this._service.show(NotifierType.Notice, startUpMessage, 7000);
     }
 }

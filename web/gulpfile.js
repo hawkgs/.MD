@@ -61,12 +61,18 @@ gulp.task("watch.ts", ["build.dev"], function () {
         var time = new Date();
 
         console.log(`[${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}] recompiling ...`);
-        compileDevTs("./public/ng_app/**/*.ts", "./public/app");
+        compileDevTs([
+            "./typings/browser.d.ts", // TypeScript Typings
+            "./public/ng_app/**/*.ts" // Ng2 Code
+        ], "./public/app");
     });
 });
 
 gulp.task("heroku.prod", function () {
-    var tsResult = gulp.src("./public/ng_app/**/*.ts")
+    var tsResult = gulp.src([
+            "./typings/browser.d.ts", // TypeScript Typings
+            "./public/ng_app/**/*.ts" // Ng2 Code
+        ])
         .pipe(inlineNg2Template({ base: "/public/ng_app" }))
         .pipe(ts(tsProject));
 

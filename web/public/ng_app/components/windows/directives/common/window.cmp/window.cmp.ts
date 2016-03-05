@@ -21,17 +21,19 @@ export class WindowComponent implements OnInit, OnDestroy {
     @Input("win-title") title: string;
     @Input("win-id") id: string;
 
+    private _masterElem: ElementRef;
     private _nativeElem: HTMLElement;
     private _renderer: Renderer;
 
     /**
-     * Sets injected element reference and renderer, gets cloak reference.
+     * Sets injected master element reference and renderer, gets cloak reference.
      * @param elem
      * @param renderer
      */
     constructor(elem: ElementRef, renderer: Renderer) {
-        this._nativeElem = elem.nativeElement.querySelector(".window"); // first child => .window element
+        this._masterElem = elem;
         this._renderer = renderer;
+
         WindowComponent.cloakService = CloakService.getInstance(renderer); // todo not so cool
     }
 
@@ -92,9 +94,11 @@ export class WindowComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Puts the window reference in a container by the given @id on window initialization.
+     * Sets windows reference and puts it in a container by the given @id on window initialization.
      */
     public ngOnInit(): void {
+        this._nativeElem = this._masterElem.nativeElement.querySelector(".window"); // first child => .window element
+
         WinReferences.setRef(this.id, this._nativeElem);
     }
 

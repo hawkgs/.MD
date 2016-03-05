@@ -1,4 +1,4 @@
-import {Component, ElementRef} from "angular2/core";
+import {Component, ElementRef, OnInit} from "angular2/core";
 
 // Services
 import {ThemeColors} from "../services/ThemeColors";
@@ -38,22 +38,23 @@ import {Converters} from "../../../services/Converters";
         .color-pick.selected { border-color: rgba(255, 255, 255, 0.85); }
     `]
 })
-export class ThemeSelectorComponent {
+export class ThemeSelectorComponent implements OnInit {
     private static SEL_THEME_CLASS: string = "selected";
 
     public currentTheme: string;
     private _themeChanger: IThemeChanger;
+    private _masterElem: ElementRef;
     private _current;
     private _nativeElem;
 
     /**
-     * Sets themeChanger instance and element reference. Then loads default theme.
+     * Sets themeChanger instance and master element reference. Then loads default theme.
      * @param themeChanger
      * @param elem
      */
     constructor(themeChanger: ThemeChanger, elem: ElementRef) {
         this._themeChanger = themeChanger;
-        this._nativeElem = elem.nativeElement.querySelector("#theme-selector");
+        this._masterElem = elem;
 
         this.currentTheme = this._themeChanger.loadCurrentTheme();
     }
@@ -64,6 +65,13 @@ export class ThemeSelectorComponent {
      */
     public get themeColors(): string[] {
         return ThemeColors.clr;
+    }
+
+    /**
+     * Sets the @_nativeElement to the theme selector element.
+     */
+    public ngOnInit(): void {
+        this._nativeElem = this._masterElem.nativeElement.querySelector("#theme-selector");
     }
 
     /**
