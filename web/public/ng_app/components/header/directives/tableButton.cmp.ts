@@ -1,4 +1,5 @@
-import {Component, ElementRef, OnInit} from "angular2/core";
+import {Component, Inject, ElementRef, OnInit} from "angular2/core";
+import {DOCUMENT} from "angular2/src/platform/dom/dom_tokens";
 
 // Services
 import {TableService} from "../services/TableService";
@@ -20,12 +21,15 @@ export class TableButtonComponent implements OnInit {
     private _elem: ElementRef;
     private _cellCont;
     private _cells;
+    private _doc;
 
     /**
-     * Sets injected element reference and builds the table cell selector (generator) widget.
+     * Sets injected element reference and DOM document.
+     * @param doc
      * @param elem
      */
-    constructor(elem: ElementRef) {
+    constructor(@Inject(DOCUMENT) doc, elem: ElementRef) {
+        this._doc = doc;
         this._elem = elem;
     }
 
@@ -43,7 +47,7 @@ export class TableButtonComponent implements OnInit {
      * Builds table cell selector (generator) widget.
      */
     private buildTableCellSelector(): void {
-        var cellContainer = document.createDocumentFragment(),
+        var cellContainer = this._doc.createDocumentFragment(),
             pSize: number = TableButtonComponent.TABLE_SIZE * TableButtonComponent.TABLE_SIZE,
             col: number = 1,
             row: number = 1,
@@ -53,7 +57,7 @@ export class TableButtonComponent implements OnInit {
         this._cells = [];
 
         for (i = 1; i <= pSize; i += 1) {
-            cell = document.createElement("div");
+            cell = this._doc.createElement("div");
             SetClassNative.add(cell, TableButtonComponent.CELL_CLASSES);
             cell.dataset.col = col;
             cell.dataset.row = row;
@@ -105,7 +109,7 @@ export class TableButtonComponent implements OnInit {
             if (elem && elem.className.indexOf("cell") !== -1) {
                 tableStr = TableService.GenerateTable(elem.dataset.row, elem.dataset.col);
 
-                document.execCommand("insertHTML", false, tableStr);
+                this._doc.execCommand("insertHTML", false, tableStr);
             }
         });
     }

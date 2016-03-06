@@ -21,6 +21,10 @@ export class HyperlinkButtonDirective {
     public url: string;
     private _doc;
 
+    /**
+     * Injects a 'document' for DOM manipulation.
+     * @param doc
+     */
     constructor(@Inject(DOCUMENT) doc) {
         this._doc = doc;
     }

@@ -1,4 +1,5 @@
-import {Component} from "angular2/core";
+import {Component, Inject} from "angular2/core";
+import {DOCUMENT} from "angular2/src/platform/dom/dom_tokens";
 
 @Component({
     selector: "[headings-btn-cmp]",
@@ -14,12 +15,15 @@ import {Component} from "angular2/core";
 })
 export class HeadingsButtonComponent {
     private static HEAD_NUM: number = 6;
+
     public headings;
+    private _doc;
 
     /**
-     * Creates HEAD_NUM sized array for simulated iteration in the template.
+     * Creates HEAD_NUM sized array for simulated iteration in the template and injects DOM document.
      */
-    constructor() {
+    constructor(@Inject(DOCUMENT) doc) {
+        this._doc = doc;
         this.headings = new Array(HeadingsButtonComponent.HEAD_NUM);
     }
 
@@ -30,7 +34,7 @@ export class HeadingsButtonComponent {
     public insertHeading(num: number): void {
         var headingNum: number = ++num;
 
-        document.execCommand("formatBlock", false, `<H${headingNum}>`);
+        this._doc.execCommand("formatBlock", false, `<H${headingNum}>`);
     }
 
     /**

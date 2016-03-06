@@ -1,4 +1,5 @@
-import {Component} from "angular2/core";
+import {Component, Inject} from "angular2/core";
+import {DOCUMENT} from "angular2/src/platform/dom/dom_tokens";
 
 // Services
 import {Escapers} from "../../../services/Escapers";
@@ -14,6 +15,16 @@ import {Escapers} from "../../../services/Escapers";
         </ul>`
 })
 export class CodeButtonComponent {
+    private _doc;
+
+    /**
+     * Injects a 'document' for DOM manipulation.
+     * @param doc
+     */
+    constructor(@Inject(DOCUMENT) doc) {
+        this._doc = doc;
+    }
+
     /**
      * Wraps/inserts CODE (inline code) to the text selection in the editor.
      */
@@ -43,6 +54,6 @@ export class CodeButtonComponent {
     private wrapCodeInTag(tagName: string) {
         var selection: string = Escapers.escapeHtml(window.getSelection().toString());
 
-        document.execCommand("insertHTML", false, `<${tagName}>${selection}</${tagName}>`);
+        this._doc.execCommand("insertHTML", false, `<${tagName}>${selection}</${tagName}>`);
     }
 }

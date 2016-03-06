@@ -1,5 +1,6 @@
-import {Component} from "angular2/core";
+import {Component, Inject} from "angular2/core";
 import {NgModel} from "angular2/common";
+import {DOCUMENT} from "angular2/src/platform/dom/dom_tokens";
 
 // Services
 import {EditorSelection} from "../../md_editor/editor/services/EditorSelection";
@@ -20,6 +21,15 @@ import {EditorSelection} from "../../md_editor/editor/services/EditorSelection";
 export class ImageButtonComponent {
     public url: string;
     public alternative: string;
+    private _doc;
+
+    /**
+     * Injects a 'document' for DOM manipulation.
+     * @param doc
+     */
+    constructor(@Inject(DOCUMENT) doc) {
+        this._doc = doc;
+    }
 
     /**
      * Inserts IMG in the editor by a provided URL and Alt.
@@ -42,7 +52,7 @@ export class ImageButtonComponent {
      * @returns {HTMLImageElement|HTMLElement}
      */
     private createImageTag(url: string, alt: string): HTMLImageElement {
-        var img = document.createElement("img");
+        var img = this._doc.createElement("img");
 
         img.src = url;
         img.alt = alt;
