@@ -1,6 +1,9 @@
 import {EditorRef} from "./EditorRef";
 import {IDocSaveManager} from "./contracts/IDocSaveManager";
 
+// Wrappers
+import {LocalStorage} from "../../../../wrappers/LocalStorage";
+
 /**
  * In charge for auto saving managing of the document contents (HTML).
  */
@@ -57,7 +60,7 @@ export class DocSaveManager implements IDocSaveManager {
      */
     public clearDocument(): void {
         EditorRef.ref.innerHTML = "";
-        localStorage.setItem(DocSaveManager.LS_DOC_KEY, "");
+        LocalStorage.setItem(DocSaveManager.LS_DOC_KEY, "");
     }
 
     /**
@@ -66,7 +69,7 @@ export class DocSaveManager implements IDocSaveManager {
     private performSave(): void {
         var html: string = EditorRef.ref.innerHTML;
 
-        localStorage.setItem(DocSaveManager.LS_DOC_KEY, JSON.stringify({ html: html }));
+        LocalStorage.setItem(DocSaveManager.LS_DOC_KEY, JSON.stringify({ html: html }));
     }
 
     /**
