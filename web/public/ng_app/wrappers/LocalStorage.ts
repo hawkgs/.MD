@@ -17,7 +17,7 @@ export const LocalStorage = {
      * @param key
      */
     getItem(key: string): any {
-        localStorage.getItem(key);
+        return localStorage.getItem(key);
     },
 
     /**
