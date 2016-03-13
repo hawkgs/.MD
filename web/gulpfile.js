@@ -16,67 +16,71 @@ var gulp = require("gulp"),
     tsProject = ts.createProject("tsconfig.json"),
     docsConfig = require("./typedoc.json");
 
-// Helpers
-function compileDevTs(pathToRebuild, basePath) {
-    var tsResult = gulp.src(pathToRebuild)
-        .pipe(plumber()) // Keep pipes running
-        .pipe(tslint()) // Linter
-        .pipe(tslint.report(tslintStylish, {
-            emitError: false,
-            sort: true,
-            bell: true
-        }))
-        .pipe(inlineNg2Template({ base: "/public/ng_app" })) // Inject templates (html, css)
-        .pipe(sourcemaps.init()) // Create source maps
-        .pipe(ts(tsProject));
+var PATHS = {
+    dist: "./public/app",
+    app: "./public/ng_app",
+    appTs: "./public/ng_app/**/*.ts",
+    typings: "./typings/browser.d.ts",
+    watch: "./public/ng_app/**/*"
+};
 
-    tsResult.js
-        .pipe(sourcemaps.write()) // Write source maps
-        .pipe(gulp.dest(basePath)); // Build JS
-}
+// Helpers
+var Helpers = {
+    compileDevTs: function (pathToRebuild, basePath) {
+        var tsResult = gulp.src(pathToRebuild)
+            .pipe(plumber()) // Keep pipes running
+            .pipe(tslint()) // Linter
+            .pipe(tslint.report(tslintStylish, {
+                emitError: false,
+                sort: true,
+                bell: true
+            }))
+            .pipe(inlineNg2Template({base: PATHS.app})) // Inject templates (html, css)
+            .pipe(sourcemaps.init()) // Create source maps
+            .pipe(ts(tsProject));
+
+        tsResult.js
+            .pipe(sourcemaps.write()) // Write source maps
+            .pipe(gulp.dest(basePath)); // Build JS
+    }
+};
 
 // Tasks
 
 gulp.task("clean", function () {
-    return gulp.src("./public/app", { read: false })
+    return gulp.src(PATHS.dist, { read: false })
         .pipe(clean());
 });
 
 gulp.task("build.dev", ["clean"], function() {
-    compileDevTs([
-        "./typings/browser.d.ts", // TypeScript Typings
-        "./public/ng_app/**/*.ts" // Ng2 Code
-    ], "./public/app");
+    Helpers.compileDevTs([ PATHS.typings, PATHS.appTs ], PATHS.dist);
 });
 
 gulp.task("typedoc", function() {
     return gulp
-        .src(["./public/ng_app/**/*.ts"])
+        .src([PATHS.appTs])
         .pipe(typedoc(docsConfig));
 });
 
 gulp.task("watch.ts", ["build.dev"], function () {
     // brute solution: recompile all
-    watch("./public/ng_app/**/*", function () {
+    watch(PATHS.watch, function () {
         var time = new Date();
 
         console.log(`[${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}] recompiling ...`);
-        compileDevTs([
-            "./typings/browser.d.ts", // TypeScript Typings
-            "./public/ng_app/**/*.ts" // Ng2 Code
-        ], "./public/app");
+        Helpers.compileDevTs([ PATHS.typings, PATHS.appTs ], PATHS.dist);
     });
 });
 
 gulp.task("heroku.prod", function () {
     var tsResult = gulp.src([
-            "./typings/browser.d.ts", // TypeScript Typings
-            "./public/ng_app/**/*.ts" // Ng2 Code
+            PATHS.typings,
+            PATHS.appTs
         ])
-        .pipe(inlineNg2Template({ base: "/public/ng_app" }))
+        .pipe(inlineNg2Template({ base: PATHS.app }))
         .pipe(ts(tsProject));
 
     tsResult.js
         .pipe(uglify())
-        .pipe(gulp.dest("./public/app"));
+        .pipe(gulp.dest(PATHS.dist));
 });
