@@ -65,6 +65,7 @@ export class DocNameSaveManager implements IDocNameSaveManager {
             this._inputRef.value = name;
         } else {
             this._inputRef.value = DocNameSaveManager.DEF_DOC_NAME;
+            this.saveName();
         }
     }
 
