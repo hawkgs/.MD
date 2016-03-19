@@ -1,4 +1,5 @@
-import {Component, ElementRef, ViewEncapsulation, OnInit} from "angular2/core";
+import {Component, Inject, ElementRef, ViewEncapsulation, OnInit} from "angular2/core";
+import {DOCUMENT} from "angular2/src/platform/dom/dom_tokens";
 
 // Directives
 import {PreviewComponent} from "../preview/preview.cmp";
@@ -11,6 +12,9 @@ import {EditorSelection} from "./services/EditorSelection";
 import {EditorRef} from "./services/EditorRef";
 import {DocSaveManager} from "./services/DocSaveManager";
 
+// Wrappers
+import {LocalStorage} from "../../../wrappers/LocalStorage";
+
 @Component({
     selector: "[editor-cmp]",
     templateUrl: "./components/md_editor/editor/editor.html",
@@ -20,13 +24,16 @@ import {DocSaveManager} from "./services/DocSaveManager";
 export class EditorComponent implements OnInit {
     private _saveManager: IDocSaveManager;
     private _nativeEl: HTMLElement;
+    private _doc;
 
     /**
-     * Sets injected element reference, loads save manager.
+     * Sets injected element reference, loads save manager, gets document.
+     * @param doc
      * @param elem
      * @param saveManager
      */
-    constructor(elem: ElementRef, saveManager: DocSaveManager) {
+    constructor(@Inject(DOCUMENT) doc, elem: ElementRef, saveManager: DocSaveManager) {
+        this._doc = doc;
         this._nativeEl = elem.nativeElement;
         this._saveManager = saveManager;
     }
@@ -79,7 +86,7 @@ export class EditorComponent implements OnInit {
      * Loads the contents of the previously worked document in the editor from the localStorage.
      */
     private loadCurrentDocument(): void {
-        var storageData = localStorage.getItem(DocSaveManager.LS_DOC_KEY);
+        var storageData = LocalStorage.getItem(DocSaveManager.LS_DOC_KEY);
 
         if (storageData) {
             EditorRef.ref.innerHTML = JSON.parse(storageData).html;
@@ -97,7 +104,7 @@ export class EditorComponent implements OnInit {
             event.preventDefault();
 
             let text: string = ev.clipboardData.getData("text/plain");
-            document.execCommand("insertText", false, text);
+            this._doc.execCommand("insertText", false, text);
         }
     }
 }

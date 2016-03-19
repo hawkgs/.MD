@@ -1,4 +1,5 @@
-import {Directive, HostListener, ElementRef, Renderer} from "angular2/core";
+import {Directive, HostListener, Inject, ElementRef, Renderer} from "angular2/core";
+import {DOCUMENT} from "angular2/src/platform/dom/dom_tokens";
 
 // Services
 import {MdPreviewRef} from "../services/MdPreviewRef";
@@ -11,15 +12,18 @@ export class CopyButtonDirective {
     private static ERR_CLASS: string = "error";
     private static SHOW_TIME: number = 350; // ms
 
+    private _doc;
     private _elem: ElementRef;
     private _renderer: Renderer;
 
     /**
-     * Sets injected element reference and Renderer.
+     * Gets 'document', sets injected element reference and Renderer.
+     * @param doc
      * @param elem
      * @param renderer
      */
-    constructor(elem: ElementRef, renderer: Renderer) {
+    constructor(@Inject(DOCUMENT) doc, elem: ElementRef, renderer: Renderer) {
+        this._doc = doc;
         this._elem = elem;
         this._renderer = renderer;
     }
@@ -36,7 +40,7 @@ export class CopyButtonDirective {
         MdPreviewRef.ref.setSelectionRange(0, 9999);
 
         try {
-            isSuccessful = document.execCommand("copy");
+            isSuccessful = this._doc.execCommand("copy");
 
             if (isSuccessful) {
                 this.setButtonClass(CopyButtonDirective.SUCC_CLASS, true);
@@ -59,6 +63,6 @@ export class CopyButtonDirective {
      * @param isAdd - Should the class be added or not (true/false)
      */
     private setButtonClass(className: string, isAdd: boolean): void {
-        this._renderer.setElementClass(this._elem, className, isAdd);
+        this._renderer.setElementClass(this._elem.nativeElement, className, isAdd);
     }
 }
