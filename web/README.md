@@ -1,3 +1,5 @@
+**IMPORTANT: Keep in mind that this app was developed during the very early days of Angular 2+, during its beta period (beta.v0) when a complete and thorough documentation was not available. Since then a lot of has changed. Conceptions like NgModule were introduced, some of the core parts/packages were completely rewritten. The app does not follow the current style guides, probably uses techniques that are now considered bad practices, performs direct DOM manipulations, etc.**
+
 ### Used Technologies
 
 * * *
